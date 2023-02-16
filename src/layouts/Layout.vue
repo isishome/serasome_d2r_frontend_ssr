@@ -169,6 +169,9 @@
           property: 'og:description',
           content: d.value
         }
+      },
+      link: {
+        canonical: { rel: 'canonical', href: route.path }
       }
     }
   })
