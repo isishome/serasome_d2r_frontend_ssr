@@ -1,3 +1,15 @@
+<script>
+import { useStore } from 'stores/store'
+export default {
+  preFetch({ store, currentRoute }) {
+    if (currentRoute.name === 'd2r-read') {
+      const s = useStore(store)
+      return s.setPost(currentRoute.params.sec, currentRoute.params.pid)
+    }
+  }
+}
+</script>
+
 <script setup>
 import { reactive, computed } from 'vue'
 import { useRoute } from 'vue-router'

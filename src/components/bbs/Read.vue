@@ -1,18 +1,9 @@
 <script setup>
-
-
-
-
-
-
-
-
-
 import { reactive, ref, computed, inject, nextTick, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'stores/store'
 import { useI18n } from 'vue-i18n'
-import { useQuasar, useMeta } from 'quasar'
+import { useQuasar } from 'quasar'
 import { parsDateTime, getYoutubeId } from 'src/common'
 import Confirm from 'components/bbs/Confirm.vue'
 import Comments from 'components/bbs/Comments.vue'
@@ -93,33 +84,18 @@ const isQuiz = computed(() => data.sec === 'trade' && data.classify === 'give' &
 const currentText = computed(() => current.value !== 0 ? current.value : t('btn.close'))
 
 const getCont = () => {
-  loading.value = true
-  axios
-    .get('/d2r/board/cont', {
-      params: {
-        sec: props.sec,
-        pid: props.pid
-      }
-    }).then((response) => {
-      intersactionImage(response.data)
-      Object.assign(data, response.data)
+  if (store.post) {
+    intersactionImage(store.post)
+    Object.assign(data, store.post)
 
-      store.setTitle(data.title)
-      store.setDescription(data.contents.replace(/<[^>]*>/gi, '').substr(0, 150).concat('...'))
-
-      nextTick(() => {
-        const images = contentsObj.value.querySelectorAll('.io-img')
-        images.forEach((el) => { el.onload = () => { io.observe(el) } })
-        const codes = contentsObj.value.querySelectorAll('pre code')
-        codes.forEach((el) => { el.onload = () => { co.observe(el) } })
-      })
-    })
-    .catch(() => {
-      loading.value = false
-    })
-    .then(() => {
+    nextTick(() => {
+      const images = contentsObj.value.querySelectorAll('.io-img')
+      images.forEach((el) => { el.onload = () => { io.observe(el) } })
+      const codes = contentsObj.value.querySelectorAll('pre code')
+      codes.forEach((el) => { el.onload = () => { co.observe(el) } })
       getComments()
     })
+  }
 }
 
 const getComments = () => {
@@ -379,9 +355,9 @@ onMounted(() => {
             </div>
             <div v-else class="row justify-end items-center q-col-gutter-x-sm text-right">
               <div class="col-9 col-sm-4 col-md-3">
-                <q-input dense borderless hide-bottom-space no-error-icon class="q-px-sm input-place quiz" color="grey-5"
-                  :disable="loading" maxlength="20" type="text" :label="t('d2r.bbs.answer')" v-model="answer"
-                  :rules="[val => val && val.trim() !== '' || '']" />
+                <q-input dense borderless hide-bottom-space no-error-icon class="q-px-sm input-place quiz"
+                  color="grey-5" :disable="loading" maxlength="20" type="text" :label="t('d2r.bbs.answer')"
+                  v-model="answer" :rules="[val => val && val.trim() !== '' || '']" />
               </div>
               <div>
                 <q-btn dense padding="0 10px" type="submit" text-color="black" :label="t('d2r.bbs.btn.submit')" />
@@ -395,7 +371,8 @@ onMounted(() => {
         <div class="row justify-end q-gutter-x-sm">
           <q-btn v-if="authority(sec, 'delete') || data.owner === true" dense unelevated color="secondary"
             :disable="loading" :label="t('btn.delete')" @click="showConfirm('delete')" />
-          <q-btn v-if="(authority(sec, 'delete') || data.owner === true) && sec === 'trade' && data.classify !== 'notice'"
+          <q-btn
+            v-if="(authority(sec, 'delete') || data.owner === true) && sec === 'trade' && data.classify !== 'notice'"
             dense unelevated class="bg-grey-9 text-grey-4" :disable="loading" :label="t('btn.finish')"
             @click="showConfirm('finish')" />
         </div>
@@ -433,7 +410,7 @@ onMounted(() => {
         </q-card-actions>
       </q-card>
     </q-dialog>
-</div>
+  </div>
 </template>
 
 <style scoped>

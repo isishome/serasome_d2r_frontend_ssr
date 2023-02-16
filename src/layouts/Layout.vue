@@ -1,3 +1,13 @@
+<script>
+  import { useStore } from 'stores/store'
+  export default {
+    preFetch({ store }) {
+      const s = useStore(store)
+      s.clearPost()
+    }
+  }
+</script>
+
 <script setup>
   import { ref, computed, reactive, watch, inject } from 'vue'
   import { useMeta, useQuasar } from 'quasar'
@@ -135,12 +145,12 @@
   const isKnow = computed(() => route.matched.some(r => r.name && r.name.indexOf('knowledge') !== -1))
   const isBbs = computed(() => route.matched.some(r => r.name && r.name.indexOf('bbs') !== -1))
 
-  const bt = computed(() => store.title ? `${store.title} : ` : '')
+  const bt = computed(() => store.post.title ? `${store.post.title} : ` : '')
   const tt = computed(() => isKnow.value ? `${pascalCase(route.params.section)}${route.params.part ? ' : ' + pascalCase(route.params.part) : ''} | ` :
     isBbs.value ? `${pascalCase(route.params.sec)} | ` : ' ')
 
   const descList = computed(() => route.matched.filter(r => r.meta && r.meta.description))
-  const d = computed(() => store.description ? store.description : route.meta.desc ? `${route.meta.desc} | ` : descList.value.length > 0 ? `${descList.value[0].meta.description} | ` : ' ')
+  const d = computed(() => store.post.contents ? store.post.contents.replace(/<[^>]*>/gi, '').substr(0, 150).concat('...') : route.meta.desc ? `${route.meta.desc} | ` : descList.value.length > 0 ? `${descList.value[0].meta.description} | ` : ' ')
 
   useMeta(() => {
     return {
@@ -165,8 +175,6 @@
 
   watch(() => route.path, (val, old) => {
     if (val !== old && old !== null) {
-      store.setTitle(null)
-      store.setDescription(null)
       _section.value = route.params.section
       _part.value = route.params.part
       progress.value = 0

@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
+import { api } from 'boot/axios'
 
 export const useStore = defineStore('main', {
   state: () => ({
-    title: null,
-    description: null,
+    post: {},
     key: 0,
     signStatus: null,
     info: null,
@@ -63,11 +63,26 @@ export const useStore = defineStore('main', {
     addKey() {
       this.key++
     },
-    setTitle(payload) {
-      this.title = payload
+    setPost(sec, pid) {
+      const state = this
+      return new Promise((resolve, reject) => {
+        api
+          .get('/d2r/board/cont', {
+            params: {
+              sec: sec,
+              pid: pid
+            }
+          }).then((response) => {
+            state.post = response.data
+            resolve()
+          })
+          .catch(() => {
+            reject()
+          })
+      })
     },
-    setDescription(payload) {
-      this.description = payload
+    clearPost() {
+      this.post = {}
     }
   }
 })
