@@ -1,202 +1,181 @@
 <script setup>
+  import { ref, computed, reactive, watch, inject } from 'vue'
+  import { useMeta, useQuasar } from 'quasar'
+  import { useRoute, useRouter } from 'vue-router'
+  import { useStore } from 'stores/store'
+  import { useI18n } from 'vue-i18n'
+  import { pascalCase } from 'src/common'
+  import AdSense from 'components/AdSense.vue'
+  import Zoom from 'components/Zoom.vue'
 
+  // module variables
+  const $q = useQuasar()
+  const route = useRoute()
+  const router = useRouter()
+  const store = useStore()
+  const { t, tm, rt, locale } = useI18n({ useScope: 'global' })
+  const axios = inject('axios')
 
+  // environment variables
+  const isProduction = import.meta.env.PROD
+  const darkName = import.meta.env.VITE_APP_D2R_DARK_NAME
+  const langName = import.meta.env.VITE_APP_LANGUAGE_NAME
 
+  // common variables
+  const images = computed(() => store.images)
+  const routeName = computed(() => route.name)
+  const screen = computed(() => $q.screen)
+  const signStatus = computed(() => store.signStatus)
 
+  // scroll & progress
+  const progress = ref(0)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import { ref, computed, reactive, watch, inject } from 'vue'
-import { useMeta, useQuasar } from 'quasar'
-import { useRoute, useRouter } from 'vue-router'
-import { useStore } from 'stores/store'
-import { useI18n } from 'vue-i18n'
-import { pascalCase } from 'src/common'
-import AdSense from 'components/AdSense.vue'
-import Zoom from 'components/Zoom.vue'
-
-// module variables
-const $q = useQuasar()
-const route = useRoute()
-const router = useRouter()
-const store = useStore()
-const { t, tm, rt, locale } = useI18n({ useScope: 'global' })
-const axios = inject('axios')
-
-// environment variables
-const isProduction = import.meta.env.PROD
-const darkName = import.meta.env.VITE_APP_D2R_DARK_NAME
-const langName = import.meta.env.VITE_APP_LANGUAGE_NAME
-
-// common variables
-const images = computed(() => store.images)
-const routeName = computed(() => route.name)
-const screen = computed(() => $q.screen)
-const signStatus = computed(() => store.signStatus)
-
-// scroll & progress
-const progress = ref(0)
-
-const onScroll = (info) => {
-  if (route.meta.progress) {
-    const winHeight = window.innerHeight
-    const position = info.position.top
-    let scrollPercent = position / (document.body.offsetHeight - winHeight) || 0
-    let scrollPercentRounded = Math.round(scrollPercent * 100) / 100
-    progress.value = scrollPercentRounded
-  }
-}
-
-// drawer
-const leftDrawer = ref(false)
-const rightDrawer = ref(false)
-
-// globalization
-const options = reactive([
-  { label: '한국어', value: 'ko-KR' },
-  { label: 'ENGLISH', value: 'en-US' }
-])
-
-const toggleLang = (val) => {
-  $q.cookies.set(langName, val, { path: '/', expires: '7300d' })
-  document.location.reload()
-}
-
-// section
-const section = computed(() => store.getSection)
-
-// dark mode
-const isDark = computed(() => $q.dark.isActive)
-const toggleDark = () => {
-  $q.cookies.set(darkName, !$q.dark.isActive, { path: '/', expires: '7300d' })
-  $q.dark.set(!$q.dark.isActive)
-  document.documentElement.style.setProperty('color-scheme', $q.dark.isActive ? 'dark' : 'light')
-  leftDrawer.value = false
-}
-
-// header method
-const home = () => {
-  if (routeName.value === 'd2r-main')
-    document.location.reload()
-  else
-    router.replace({ path: '/' })
-}
-// adsense
-const noAD = computed(() => store.noAD)
-const key = computed(() => store.key)
-
-// sign
-const checkStatus = () => {
-  if (signStatus.value === null) {
-    axios
-      .get('/seras/account/signstatus',
-        {
-          params: {
-            t: Date.now()
-          }
-        })
-      .then((response) => {
-        store.setSignStatus(response.data.status)
-      })
-  }
-}
-
-// section
-const isKnowledge = computed(() => routeName.value.indexOf('knowledge') !== -1)
-store.setSectionList(computed(() => tm('d2r.knowledge.list').map(l => ({ value: rt(l.value), label: rt(l.name) }))))
-const sectionList = computed(() => store.sectionList)
-const _section = ref('')
-const toSection = (val) => {
-  router.push({ name: 'd2r-knowledge-section', params: { section: val } })
-}
-
-// part
-const partList = computed(() => store.partList)
-const _part = ref('')
-const toPart = (val) => {
-  router.push({ name: 'd2r-knowledge-part', params: { section: _section.value, part: val } })
-}
-
-// sign
-const processSignOut = ref(false)
-const sign = () => {
-  if (signStatus.value) {
-    processSignOut.value = true
-    axios
-      .get('/d2r/account/signout')
-      .then(function (response) {
-        store.setInfo(response.data)
-      })
-      .catch(function () { })
-      .then(function () {
-        processSignOut.value = false
-        document.location.reload()
-      })
-  } else {
-    const seras = `${isProduction ? import.meta.env.VITE_APP_SERAS : window.location.protocol.concat('//', window.location.hostname, ':', import.meta.env.VITE_APP_SERAS)}/sign?d2r`
-    document.location.href = seras
-  }
-}
-
-// set meta
-const isKnow = computed(() => route.matched.some(r => r.name && r.name.indexOf('knowledge') !== -1))
-const isBbs = computed(() => route.matched.some(r => r.name && r.name.indexOf('bbs') !== -1))
-
-const bt = computed(() => store.title ? `${store.title} : ` : '')
-const tt = computed(() => isKnow.value ? `${pascalCase(route.params.section)}${route.params.part ? ' : ' + pascalCase(route.params.part) : ''} | ` :
-  isBbs.value ? `${pascalCase(route.params.sec)} | ` : ' ')
-
-const descList = computed(() => route.matched.filter(r => r.meta && r.meta.description))
-const d = computed(() => store.description ? store.description : route.meta.desc ? `${route.meta.desc} | ` : descList.value.length > 0 ? `${descList.value[0].meta.description} | ` : ' ')
-
-useMeta(() => {
-  return {
-    title: `${bt.value}${tt.value}`,
-    titleTemplate: title => `${title}Sera\'s Diablo® II Resurrected`,
-    meta: {
-      description: { name: 'description', content: d.value },
-      ogTitle: {
-        property: 'og:title',
-        content: `${bt.value}${tt.value}`,
-        template(ogTitle) {
-          return `${ogTitle}Sera\'s Diablo® II Resurrected`
-        }
-      },
-      ogDescription: {
-        property: 'og:description',
-        content: d.value
-      }
+  const onScroll = (info) => {
+    if (route.meta.progress) {
+      const winHeight = window.innerHeight
+      const position = info.position.top
+      let scrollPercent = position / (document.body.offsetHeight - winHeight) || 0
+      let scrollPercentRounded = Math.round(scrollPercent * 100) / 100
+      progress.value = scrollPercentRounded
     }
   }
-})
 
-watch(() => route.path, (val, old) => {
-  if (val !== old && old !== null) {
-    store.setTitle(null)
-    store.setDescription(null)
-    _section.value = route.params.section
-    _part.value = route.params.part
-    progress.value = 0
-    checkStatus()
-    store.addKey()
+  // drawer
+  const leftDrawer = ref(false)
+  const rightDrawer = ref(false)
+
+  // globalization
+  const options = reactive([
+    { label: '한국어', value: 'ko-KR' },
+    { label: 'ENGLISH', value: 'en-US' }
+  ])
+
+  const toggleLang = (val) => {
+    $q.cookies.set(langName, val, { path: '/', expires: '7300d' })
+    document.location.reload()
   }
-}, {
-  immediate: true
-})
+
+  // section
+  const section = computed(() => store.getSection)
+
+  // dark mode
+  const isDark = computed(() => $q.dark.isActive)
+  const toggleDark = () => {
+    $q.cookies.set(darkName, !$q.dark.isActive, { path: '/', expires: '7300d' })
+    $q.dark.set(!$q.dark.isActive)
+    document.documentElement.style.setProperty('color-scheme', $q.dark.isActive ? 'dark' : 'light')
+    leftDrawer.value = false
+  }
+
+  // header method
+  const home = () => {
+    if (routeName.value === 'd2r-main')
+      document.location.reload()
+    else
+      router.replace({ path: '/' })
+  }
+  // adsense
+  const noAD = computed(() => store.noAD)
+  const key = computed(() => store.key)
+
+  // sign
+  const checkStatus = () => {
+    if (signStatus.value === null) {
+      axios
+        .get('/seras/account/signstatus',
+          {
+            params: {
+              t: Date.now()
+            }
+          })
+        .then((response) => {
+          store.setSignStatus(response.data.status)
+        })
+    }
+  }
+
+  // section
+  const isKnowledge = computed(() => routeName.value.indexOf('knowledge') !== -1)
+  store.setSectionList(computed(() => tm('d2r.knowledge.list').map(l => ({ value: rt(l.value), label: rt(l.name) }))))
+  const sectionList = computed(() => store.sectionList)
+  const _section = ref('')
+  const toSection = (val) => {
+    router.push({ name: 'd2r-knowledge-section', params: { section: val } })
+  }
+
+  // part
+  const partList = computed(() => store.partList)
+  const _part = ref('')
+  const toPart = (val) => {
+    router.push({ name: 'd2r-knowledge-part', params: { section: _section.value, part: val } })
+  }
+
+  // sign
+  const processSignOut = ref(false)
+  const sign = () => {
+    if (signStatus.value) {
+      processSignOut.value = true
+      axios
+        .get('/d2r/account/signout')
+        .then(function (response) {
+          store.setInfo(response.data)
+        })
+        .catch(function () { })
+        .then(function () {
+          processSignOut.value = false
+          document.location.reload()
+        })
+    } else {
+      const seras = `${isProduction ? import.meta.env.VITE_APP_SERAS : window.location.protocol.concat('//', window.location.hostname, ':', import.meta.env.VITE_APP_SERAS)}/sign?d2r`
+      document.location.href = seras
+    }
+  }
+
+  // set meta
+  const isKnow = computed(() => route.matched.some(r => r.name && r.name.indexOf('knowledge') !== -1))
+  const isBbs = computed(() => route.matched.some(r => r.name && r.name.indexOf('bbs') !== -1))
+
+  const bt = computed(() => store.title ? `${store.title} : ` : '')
+  const tt = computed(() => isKnow.value ? `${pascalCase(route.params.section)}${route.params.part ? ' : ' + pascalCase(route.params.part) : ''} | ` :
+    isBbs.value ? `${pascalCase(route.params.sec)} | ` : ' ')
+
+  const descList = computed(() => route.matched.filter(r => r.meta && r.meta.description))
+  const d = computed(() => store.description ? store.description : route.meta.desc ? `${route.meta.desc} | ` : descList.value.length > 0 ? `${descList.value[0].meta.description} | ` : ' ')
+
+  useMeta(() => {
+    return {
+      title: `${bt.value}${tt.value}`,
+      titleTemplate: title => `${title}Sera\'s Diablo® II Resurrected`,
+      meta: {
+        description: { name: 'description', content: d.value },
+        ogTitle: {
+          property: 'og:title',
+          content: `${bt.value}${tt.value}`,
+          template(ogTitle) {
+            return `${ogTitle}Sera\'s Diablo® II Resurrected`
+          }
+        },
+        ogDescription: {
+          property: 'og:description',
+          content: d.value
+        }
+      }
+    }
+  })
+
+  watch(() => route.path, (val, old) => {
+    if (val !== old && old !== null) {
+      store.setTitle(null)
+      store.setDescription(null)
+      _section.value = route.params.section
+      _part.value = route.params.part
+      progress.value = 0
+      checkStatus()
+      store.addKey()
+    }
+  }, {
+    immediate: true
+  })
 </script>
 
 <template>
@@ -209,7 +188,8 @@ watch(() => route.path, (val, old) => {
         <q-toolbar-title :shrink="screen.gt.md" class="no-padding q-mr-md row justify-center">
           <div class="row items-center cursor-pointer"
             :class="[screen.lt.lg ? 'justify-center' : '', !isDark ? 'light' : '']" @click="home">
-            <q-icon flat class="text-secondary rotate-180 q-mr-xs text-title" name="align_vertical_center" size="24px" />
+            <q-icon flat class="text-secondary rotate-180 q-mr-xs text-title" name="align_vertical_center"
+              size="24px" />
             <div class="gt-md font-kodia column items-center">
               <div class="text-h5 text-primary text-title" style="line-height:1">DIABLO® II</div>
               <div class="text-caption text-primary" style="line-height:1">Resurrected</div>
@@ -219,8 +199,8 @@ watch(() => route.path, (val, old) => {
         </q-toolbar-title>
         <div class="q-pl-xl gt-md row items-center justify-start q-gutter-x-sm nav font-kodia">
           <q-btn v-for="sec in section" :key="sec.name" type="a" :class="sec.value === route.params.sec ? 'active' : ''"
-            :to="{ name: 'd2r-bbs', params: { sec: sec.value } }" :ripple="false" flat no-caps padding="0 5px" size="18px"
-            :label="sec.label" />
+            :to="{ name: 'd2r-bbs', params: { sec: sec.value } }" :ripple="false" flat no-caps padding="0 5px"
+            size="18px" :label="sec.label" />
           <div class="column justify-center items-start" style="height:56px">
             <q-btn type="a" :style="isKnowledge ? 'opacity:1' : ''"
               :to="{ name: 'd2r-knowledge-part', params: { section: 'classes', part: 'amazon' } }" :ripple="false" flat
@@ -325,8 +305,8 @@ watch(() => route.path, (val, old) => {
                 <div class="column no-wrap q-gutter-y-sm">
                   <q-btn type="a" v-for="part in partList" :key="part.value" dense flat
                     :class="_part === part.value ? 'active' : ''" @click="toPart(part.value)">
-                    <q-img no-spinner no-transition :src="part.img" :ratio="2" :height="`${600 / partList.length - 12}px`"
-                      :data-class="part.label" />
+                    <q-img no-spinner no-transition :src="part.img" :ratio="2"
+                      :height="`${600 / partList.length - 12}px`" :data-class="part.label" />
                   </q-btn>
                 </div>
               </div>
@@ -355,140 +335,140 @@ watch(() => route.path, (val, old) => {
       </q-page-scroller>
     </q-page-container>
   </q-layout>
-<Zoom :images="images" />
+  <Zoom :images="images" />
 </template>
 
 <style scoped>
-.header {
-  background-color: rgba(255, 255, 255, .8);
-  color: var(--q-dark-text) !important;
-  -webkit-backdrop-filter: blur(7px);
-  backdrop-filter: blur(7px);
-}
-
-.body--dark .header::before {
-  filter: saturate(10) brightness(1.2);
-}
-
-.body--dark .header {
-  background-color: var(--q-dark-half);
-}
-
-.light {
-  filter: contrast(0) brightness(0);
-}
-
-.nav:deep(.q-btn) {
-  transition: opacity .5s ease;
-  opacity: .5;
-  position: relative;
-}
-
-@media (hover:hover) {
-  .nav:deep(a:hover) {
-    opacity: .8;
+  .header {
+    background-color: rgba(255, 255, 255, .8);
+    color: var(--q-dark-text) !important;
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(7px);
   }
-}
 
-.header:deep(.q-btn .q-focus-helper) {
-  display: none;
-}
-
-.nav:deep(.active) {
-  opacity: 1 !important;
-}
-
-.nav:deep(.active::after) {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background-color: var(--q-primary);
-}
-
-.func:deep(.q-btn) {
-  color: #888888;
-}
-
-@media (hover:hover) {
-  .func:deep(.q-btn:hover) {
-    filter: brightness(1.2);
+  .body--dark .header::before {
+    filter: saturate(10) brightness(1.2);
   }
-}
 
-.text-title {
-  letter-spacing: -2px;
-  text-shadow: 0 1px 2px currentColor;
-}
+  .body--dark .header {
+    background-color: var(--q-dark-half);
+  }
 
-.section:deep(.q-btn) {
-  opacity: 1;
-}
+  .light {
+    filter: contrast(0) brightness(0);
+  }
 
-.part {
-  width: 200px;
-  margin-top: 2px;
-}
+  .nav:deep(.q-btn) {
+    transition: opacity .5s ease;
+    opacity: .5;
+    position: relative;
+  }
 
-.part:deep(.q-btn) {
-  padding: 2px;
-  overflow: hidden;
-  box-shadow: 0 0 0 1px var(--q-dark-cloud);
-  border-radius: 0;
-}
+  @media (hover:hover) {
+    .nav:deep(a:hover) {
+      opacity: .8;
+    }
+  }
 
-.body--dark .part:deep(.q-btn) {
-  box-shadow: 0 0 0 1px var(--q-light-cloud);
-}
+  .header:deep(.q-btn .q-focus-helper) {
+    display: none;
+  }
 
-.part:deep(.q-img) {
-  filter: grayscale(100%);
-  opacity: .6;
-}
+  .nav:deep(.active) {
+    opacity: 1 !important;
+  }
 
-@media (hover:hover) {
-  .part:deep(.q-img:hover) {
+  .nav:deep(.active::after) {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: var(--q-primary);
+  }
+
+  .func:deep(.q-btn) {
+    color: #888888;
+  }
+
+  @media (hover:hover) {
+    .func:deep(.q-btn:hover) {
+      filter: brightness(1.2);
+    }
+  }
+
+  .text-title {
+    letter-spacing: -2px;
+    text-shadow: 0 1px 2px currentColor;
+  }
+
+  .section:deep(.q-btn) {
+    opacity: 1;
+  }
+
+  .part {
+    width: 200px;
+    margin-top: 2px;
+  }
+
+  .part:deep(.q-btn) {
+    padding: 2px;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px var(--q-dark-cloud);
+    border-radius: 0;
+  }
+
+  .body--dark .part:deep(.q-btn) {
+    box-shadow: 0 0 0 1px var(--q-light-cloud);
+  }
+
+  .part:deep(.q-img) {
+    filter: grayscale(100%);
+    opacity: .6;
+  }
+
+  @media (hover:hover) {
+    .part:deep(.q-img:hover) {
+      filter: grayscale(0%);
+      opacity: .8;
+    }
+  }
+
+  .part:deep(.q-btn.active:after) {
+    content: '';
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /* width: 6px; */
+    background: linear-gradient(45deg, var(--q-primary) 10%, transparent 10%) !important;
+    box-shadow: inset 0 0 1px 0 var(--q-dark-page);
+    position: absolute;
+    z-index: 1;
+  }
+
+  .part:deep(.q-btn.active .q-img) {
     filter: grayscale(0%);
-    opacity: .8;
+    opacity: 1;
   }
-}
 
-.part:deep(.q-btn.active:after) {
-  content: '';
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  /* width: 6px; */
-  background: linear-gradient(45deg, var(--q-primary) 10%, transparent 10%) !important;
-  box-shadow: inset 0 0 1px 0 var(--q-dark-page);
-  position: absolute;
-  z-index: 1;
-}
+  .part:deep(.q-img::after) {
+    position: absolute;
+    content: attr(data-class);
+    z-index: 1;
+    left: 50%;
+    bottom: 0;
+    line-height: 1.2 !important;
+    transform: translateX(-50%);
+    color: var(--q-dark-page);
+    font-weight: bold;
+    text-shadow: 2px 0 2px var(--q-light-page), -2px 0 2px var(--q-light-page), 0 2px 2px var(--q-light-page), 0 -2px 2px var(--q-light-page);
+    line-height: 1em;
+  }
 
-.part:deep(.q-btn.active .q-img) {
-  filter: grayscale(0%);
-  opacity: 1;
-}
-
-.part:deep(.q-img::after) {
-  position: absolute;
-  content: attr(data-class);
-  z-index: 1;
-  left: 50%;
-  bottom: 0;
-  line-height: 1.2 !important;
-  transform: translateX(-50%);
-  color: var(--q-dark-page);
-  font-weight: bold;
-  text-shadow: 2px 0 2px var(--q-light-page), -2px 0 2px var(--q-light-page), 0 2px 2px var(--q-light-page), 0 -2px 2px var(--q-light-page);
-  line-height: 1em;
-}
-
-.body--dark .part:deep(.q-img::after) {
-  color: var(--q-light-page) !important;
-  text-shadow: 2px 0 2px var(--q-dark-page), -2px 0 2px var(--q-dark-page), 0 2px 2px var(--q-dark-page), 0 -2px 2px var(--q-dark-page);
-}
+  .body--dark .part:deep(.q-img::after) {
+    color: var(--q-light-page) !important;
+    text-shadow: 2px 0 2px var(--q-dark-page), -2px 0 2px var(--q-dark-page), 0 2px 2px var(--q-dark-page), 0 -2px 2px var(--q-dark-page);
+  }
 </style>
