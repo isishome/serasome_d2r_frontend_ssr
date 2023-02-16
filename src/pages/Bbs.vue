@@ -1,5 +1,6 @@
 <script>
 import { useStore } from 'stores/store'
+import { store } from 'quasar/wrappers'
 export default {
   preFetch({ store, currentRoute }) {
     if (currentRoute.name === 'd2r-read') {
@@ -12,8 +13,9 @@ export default {
 
 <script setup>
 import { reactive, computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, onBeforeRouteLeave } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import { useStore } from 'stores/store'
 import List from 'components/bbs/List.vue'
 import Read from 'components/bbs/Read.vue'
 import Write from 'components/bbs/Write.vue'
@@ -29,6 +31,7 @@ defineProps({
   }
 })
 
+const store = useStore()
 const route = useRoute()
 const routeName = computed(() => route.name)
 const { t } = useI18n()
@@ -51,6 +54,11 @@ const reset = () => {
   filter.filterBy = 'titleWithContents'
   filter.filter = null
 }
+
+onBeforeRouteLeave((to, from) => {
+  if (to !== from && from.name === 'd2r-read')
+    store.clearPost()
+})
 
 </script>
 <template>
