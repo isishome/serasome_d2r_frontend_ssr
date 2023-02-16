@@ -46,6 +46,7 @@ export default route(function ({ ssrContext }/* { store, ssrContext } */) {
 
     store.setNoAD(to.meta.noAD === true)
     store.clearImages()
+    store.clearPost()
 
     if (store.info === null) {
       const response = await api.get('/d2r/account/info')

@@ -44,7 +44,7 @@ let io
 let co
 
 const intersactionImage = (info) => {
-  info.contents = info.contents.replace(/(<img[^>]+)(src)([^>]+>)/gmi, '$1 class="io-img" src="/images/d2r.webp" data-src$3')
+  info.contents = info.contents && info.contents.replace(/(<img[^>]+)(src)([^>]+>)/gmi, '$1 class="io-img" src="/images/d2r.webp" data-src$3')
 }
 
 // about post
@@ -355,9 +355,9 @@ onMounted(() => {
             </div>
             <div v-else class="row justify-end items-center q-col-gutter-x-sm text-right">
               <div class="col-9 col-sm-4 col-md-3">
-                <q-input dense borderless hide-bottom-space no-error-icon class="q-px-sm input-place quiz"
-                  color="grey-5" :disable="loading" maxlength="20" type="text" :label="t('d2r.bbs.answer')"
-                  v-model="answer" :rules="[val => val && val.trim() !== '' || '']" />
+                <q-input dense borderless hide-bottom-space no-error-icon class="q-px-sm input-place quiz" color="grey-5"
+                  :disable="loading" maxlength="20" type="text" :label="t('d2r.bbs.answer')" v-model="answer"
+                  :rules="[val => val && val.trim() !== '' || '']" />
               </div>
               <div>
                 <q-btn dense padding="0 10px" type="submit" text-color="black" :label="t('d2r.bbs.btn.submit')" />
@@ -371,8 +371,7 @@ onMounted(() => {
         <div class="row justify-end q-gutter-x-sm">
           <q-btn v-if="authority(sec, 'delete') || data.owner === true" dense unelevated color="secondary"
             :disable="loading" :label="t('btn.delete')" @click="showConfirm('delete')" />
-          <q-btn
-            v-if="(authority(sec, 'delete') || data.owner === true) && sec === 'trade' && data.classify !== 'notice'"
+          <q-btn v-if="(authority(sec, 'delete') || data.owner === true) && sec === 'trade' && data.classify !== 'notice'"
             dense unelevated class="bg-grey-9 text-grey-4" :disable="loading" :label="t('btn.finish')"
             @click="showConfirm('finish')" />
         </div>
@@ -410,7 +409,7 @@ onMounted(() => {
         </q-card-actions>
       </q-card>
     </q-dialog>
-  </div>
+</div>
 </template>
 
 <style scoped>

@@ -10,6 +10,4 @@ onMounted(() => {
   $q.dark.set(isDark)
 })
 </script>
-<template>
-  <router-view />
-</template>
+<template><router-view /></template>
