@@ -310,7 +310,7 @@ onMounted(() => {
         </q-timeline-entry>
       </q-timeline>
     </template>
-    <template v-if="locale === 'en'">
+    <template v-if="locale === 'en-US'">
       <q-timeline :layout="layout">
         <q-timeline-entry color="green" side="left" icon="grass">
           <div class="row knowledge-item">

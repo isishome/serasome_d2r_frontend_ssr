@@ -299,7 +299,7 @@ onMounted(() => {
         </q-timeline-entry>
       </q-timeline>
     </template>
-    <template v-if="$i18n.locale === 'en'">
+    <template v-if="$i18n.locale === 'en-US'">
       <q-timeline :layout="layout">
         <q-timeline-entry color="yellow-9" side="left" icon="store">
           <div class="q-mb-lg row">

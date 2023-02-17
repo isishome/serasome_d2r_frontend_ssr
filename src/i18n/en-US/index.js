@@ -825,19 +825,37 @@ export default {
           "sparklyChests": 0
         },
         {
-          "value": "dw",
+          "value": "dwaup",
           "img": "/images/knowledge/maps/act1/DarkWood.jpg",
-          "label": "Dark Wood",
+          "label": "Dark Wood and Underground Passage",
           "immunities": [
             "f",
             "c",
+            "p",
+            "l"
+          ],
+          "bossPacks": [
+            16,
+            22
+          ],
+          "superUniques": "Treehead Woodfist",
+          "sparklyChests": 1
+        },
+        {
+          "value": "bmath",
+          "img": "/images/knowledge/maps/act1/BlackMarsh.jpg",
+          "label": "Black Marsh and The Hole",
+          "immunities": [
+            "f",
+            "c",
+            "l",
             "p"
           ],
           "bossPacks": [
-            7,
-            9
+            15,
+            20
           ],
-          "superUniques": "Treehead Woodfist",
+          "superUniques": "",
           "sparklyChests": 0
         },
         {
@@ -857,9 +875,9 @@ export default {
           "sparklyChests": 0
         },
         {
-          "value": "j",
+          "value": "jab",
           "img": "/images/knowledge/maps/act1/Jail.jpg",
-          "label": "Jail",
+          "label": "Jail and Barracks",
           "immunities": [
             "f",
             "c",
@@ -867,8 +885,8 @@ export default {
             "ph"
           ],
           "bossPacks": [
-            18,
-            24
+            24,
+            32
           ],
           "superUniques": "Pitspawn Fouldog",
           "sparklyChests": 0
@@ -1004,7 +1022,7 @@ export default {
         },
         {
           "value": "lcvosacvt",
-          "img": "/images/knowledge/maps/act2/LostCity.jpg",
+          "img": "/images/knowledge/maps/act2/ValleyofSnakes.jpg",
           "label": "Lost City, Valley of Snakes, and Claw Viper Temple",
           "immunities": [
             "f",
@@ -1018,6 +1036,23 @@ export default {
             28
           ],
           "superUniques": "Fangskin",
+          "sparklyChests": 0
+        },
+        {
+          "value": "at",
+          "img": "/images/knowledge/maps/act2/LostCity.jpg",
+          "label": "Ancient Tunnels",
+          "immunities": [
+            "f",
+            "p",
+            "l",
+            "m"
+          ],
+          "bossPacks": [
+            6,
+            8
+          ],
+          "superUniques": "",
           "sparklyChests": 0
         },
         {
@@ -1079,6 +1114,22 @@ export default {
           "sparklyChests": 0
         },
         {
+          "value": "gm",
+          "img": "/images/knowledge/maps/act3/GreatMarsh.jpg",
+          "label": "Great Marsh",
+          "immunities": [
+            "f",
+            "l",
+            "c"
+          ],
+          "bossPacks": [
+            10,
+            15
+          ],
+          "superUniques": "",
+          "sparklyChests": 0
+        },
+        {
           "value": "fjafd",
           "img": "/images/knowledge/maps/act3/FlayerJungle.jpg",
           "label": "Flayer Jungle and Flayer Dungeon",
@@ -1115,23 +1166,6 @@ export default {
           ],
           "superUniques": "Battlemaid Sarina",
           "sparklyChests": 0
-        },
-        {
-          "value": "ks",
-          "img": "/images/knowledge/maps/act3/Sewers.jpg",
-          "label": "Kurast Sewers",
-          "immunities": [
-            "c",
-            "l",
-            "p",
-            "m"
-          ],
-          "bossPacks": [
-            12,
-            14
-          ],
-          "superUniques": "Icehawk Riftwing",
-          "sparklyChests": 1
         },
         {
           "value": "t",
@@ -1228,45 +1262,28 @@ export default {
       "label": "Act 5",
       "zones": [
         {
-          "value": "bf",
+          "value": "bffhaa",
           "img": "/images/knowledge/maps/act5/bloodyfoothills.jpg",
-          "label": "Bloody Foothills",
-          "immunities": [
-            "f",
-            "c",
-            "l",
-            "p"
-          ],
-          "bossPacks": [
-            4,
-            6
-          ],
-          "superUniques": "Dac Farren and Shenk The Overseer",
-          "sparklyChests": 0
-        },
-        {
-          "value": "fh",
-          "img": "/images/knowledge/maps/act5/frigidhighlands.jpg",
-          "label": "Frigid Highlands",
+          "label": "Bloody Foothills, Frigid Highlands and Abaddon",
           "immunities": [
             "f",
             "c",
             "l",
             "p",
-            "m",
-            "ph"
+            "ph",
+            "m"
           ],
           "bossPacks": [
-            9,
-            11
+            19,
+            25
           ],
-          "superUniques": "Eldritch the Rectifier, Sharptooth Slayer and Eyeback the Unleashed",
+          "superUniques": "Dac Farren, Shenk The Overseer, Eldritch the Rectifier, Sharptooth Slayer and Eyeback the Unleashed",
           "sparklyChests": 0
         },
         {
-          "value": "gt",
+          "value": "gtadc",
           "img": "/images/knowledge/maps/act5/glacialtrail.jpg",
-          "label": "Glacial Trail",
+          "label": "Glacial Trail and Drifter Cavern",
           "immunities": [
             "f",
             "c",
@@ -1275,8 +1292,8 @@ export default {
             "ph"
           ],
           "bossPacks": [
-            7,
-            9
+            13,
+            17
           ],
           "superUniques": "Bonesaw Breaker",
           "sparklyChests": 0
@@ -1301,9 +1318,9 @@ export default {
           "sparklyChests": 0
         },
         {
-          "value": "ap",
+          "value": "apapoa",
           "img": "/images/knowledge/maps/act5/arreatplateau.jpg",
-          "label": "Arreat Plateau",
+          "label": "Arreat Plateau and Pit of Acheron",
           "immunities": [
             "f",
             "c",
@@ -1311,8 +1328,8 @@ export default {
             "p"
           ],
           "bossPacks": [
-            9,
-            11
+            15,
+            19
           ],
           "superUniques": "Thresh Socket",
           "sparklyChests": 0

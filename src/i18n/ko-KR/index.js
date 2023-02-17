@@ -822,19 +822,37 @@ export default {
           "sparklyChests": 0
         },
         {
-          "value": "dw",
+          "value": "dwaup",
           "img": "/images/knowledge/maps/act1/DarkWood.jpg",
-          "label": "어둠숲",
+          "label": "어둠숲과 지하 통로",
           "immunities": [
             "f",
             "c",
+            "p",
+            "l"
+          ],
+          "bossPacks": [
+            16,
+            22
+          ],
+          "superUniques": "트리헤드 우드피스트",
+          "sparklyChests": 1
+        },
+        {
+          "value": "bmath",
+          "img": "/images/knowledge/maps/act1/BlackMarsh.jpg",
+          "label": "검은 습지와 구렁 ",
+          "immunities": [
+            "f",
+            "c",
+            "l",
             "p"
           ],
           "bossPacks": [
-            7,
-            9
+            15,
+            20
           ],
-          "superUniques": "트리헤드 우드피스트",
+          "superUniques": "",
           "sparklyChests": 0
         },
         {
@@ -854,9 +872,9 @@ export default {
           "sparklyChests": 0
         },
         {
-          "value": "j",
+          "value": "jab",
           "img": "/images/knowledge/maps/act1/Jail.jpg",
-          "label": "감옥",
+          "label": "감옥과 병영",
           "immunities": [
             "f",
             "c",
@@ -864,8 +882,8 @@ export default {
             "ph"
           ],
           "bossPacks": [
-            18,
-            24
+            24,
+            32
           ],
           "superUniques": "핏스폰 파울도그",
           "sparklyChests": 0
@@ -1001,7 +1019,7 @@ export default {
         },
         {
           "value": "lcvosacvt",
-          "img": "/images/knowledge/maps/act2/LostCity.jpg",
+          "img": "/images/knowledge/maps/act2/ValleyofSnakes.jpg",
           "label": "잊힌 도시, 뱀의 골짜기, 발톱 독사 사원",
           "immunities": [
             "f",
@@ -1015,6 +1033,23 @@ export default {
             28
           ],
           "superUniques": "팽스킨",
+          "sparklyChests": 0
+        },
+        {
+          "value": "at",
+          "img": "/images/knowledge/maps/act2/LostCity.jpg",
+          "label": "고대 토굴",
+          "immunities": [
+            "f",
+            "p",
+            "l",
+            "m"
+          ],
+          "bossPacks": [
+            6,
+            8
+          ],
+          "superUniques": "",
           "sparklyChests": 0
         },
         {
@@ -1076,6 +1111,22 @@ export default {
           "sparklyChests": 0
         },
         {
+          "value": "gm",
+          "img": "/images/knowledge/maps/act3/GreatMarsh.jpg",
+          "label": "거대 습지",
+          "immunities": [
+            "f",
+            "l",
+            "c"
+          ],
+          "bossPacks": [
+            10,
+            15
+          ],
+          "superUniques": "",
+          "sparklyChests": 0
+        },
+        {
           "value": "fjafd",
           "img": "/images/knowledge/maps/act3/FlayerJungle.jpg",
           "label": "약탈자 밀림과 약탈자 던전",
@@ -1112,23 +1163,6 @@ export default {
           ],
           "superUniques": "여전사 사리나",
           "sparklyChests": 0
-        },
-        {
-          "value": "ks",
-          "img": "/images/knowledge/maps/act3/Sewers.jpg",
-          "label": "쿠라스트 하수도",
-          "immunities": [
-            "c",
-            "l",
-            "p",
-            "m"
-          ],
-          "bossPacks": [
-            12,
-            14
-          ],
-          "superUniques": "아이스호크 리프트윙",
-          "sparklyChests": 1
         },
         {
           "value": "t",
@@ -1225,45 +1259,28 @@ export default {
       "label": "5막",
       "zones": [
         {
-          "value": "bf",
+          "value": "bffhaa",
           "img": "/images/knowledge/maps/act5/bloodyfoothills.jpg",
-          "label": "핏빛 언덕",
-          "immunities": [
-            "f",
-            "c",
-            "l",
-            "p"
-          ],
-          "bossPacks": [
-            4,
-            6
-          ],
-          "superUniques": "닥 파렌과 감독관 쉔크",
-          "sparklyChests": 0
-        },
-        {
-          "value": "fh",
-          "img": "/images/knowledge/maps/act5/frigidhighlands.jpg",
-          "label": "혹한의 고산지",
+          "label": "핏빛 언덕, 혹한의 고산지와 나락",
           "immunities": [
             "f",
             "c",
             "l",
             "p",
-            "m",
-            "ph"
+            "ph",
+            "m"
           ],
           "bossPacks": [
-            9,
-            11
+            19,
+            25
           ],
-          "superUniques": "바로잡는 자 엘드리치, 샤프투스 슬레이어와 아이백 더 언리쉬드",
+          "superUniques": "닥 파렌, 감독관 쉔크, 바로잡는 자 엘드리치, 풀려난 자 아이백, 샤프투스 슬레이어",
           "sparklyChests": 0
         },
         {
-          "value": "gt",
+          "value": "gtadc",
           "img": "/images/knowledge/maps/act5/glacialtrail.jpg",
-          "label": "빙하의 길",
+          "label": "빙하의 길과 부랑자의 동굴",
           "immunities": [
             "f",
             "c",
@@ -1272,8 +1289,8 @@ export default {
             "ph"
           ],
           "bossPacks": [
-            7,
-            9
+            13,
+            17
           ],
           "superUniques": "본소우 브리커",
           "sparklyChests": 0
@@ -1298,9 +1315,9 @@ export default {
           "sparklyChests": 0
         },
         {
-          "value": "ap",
+          "value": "apapoa",
           "img": "/images/knowledge/maps/act5/arreatplateau.jpg",
-          "label": "아리앗 고원",
+          "label": "아리앗 고원과 아케론의 구덩이",
           "immunities": [
             "f",
             "c",
@@ -1308,8 +1325,8 @@ export default {
             "p"
           ],
           "bossPacks": [
-            9,
-            11
+            15,
+            19
           ],
           "superUniques": "쓰레쉬 소켓",
           "sparklyChests": 0
