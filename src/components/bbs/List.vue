@@ -302,9 +302,8 @@ watch(() => route.query.page, (val, old) => {
       <template #pagination>
         <q-pagination v-if="data.length > 0" class="pagination row justify-end"
           :class="screen.gt.xs ? 'justify-end' : 'justify-center'" :disable="loading" v-model="pagination.page"
-          color="transparent" active-color="invert" @update:model-value="go" :max="pagination.rowsNumber" :max-pages="5"
-          :ellipses="false" :boundary-numbers="false" direction-links icon-prev="keyboard_arrow_left"
-          icon-next="keyboard_arrow_right" :ripple="false" dense unelevated />
+          @update:model-value="go" :max="pagination.rowsNumber" :max-pages="5" :ellipses="false" :boundary-numbers="false"
+          direction-links icon-prev="keyboard_arrow_left" icon-next="keyboard_arrow_right" :ripple="false" dense flat />
       </template>
     </Table>
     <q-page-sticky v-if="!search && authority(sec, 'write')" position="bottom-right" :offset="[0, 0]" style="z-index: 4;">
