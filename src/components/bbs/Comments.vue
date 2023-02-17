@@ -60,7 +60,7 @@ const info = reactive({
 })
 
 const signStatus = computed(() => store.signStatus)
-const commentLabel = computed(() => { info.mode === 'reply' || (info.mode === 'modify' && info.cid !== info.pcid) ? t('d2r.comments.replyContents') : t('d2r.comments.contents') })
+const commentLabel = computed(() =>  info.mode === 'reply' || (info.mode === 'modify' && info.cid !== info.pcid) ? t('d2r.comments.replyContents') : t('d2r.comments.contents') )
 
 watch(() => desktop.contents, (val) => {
   desktop.error = check(val)

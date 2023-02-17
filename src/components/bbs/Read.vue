@@ -239,7 +239,7 @@ const submit = () => {
         current.value = count
         rewardCount()
         nextTick(() => {
-          key++
+          key.value++
         })
       } else {
         q.notify({
@@ -257,7 +257,7 @@ const submit = () => {
 
 const rewardCount = () => {
   setTimeout(() => {
-    if (current > 0) {
+    if (current.value > 0) {
       current.value--
       rewardCount()
     }

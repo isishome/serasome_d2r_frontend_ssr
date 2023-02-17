@@ -14,7 +14,6 @@ export default {
 import { reactive, computed } from 'vue'
 import { useRoute, onBeforeRouteLeave } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { useStore } from 'stores/store'
 import List from 'components/bbs/List.vue'
 import Read from 'components/bbs/Read.vue'
 import Write from 'components/bbs/Write.vue'

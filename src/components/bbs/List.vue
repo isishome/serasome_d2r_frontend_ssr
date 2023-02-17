@@ -45,6 +45,7 @@ const authority = computed(() => store.getAuthority)
 const searchObj = ref(null)
 
 // about board
+const _filter = reactive(JSON.parse(JSON.stringify(props.filter)) )
 const table = ref(null)
 const pagination = reactive({
   page: Number(route.query.page) || 1,
@@ -158,16 +159,16 @@ watch(() => route.query.page, (val, old) => {
         <div class="q-ml-xs q-mb-sm text-uppercase font-kodia">{{ secInfo.label }}</div>
       </div>
     </div>
-    <Table ref="table" :pagination.sync="pagination" :columns="columns[sec] || columns.default" :data="data"
+    <Table ref="table" :pagination="pagination" :columns="columns[sec] || columns.default" :data="data"
       :search="search" :grid="$q.screen.lt.md" @request="getList">
       <template v-if="!search && (sec === 'trade' || signStatus)" #top-right>
         <div class="row justify-end q-gutter-x-md" :class="[$q.screen.gt.sm ? '' : 'no-margin']">
           <div v-if="sec === 'trade'">
-            <q-checkbox dense v-model="filter.finish" val="d2r" class="text-caption" :label="t('d2r.bbs.finish')"
+            <q-checkbox dense v-model="_filter.finish" val="d2r" class="text-caption" :label="t('d2r.bbs.finish')"
               size="xs" color="d2r" />
           </div>
           <div v-if="signStatus">
-            <q-checkbox dense v-model="filter.mine" val="d2r" class="text-caption" :label="t('d2r.bbs.mine')" size="xs"
+            <q-checkbox dense v-model="_filter.mine" val="d2r" class="text-caption" :label="t('d2r.bbs.mine')" size="xs"
               color="d2r" />
           </div>
         </div>
@@ -177,12 +178,12 @@ watch(() => route.query.page, (val, old) => {
           @submit="request(1)">
           <div class="row justify-start items-start q-col-gutter-sm">
             <div class="col" style="max-width:170px;">
-              <q-select :disable="loading" color="primary" v-model="filter.filterBy" :options="filter.options"
+              <q-select :disable="loading" color="primary" v-model="_filter.filterBy" :options="filter.options"
                 :label="t('d2r.bbs.filterBy')" behavior="menu" dense emit-value no-error-icon hide-bottom-space
                 map-options outlined options-cover options-dense />
             </div>
             <div class="col" style="max-width:170px;">
-              <q-input :disable="loading" v-model="filter.filter" :label="t('d2r.bbs.filter')" outlined color="primary"
+              <q-input :disable="loading" v-model="_filter.filter" :label="t('d2r.bbs.filter')" outlined color="primary"
                 :rules="[val => /^(\s*|[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9\s]{2,20})$/.test(val) || t('search.message.invalidWord')]"
                 dense no-error-icon clearable @keyup.enter="searchObj.submit()" />
             </div>

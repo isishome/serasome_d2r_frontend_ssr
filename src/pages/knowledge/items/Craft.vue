@@ -30,7 +30,7 @@ const filtering = computed(() => {
   const terms = filter.value.toLowerCase().split(' ')
   const regEx = new RegExp(terms.join('|'), 'gi')
   data.forEach((sec) => {
-    if (filter !== '') {
+    if (filter.value !== '') {
       sec.filterList = sec.list.filter(l => regEx.test(materials.value.find(m => m.no === l.material).name) || regEx.test(l.recipe.equipment.name.map(n => n.split(' ').join('|')).join('|')) || regEx.test(l.effects.map(n => n.split(' ').join('|')).join('|')))
     }
     else

@@ -90,8 +90,8 @@ const refresh = () => {
   selectedMaterial.value = '0'
   selectedClass.value = 'all'
   selectedSort.value = 'hot'
-  socket.min = 2
-  socket.max = 6
+  socket.value.min = 2
+  socket.value.max = 6
   filter.value = ''
 }
 const parsRuneWord = (runeword) => {

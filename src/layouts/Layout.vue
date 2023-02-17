@@ -13,7 +13,6 @@ export default {
 import { ref, computed, reactive, watch, inject } from 'vue'
 import { useMeta, useQuasar } from 'quasar'
 import { useRoute, useRouter } from 'vue-router'
-import { useStore } from 'stores/store'
 import { useI18n } from 'vue-i18n'
 import { pascalCase } from 'src/common'
 import AdSense from 'components/AdSense.vue'
@@ -231,7 +230,7 @@ watch(() => route.path, (val, old) => {
       </q-toolbar>
     </q-header>
     <q-drawer :elevated="false" no-swipe-open no-swipe-close no-swipe-backdrop overay v-model="leftDrawer" side="left"
-      behavior="mobile" :width="240" elevated>
+      behavior="mobile" :width="240">
       <q-list class="font-kodia">
         <q-item>
           <q-item-section>
@@ -262,7 +261,7 @@ watch(() => route.path, (val, old) => {
       </q-list>
     </q-drawer>
     <q-drawer v-if="isKnowledge && partList.length > 1" :elevated="false" no-swipe-open no-swipe-close no-swipe-backdrop
-      overay v-model="rightDrawer" side="right" behavior="mobile" :width="240" elevated>
+      overay v-model="rightDrawer" side="right" behavior="mobile" :width="240">
       <q-toolbar class="bg-primary q-pl-lg text-white shadow-2 font-kodia">
         <q-toolbar-title> {{ sectionList.find(s => s.value === _section).label }}</q-toolbar-title>
       </q-toolbar>

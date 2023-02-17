@@ -121,7 +121,7 @@ const deleteFile = (file) => {
     file.deleted = true
     writeInfo.deleteList.push(file.fid)
     writeInfo.files.splice(findIndex, 1)
-    editor.setContent(newContents, true)
+    editor.value.setContent(newContents, true)
   }
 }
 
