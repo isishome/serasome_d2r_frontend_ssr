@@ -6,11 +6,10 @@ export const routes = [
       {
         name: 'd2r-main',
         path: '',
-        component: () => import('pages/Main.vue'),
-        // components: {
-        //   carousel: () => import('components/Carousel.vue'),
-        //   default: () => import('pages/Main.vue')
-        // },
+        components: {
+          carousel: () => import('components/Carousel.vue'),
+          default: () => import('pages/Main.vue')
+        },
         meta: {
           description: 'This is a website that checks various information of Diablo® II Resurrected.'
         }

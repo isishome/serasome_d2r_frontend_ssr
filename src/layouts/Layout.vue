@@ -4,7 +4,7 @@ import { useStore } from 'stores/store'
 export default {
   preFetch({ store, ssrContext }) {
     const s = useStore(store)
-    return s.setSignStatus(process.env.SERVER ? ssrContext.req.headers.cookie : null)
+    return s.setSignStatus(process.env.SERVER ? (ssrContext.req.headers.cookie || null) : null)
   }
 }
 </script>
