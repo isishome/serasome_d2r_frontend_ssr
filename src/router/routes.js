@@ -1,23 +1,16 @@
 export const routes = [
   {
-    name: 'pnf',
-    path: '/:pathMatch(.*)*',
-    component: () => import('pages/PNF.vue'),
-    meta: {
-      description: 'Page not found.'
-    }
-  },
-  {
     path: '/',
     component: () => import('layouts/Layout.vue'),
     children: [
       {
         name: 'd2r-main',
         path: '',
-        components: {
-          carousel: () => import('components/Carousel.vue'),
-          default: () => import('pages/Main.vue')
-        },
+        component: () => import('pages/Main.vue'),
+        // components: {
+        //   carousel: () => import('components/Carousel.vue'),
+        //   default: () => import('pages/Main.vue')
+        // },
         meta: {
           description: 'This is a website that checks various information of Diablo® II Resurrected.'
         }
@@ -111,5 +104,13 @@ export const routes = [
       //   }
       // },
     ]
+  },
+  {
+    name: 'pnf',
+    path: '/:pathMatch(.*)*',
+    component: () => import('pages/PNF.vue'),
+    meta: {
+      description: 'Page not found.'
+    }
   }
 ]

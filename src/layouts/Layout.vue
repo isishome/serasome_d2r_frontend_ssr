@@ -1,3 +1,14 @@
+<script>
+import { useStore } from 'stores/store'
+
+export default {
+  preFetch({ store, ssrContext }) {
+    const s = useStore(store)
+    return s.setSignStatus(process.env.SERVER ? ssrContext.req.headers.cookie : null)
+  }
+}
+</script>
+
 <script setup>
 import { ref, computed, reactive, watch, inject } from 'vue'
 import { useMeta, useQuasar } from 'quasar'
@@ -78,22 +89,6 @@ const home = () => {
 const noAD = computed(() => store.noAD)
 const key = computed(() => store.key)
 
-// sign
-const checkStatus = () => {
-  if (signStatus.value === null) {
-    axios
-      .get('/seras/account/signstatus',
-        {
-          params: {
-            t: Date.now()
-          }
-        })
-      .then((response) => {
-        store.setSignStatus(response.data.status)
-      })
-  }
-}
-
 // section
 const isKnowledge = computed(() => routeName.value.indexOf('knowledge') !== -1)
 store.setSectionList(computed(() => tm('d2r.knowledge.list').map(l => ({ value: rt(l.value), label: rt(l.name) }))))
@@ -171,7 +166,6 @@ watch(() => route.path, (val, old) => {
     _section.value = route.params.section
     _part.value = route.params.part
     progress.value = 0
-    checkStatus()
     store.addKey()
   }
 }, {
@@ -335,7 +329,7 @@ watch(() => route.path, (val, old) => {
       </q-page-scroller>
     </q-page-container>
   </q-layout>
-<Zoom :images="images" />
+  <Zoom :images="images" />
 </template>
 
 <style scoped>

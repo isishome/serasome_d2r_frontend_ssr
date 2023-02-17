@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { api } from 'boot/axios'
@@ -49,8 +49,10 @@ const boardItem = (item) => {
   router.push({ name: 'd2r-read', params: { 'sec': item.sec, 'pid': item.pid } })
 }
 
-getLatest()
-getTop()
+onMounted(() => {
+  getLatest()
+  getTop()
+})
 </script>
 
 <template>

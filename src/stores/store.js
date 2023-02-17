@@ -37,7 +37,27 @@ export const useStore = defineStore('main', {
   },
   actions: {
     setSignStatus(payload) {
-      this.signStatus = payload
+      const state = this
+      return new Promise((resolve, reject) => {
+        const options = {
+          params: {
+            t: Date.now()
+          }
+        }
+
+        if (payload)
+          options.headers = { cookie: payload }
+
+        api
+          .get('/seras/account/signstatus', options)
+          .then((response) => {
+            state.signStatus = response.data.status
+            resolve()
+          })
+          .catch(() => {
+            reject()
+          })
+      })
     },
     setInfo(payload) {
       this.info = payload

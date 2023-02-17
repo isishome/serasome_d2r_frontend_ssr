@@ -1,6 +1,5 @@
 <script>
 import { useStore } from 'stores/store'
-import { store } from 'quasar/wrappers'
 export default {
   preFetch({ store, currentRoute }) {
     if (currentRoute.name === 'd2r-read') {
@@ -67,5 +66,5 @@ onBeforeRouteLeave((to, from) => {
     <Write v-else-if="['d2r-write', 'd2r-modify'].includes(routeName)" :sec="sec" :pid="pid" />
     <List v-else :sec="sec" :filter="filter" @reset="reset" />
     <div class="bg-transparent q-py-lg"></div>
-</div>
+  </div>
 </template>

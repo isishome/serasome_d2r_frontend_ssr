@@ -48,7 +48,8 @@ export default route(function ({ ssrContext }/* { store, ssrContext } */) {
     store.clearImages()
 
     if (store.info === null) {
-      const response = await api.get('/d2r/account/info')
+      const options = process.env.SERVER ? { headers: { cookie: ssrContext.req.headers.cookie } } : {}
+      const response = await api.get('/d2r/account/info', options)
       store.setInfo(response.data)
     }
   })
