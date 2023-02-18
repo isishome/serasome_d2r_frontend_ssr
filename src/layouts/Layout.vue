@@ -74,7 +74,6 @@ const toggleDark = () => {
   $q.cookies.set(darkName, !$q.dark.isActive, { path: '/', expires: '7300d' })
   $q.dark.set(!$q.dark.isActive)
   document.documentElement.style.setProperty('color-scheme', $q.dark.isActive ? 'dark' : 'light')
-  leftDrawer.value = false
 }
 
 // header method
@@ -177,7 +176,7 @@ watch(() => route.path, (val, old) => {
     <q-header class="header q-py-sm">
       <q-toolbar :class="screen.gt.md ? 'q-px-xl' : ''">
         <div class="lt-lg func">
-          <q-btn dense flat :ripple="false" @click="leftDrawer = !leftDrawer" icon="menu" />
+          <q-btn dense flat :ripple="false" @click="()=>leftDrawer = !leftDrawer" icon="menu" />
         </div>
         <q-toolbar-title :shrink="screen.gt.md" class="no-padding q-mr-md row justify-center">
           <div class="row items-center cursor-pointer"
@@ -213,7 +212,7 @@ watch(() => route.path, (val, old) => {
             <q-menu anchor="bottom end" self="top end">
               <q-list separator bordered>
                 <q-item dense v-for="(option, index) in options" :key="index" :clickable="locale !== option.value"
-                  :v-close-popup="locale !== option.value" @click="toggleLang(option.value)"
+                  :v-close-popup="locale !== option.value" @click="()=>toggleLang(option.value)"
                   :active="locale === option.value" active-class="text-primary">
                   <q-item-section>
                     <q-item-label>{{ option.label }}</q-item-label>
@@ -225,7 +224,7 @@ watch(() => route.path, (val, old) => {
           <q-btn class="gt-md" dense flat :ripple="false" @click="toggleDark"
             :icon="isDark ? 'light_mode' : 'dark_mode'" />
           <q-btn v-if="isKnowledge && partList.length > 1" class="lt-lg" dense flat :ripple="false"
-            @click="rightDrawer = !rightDrawer" icon="assignment" />
+            @click="() => rightDrawer = !rightDrawer" icon="assignment" />
         </div>
       </q-toolbar>
     </q-header>
@@ -237,7 +236,7 @@ watch(() => route.path, (val, old) => {
             <q-item-section>
               <q-select dense outlined separator emit-value map-options color="primary" behavior="menu" v-model="locale"
                 :options="options" popup-content-class="font-kodia" :label="t('language')"
-                @update:model-value="toggleLang(locale)" />
+                @update:model-value="()=> toggleLang(locale)" />
             </q-item-section>
             <q-item-section side>
               <q-btn dense flat :ripple="false" @click="toggleDark" :icon="isDark ? 'light_mode' : 'dark_mode'" />
@@ -302,7 +301,7 @@ watch(() => route.path, (val, old) => {
               <div class="part word-keep">
                 <div class="column no-wrap q-gutter-y-sm">
                   <q-btn type="a" v-for="part in partList" :key="part.value" dense flat
-                    :class="_part === part.value ? 'active' : ''" @click="toPart(part.value)">
+                    :class="_part === part.value ? 'active' : ''" @click="() => toPart(part.value)">
                     <q-img no-spinner no-transition :src="part.img" :ratio="2" :height="`${600 / partList.length - 12}px`"
                       :data-class="part.label" />
                   </q-btn>
