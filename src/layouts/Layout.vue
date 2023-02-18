@@ -231,33 +231,38 @@ watch(() => route.path, (val, old) => {
     </q-header>
     <q-drawer :elevated="false" no-swipe-open no-swipe-close no-swipe-backdrop overay v-model="leftDrawer" side="left"
       behavior="mobile" :width="240">
-      <q-list class="font-kodia">
-        <q-item>
-          <q-item-section>
-            <q-select dense outlined separator emit-value map-options color="primary" behavior="menu" v-model="locale"
-              :options="options" popup-content-class="font-kodia" :label="t('language')"
-              @update:model-value="toggleLang(locale)" />
-          </q-item-section>
-          <q-item-section side>
-            <q-btn dense flat :ripple="false" @click="toggleDark" :icon="isDark ? 'light_mode' : 'dark_mode'" />
-          </q-item-section>
-        </q-item>
-        <q-separator />
-        <q-item v-for="sec in section" :key="sec.value" :inset-level="0.5"
-          :to="{ name: 'd2r-bbs', params: { sec: sec.value } }" active-class="text-primary">
-          <q-item-section>
-            {{ sec.label }}
-          </q-item-section>
-        </q-item>
-        <q-expansion-item default-opened :header-inset-level="0.5" :label="tm('d2r.knowledge.title')">
-          <q-item :active="section.value === _section" v-for="section in sectionList" :key="section" :inset-level="1"
-            :to="section.value !== _section ? { name: 'd2r-knowledge-section', params: { section: section.value } } : null"
-            active-class="text-primary">
+      <q-list class="font-kodia drawer-list">
+        <div class="drawer-top">
+          <q-item>
             <q-item-section>
-              {{ section.label }}
+              <q-select dense outlined separator emit-value map-options color="primary" behavior="menu" v-model="locale"
+                :options="options" popup-content-class="font-kodia" :label="t('language')"
+                @update:model-value="toggleLang(locale)" />
+            </q-item-section>
+            <q-item-section side>
+              <q-btn dense flat :ripple="false" @click="toggleDark" :icon="isDark ? 'light_mode' : 'dark_mode'" />
             </q-item-section>
           </q-item>
-        </q-expansion-item>
+          <q-separator />
+        </div>
+        <div class="scroll">
+          <q-item v-for="sec in section" :key="sec.value" :inset-level="0.5"
+            :to="{ name: 'd2r-bbs', params: { sec: sec.value } }" active-class="text-primary">
+            <q-item-section>
+              {{ sec.label }}
+            </q-item-section>
+          </q-item>
+          <q-expansion-item default-opened :header-inset-level="0.5" :label="tm('d2r.knowledge.title')">
+            <q-item :active="section.value === _section" v-for="section in sectionList" :key="section" :inset-level="1"
+              :to="section.value !== _section ? { name: 'd2r-knowledge-section', params: { section: section.value } } : null"
+              active-class="text-primary">
+              <q-item-section>
+                {{ section.label }}
+              </q-item-section>
+            </q-item>
+          </q-expansion-item>
+          <div class="q-py-lg"></div>
+        </div>
       </q-list>
     </q-drawer>
     <q-drawer v-if="isKnowledge && partList.length > 1" :elevated="false" no-swipe-open no-swipe-close no-swipe-backdrop
@@ -463,5 +468,22 @@ watch(() => route.path, (val, old) => {
 .body--dark .part:deep(.q-img::after) {
   color: var(--q-light-page) !important;
   text-shadow: 2px 0 2px var(--q-dark-page), -2px 0 2px var(--q-dark-page), 0 2px 2px var(--q-dark-page), 0 -2px 2px var(--q-dark-page);
+}
+
+.drawer-list {
+  position: relative;
+  overflow: scroll;
+  height:100%;
+}
+
+.drawer-top {
+  position:sticky;
+  top:0;
+  background-color: var(--q-dark);
+  z-index: 1;
+}
+
+.body--light .drawer-top {
+  background-color: #ffffff;
 }
 </style>
