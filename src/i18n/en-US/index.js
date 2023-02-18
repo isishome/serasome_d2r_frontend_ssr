@@ -42404,12 +42404,13 @@ export default {
         7
       ],
       "stats": [
-        "+20% Faster Hit Recovery",
-        "+75-100% Enhanced Defense",
+        "Level 1 Cleansing Aura when Equipped",
+        "20% Faster Hit Recovery",
+        "75-100% Enhanced Defense",
         "+10 to Vitality",
         "Increase Maximum Life 5%",
-        "Poison Resist +40-60%",
-        "Poison Length Reduced By 75%"
+        "Poison Resist 40-60%",
+        "Poison Length Reduced By 50%"
       ],
       "recc": []
     },
@@ -42426,8 +42427,8 @@ export default {
         10
       ],
       "stats": [
-        "+20% Faster Hit Recovery",
-        "+75-100% Enhanced Defense",
+        "20% Faster Hit Recovery",
+        "75-100% Enhanced Defense",
         "+10 to Vitality",
         "Increase Maximum Life 5%",
         "Cold Resist +40-60%",
@@ -42448,8 +42449,8 @@ export default {
         9
       ],
       "stats": [
-        "+20% Faster Hit Recovery",
-        "+75-100% Enhanced Defense",
+        "20% Faster Hit Recovery",
+        "75-100% Enhanced Defense",
         "+10 to Vitality",
         "Increase Maximum Life 5%",
         "Lightning Resist +40-60%",
@@ -42470,8 +42471,8 @@ export default {
         8
       ],
       "stats": [
-        "+20% Faster Hit Recovery",
-        "+75-100% Enhanced Defense",
+        "20% Faster Hit Recovery",
+        "75-100% Enhanced Defense",
         "+10 to Vitality",
         "Increase Maximum Life 5%",
         "Fire Resist +40-60%",
@@ -42492,9 +42493,9 @@ export default {
         12
       ],
       "stats": [
-        "+20% Faster Hit Recovery",
-        "5% Life Stolen Per Hit",
-        "+75-100% Enhanced Defense",
+        "20% Faster Hit Recovery",
+        "4-6% Life Stolen Per Hit",
+        "75-100% Enhanced Defense",
         "+10 to Vitality",
         "Increase Maximum Life 5%",
         "Replenish Life +30",
@@ -42518,7 +42519,7 @@ export default {
       "stats": [
         "Werewolf strikes grant Mark for 180 seconds",
         "Mark of the wolf:",
-        "20% Bonus to Attack Rating",
+        "30% Bonus to Attack Rating",
         "Increase Maximum Life 40%",
         "",
         "",
@@ -42530,11 +42531,12 @@ export default {
         "",
         "",
         "+5 to Shape Shifting Skills (Druid Only)",
-        "69% Enhanced Defense",
+        "+25% Chance Of Crushing Blow",
+        "+50-80% Enhanced Defense",
         "+10 to Strength",
         "+10 to Vitality",
         "All Resistances +10",
-        "Cannot be Frozen"
+        "Cannot Be Frozen"
       ],
       "recc": [
         "druid"
@@ -42553,12 +42555,16 @@ export default {
         10
       ],
       "stats": [
-        "25% Chance for finishing moves to not consume charge",
+        "50% Chance For Finishing Moves To Not Consume Charge",
+        "When a finisher is executed this way, it now refreshes the expiration timer of the stack",
         "+2 to Martial Arts (Assassin Only)",
         "+20% Increased Attack Speed",
         "+200-250% Enhanced Damage",
         "+20% Bonus to Attack Rating",
-        "Adds 3-14 Cold Damage",
+        "7% Life Steal",
+        "+8-15% to Cold Skill Damage",
+        "+8-15% to Lightning Skill Damage",
+        "+8-15% to Fire Skill Damage",
         "Prevent Monster Heal"
       ],
       "recc": [
@@ -42582,15 +42588,17 @@ export default {
         "+10 to Dexterity"
       ],
       "part": [
-        "Swords : 5% Chance to Cast Level 9 Burst of Speed",
-        "Swords : +30% Increased Attack Speed",
-        "Swords : +132% Enhanced Damage",
-        "Swords : +75% Damge to Undead",
-        "Swords : +50 to Attack Rating Against Undead",
-        "Armor : +50% Faster Run/Walk",
-        "Armor : +20% Increased Attack Speed",
+        "Weapon : 5% Chance to Cast Level 9 Burst of Speed",
+        "Weapon : +30% Increased Attack Speed",
+        "Weapon : +180-200% Enhanced Damage",
+        "Weapon : +75% Damge to Undead",
+        "Weapon : +50 to Attack Rating Against Undead",
+        "Armor : +65% Faster Run/Walk",
+        "Armor : +40% Increased Attack Speed",
         "Armor : +20% Faster Hit Recovery",
-        "Armor : 50% Slower Stamina Drain"
+        "Armor : +6 to Evade",
+        "Armor : 50% Slower Stamina Drain",
+        "Armor : +All Resistances +10"
       ],
       "recc": []
     }
