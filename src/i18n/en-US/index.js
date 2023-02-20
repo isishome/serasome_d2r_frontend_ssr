@@ -42552,7 +42552,7 @@ export default {
       "runeword": [
         23,
         25,
-        10
+        11
       ],
       "stats": [
         "50% Chance For Finishing Moves To Not Consume Charge",

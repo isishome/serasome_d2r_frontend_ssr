@@ -1,5 +1,6 @@
 import { boot } from 'quasar/wrappers'
-import { Cookies, Quasar } from 'quasar'
+import { Cookies, Quasar, Notify } from 'quasar'
+import Router from 'src/router'
 import axios from 'axios'
 
 // Be careful when using SSR for cross-request state pollution
@@ -24,7 +25,7 @@ api.interceptors.response.use((response) => {
   if (errMsg) {
     const url = error.response.config.url
     if (error.response.status === 401 && url !== 'info') {
-      router.push({ name: 'sign' })
+      Router.push({ name: 'sign' })
     }
     else if (errMsg) {
       Notify.create({
