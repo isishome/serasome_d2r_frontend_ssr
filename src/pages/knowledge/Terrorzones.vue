@@ -92,7 +92,7 @@ getInfo()
     <q-card class="terror-zone no-shadow text-body2 word-keep" style="min-height:100px">
       <q-inner-loading :showing="!terrorZone.value" color="primary" size="50px" />
       <q-card-section v-if="terrorZone.value" horizontal>
-        <q-img :src="terrorZone.img">
+        <q-img :src="terrorZone.img" style="max-height:351px;min-height:171px">
           <div class="absolute-bottom">
             <div class="row items-center q-gutter-x-xs">
               <div class="text-h6">{{ terrorZone.label }}</div>

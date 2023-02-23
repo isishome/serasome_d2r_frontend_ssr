@@ -32,7 +32,7 @@ const props = defineProps({
   }
 })
 
-const boxStyle = computed(() => props.dataFullWidthResponsive === 'true' ? 'display:block' : `display:inline-block;width:${props.width};height:${props.height}`)
+const boxStyle = computed(() => props.dataFullWidthResponsive === 'true' ? 'display:block;min-height:200px' : `display:inline-block;width:${props.width};height:${props.height}`)
 
 const onWindowLoad = () => {
   if (window && window.adsbygoogle)
