@@ -138,8 +138,8 @@ getInfo()
         data-ad-format="auto" data-full-width-responsive="true" :data-adtest="isProduction ? null : 'on'"
         :key="`tr1-${key}`" />
     </div>
-    <q-markup-table class="no-shadow knowledge-table text-body2" style="min-height:100vh" :wrap-cells="$q.screen.gt.sm"
-      dense bordered separator="vertical">
+    <q-markup-table class="no-shadow knowledge-table text-body2" :wrap-cells="$q.screen.gt.sm" dense bordered
+      separator="vertical">
       <thead>
         <tr>
           <th>{{ lang.act }}</th>
