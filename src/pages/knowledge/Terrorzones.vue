@@ -96,7 +96,8 @@ getInfo()
           <div class="absolute-bottom">
             <div class="row items-center q-gutter-x-xs">
               <div class="text-h6">{{ terrorZone.label }}</div>
-              <q-btn :loading="loading" v-if="terrorZone.value === 'unknown'" icon="refresh" @click="getInfo(2000)" />
+              <q-btn aria-label="Refresh" :loading="loading" v-if="terrorZone.value === 'unknown'" icon="refresh"
+                @click="getInfo(2000)" />
             </div>
             <div class="text-subtitle2">{{ terrorZone.superUniques }}</div>
           </div>

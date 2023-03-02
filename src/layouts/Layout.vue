@@ -176,7 +176,7 @@ watch(() => route.path, (val, old) => {
     <q-header class="header q-py-sm">
       <q-toolbar :class="screen.gt.md ? 'q-px-xl' : ''">
         <div class="lt-lg func">
-          <q-btn dense flat :ripple="false" @click="() => leftDrawer = !leftDrawer" icon="menu" />
+          <q-btn aria-label="Menu" dense flat :ripple="false" @click="() => leftDrawer = !leftDrawer" icon="menu" />
         </div>
         <q-toolbar-title :shrink="screen.gt.md" class="no-padding q-mr-md row justify-center">
           <div class="row items-center cursor-pointer"
@@ -190,11 +190,11 @@ watch(() => route.path, (val, old) => {
           </div>
         </q-toolbar-title>
         <div class="q-pl-xl gt-md row items-center justify-start q-gutter-x-sm nav">
-          <q-btn v-for="sec in section" :key="sec.name" type="a" :class="sec.value === route.params.sec ? 'active' : ''"
-            :to="{ name: 'd2r-bbs', params: { sec: sec.value } }" :ripple="false" flat no-caps padding="0 5px" size="18px"
-            :label="sec.label" />
+          <q-btn aria-label="Goto BBS" v-for="sec in section" :key="sec.name" type="a"
+            :class="sec.value === route.params.sec ? 'active' : ''" :to="{ name: 'd2r-bbs', params: { sec: sec.value } }"
+            :ripple="false" flat no-caps padding="0 5px" size="18px" :label="sec.label" />
           <div class="column justify-center items-start" style="height:56px">
-            <q-btn type="a" :style="isKnowledge ? 'opacity:1' : ''"
+            <q-btn aria-label="Goto Knowledge" type="a" :style="isKnowledge ? 'opacity:1' : ''"
               :to="{ name: 'd2r-knowledge-part', params: { section: 'classes', part: 'amazon' } }" :ripple="false" flat
               no-caps padding="0 5px" size="18px" :label="tm('d2r.knowledge.title')" />
             <template v-if="isKnowledge">
@@ -206,9 +206,9 @@ watch(() => route.path, (val, old) => {
         </div>
         <q-space class="gt-md" />
         <div class="row justify-end items-center func" :class="screen.gt.sm ? 'q-gutter-x-sm' : ''">
-          <q-btn dense flat :loading="processSignOut" :ripple="false" @click="sign"
+          <q-btn aria-label="Sign" dense flat :loading="processSignOut" :ripple="false" @click="sign"
             :icon="signStatus ? 'logout' : 'login'" />
-          <q-btn class="gt-md" :ripple="false" dense flat icon="language">
+          <q-btn aria-label="Language" class="gt-md" :ripple="false" dense flat icon="language">
             <q-menu anchor="bottom end" self="top end">
               <q-list separator bordered>
                 <q-item dense v-for="(option, index) in options" :key="index" :clickable="locale !== option.value"
@@ -221,9 +221,9 @@ watch(() => route.path, (val, old) => {
               </q-list>
             </q-menu>
           </q-btn>
-          <q-btn class="gt-md" dense flat :ripple="false" @click="toggleDark"
+          <q-btn aria-label="Dark" class="gt-md" dense flat :ripple="false" @click="toggleDark"
             :icon="isDark ? 'light_mode' : 'dark_mode'" />
-          <q-btn v-if="isKnowledge && partList.length > 1" class="lt-lg" dense flat :ripple="false"
+          <q-btn aria-label="Drawer" v-if="isKnowledge && partList.length > 1" class="lt-lg" dense flat :ripple="false"
             @click="() => rightDrawer = !rightDrawer" icon="assignment" />
         </div>
       </q-toolbar>
@@ -238,7 +238,8 @@ watch(() => route.path, (val, old) => {
                 :options="options" :label="t('language')" @update:model-value="() => toggleLang(locale)" />
             </q-item-section>
             <q-item-section side>
-              <q-btn dense flat :ripple="false" @click="toggleDark" :icon="isDark ? 'light_mode' : 'dark_mode'" />
+              <q-btn aria-label="Dark" dense flat :ripple="false" @click="toggleDark"
+                :icon="isDark ? 'light_mode' : 'dark_mode'" />
             </q-item-section>
           </q-item>
           <q-separator />
@@ -299,7 +300,7 @@ watch(() => route.path, (val, old) => {
             <template v-if="isKnowledge && partList.length > 1">
               <div class="part word-keep">
                 <div class="column no-wrap q-gutter-y-sm">
-                  <q-btn type="a" v-for="part in partList" :key="part.value" dense flat
+                  <q-btn aria-label="Part List" type="a" v-for="part in partList" :key="part.value" dense flat
                     :class="_part === part.value ? 'active' : ''" @click="() => toPart(part.value)">
                     <q-img no-spinner no-transition :src="part.img" :ratio="2" :height="`${600 / partList.length - 12}px`"
                       :data-class="part.label" />
@@ -325,7 +326,7 @@ watch(() => route.path, (val, old) => {
       </q-page-sticky>
       <q-page-scroller position="bottom-left" :scroll-offset="150" :offset="[0, 0]"
         style="position: absolute;z-index: 4;">
-        <q-btn push
+        <q-btn aria-label="Goto TOP" push
           :style="screen.gt.lg ? 'left:22vw;bottom:20px' : screen.gt.md ? 'left:13vw;bottom:20px' : 'left:10px;bottom:30px'"
           round size="md" icon="keyboard_arrow_up" color="secondary" />
       </q-page-scroller>

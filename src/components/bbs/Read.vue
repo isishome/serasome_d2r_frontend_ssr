@@ -360,7 +360,8 @@ onMounted(() => {
                   :rules="[val => val && val.trim() !== '' || '']" />
               </div>
               <div>
-                <q-btn dense padding="0 10px" type="submit" text-color="black" :label="t('d2r.bbs.btn.submit')" />
+                <q-btn aria-label="Submit Post" dense padding="0 10px" type="submit" text-color="black"
+                  :label="t('d2r.bbs.btn.submit')" />
               </div>
             </div>
           </q-form>
@@ -369,17 +370,18 @@ onMounted(() => {
       <q-separator inset />
       <q-card-section class="row justify-between">
         <div class="row justify-end q-gutter-x-sm">
-          <q-btn v-if="authority(sec, 'delete') || data.owner === true" dense unelevated color="secondary"
-            :disable="loading" :label="t('btn.delete')" @click="showConfirm('delete')" />
-          <q-btn v-if="(authority(sec, 'delete') || data.owner === true) && sec === 'trade' && data.classify !== 'notice'"
+          <q-btn aria-label="Delete Post" v-if="authority(sec, 'delete') || data.owner === true" dense unelevated
+            color="secondary" :disable="loading" :label="t('btn.delete')" @click="showConfirm('delete')" />
+          <q-btn aria-label="Finish Post"
+            v-if="(authority(sec, 'delete') || data.owner === true) && sec === 'trade' && data.classify !== 'notice'"
             dense unelevated class="bg-grey-9 text-grey-4" :disable="loading" :label="t('btn.finish')"
             @click="showConfirm('finish')" />
         </div>
         <div class="row justify-end q-gutter-x-sm">
-          <q-btn v-if="authority(sec, 'delete') || data.owner === true" dense unelevated color="primary"
-            :disable="loading" :label="t('btn.modify')"
+          <q-btn aria-label="Modify Post" v-if="authority(sec, 'delete') || data.owner === true" dense unelevated
+            color="primary" :disable="loading" :label="t('btn.modify')"
             :to="{ name: 'd2r-modify', params: { sec: sec, pid: pid }, query: { page: route.query.page || 1 } }" />
-          <q-btn dense outline :disable="loading" :label="t('btn.list')"
+          <q-btn aria-label="List" dense outline :disable="loading" :label="t('btn.list')"
             :to="{ name: 'd2r-bbs', params: { sec: sec }, query: { page: route.query.page || 1 } }" />
         </div>
       </q-card-section>
@@ -404,8 +406,8 @@ onMounted(() => {
             :data-adtest="isProduction ? null : 'on'" width="300px" height="250px" :key="`ac-${key}`" />
         </q-card-section>
         <q-card-actions class="row justify-end q-pa-md">
-          <q-btn dense :disable="loading || current !== 0" text-color="grey-10" color="grey-5" :label="currentText"
-            @click="closeReward" style="min-width:50px" />
+          <q-btn aria-label="Close Reward" dense :disable="loading || current !== 0" text-color="grey-10" color="grey-5"
+            :label="currentText" @click="closeReward" style="min-width:50px" />
         </q-card-actions>
       </q-card>
     </q-dialog>

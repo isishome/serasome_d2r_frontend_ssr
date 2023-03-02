@@ -62,7 +62,7 @@ const url = ref(props.contents)
       @hide="cancel">
       <q-card :dark="dark" bordered class="full-width">
         <q-card-section>
-          <div class="text-h6">{{title}}</div>
+          <div class="text-h6">{{ title }}</div>
         </q-card-section>
         <q-card-section class="q-pt-none">
           <q-input :dark="dark" ref="contents" :color="color" v-model="url" :rules="rules" :prefix="prefix"
@@ -73,13 +73,11 @@ const url = ref(props.contents)
           </q-input>
         </q-card-section>
         <q-card-actions align="right">
-          <q-btn flat :label="t('btn.cancel')" @click="emit('cancel')" />
-          <q-btn flat :label="confirmLabelText" @click="emit('ok', url)" />
+          <q-btn aria-label="Cancel Prompt" flat :label="t('btn.cancel')" @click="emit('cancel')" />
+          <q-btn aria-label="OK" flat :label="confirmLabelText" @click="emit('ok', url)" />
         </q-card-actions>
       </q-card>
     </q-dialog>
   </div>
 </template>
-<style scoped>
-
-</style>
+<style scoped></style>

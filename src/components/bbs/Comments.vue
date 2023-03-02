@@ -60,7 +60,7 @@ const info = reactive({
 })
 
 const signStatus = computed(() => store.signStatus)
-const commentLabel = computed(() =>  info.mode === 'reply' || (info.mode === 'modify' && info.cid !== info.pcid) ? t('d2r.comments.replyContents') : t('d2r.comments.contents') )
+const commentLabel = computed(() => info.mode === 'reply' || (info.mode === 'modify' && info.cid !== info.pcid) ? t('d2r.comments.replyContents') : t('d2r.comments.contents'))
 
 watch(() => desktop.contents, (val) => {
   desktop.error = check(val)
@@ -182,9 +182,10 @@ defineExpose({
         <q-item-label header class="no-padding">
           <div class="row justify-between">
             <div></div>
-            <q-btn class="text-weight-bold " :disable="loading" v-if="all > 0"
+            <q-btn aria-label="comments button" class="text-weight-bold " :disable="loading" v-if="all > 0"
               :label="`${t('d2r.comments.all')} (${all})`" @click="emit('all')" flat dense />
-            <q-btn dense flat round :disable="loading" icon="refresh" @click="emit('refresh')" />
+            <q-btn aria-label="comments button" dense flat round :disable="loading" icon="refresh"
+              @click="emit('refresh')" />
           </div>
         </q-item-label>
       </template>
@@ -218,26 +219,28 @@ defineExpose({
               <div v-if="signStatus" class="row justify-end">
                 <div v-if="(c.secret === false || c.owner === true) && c.delete === false"
                   class="lt-sm row justify-end q-gutter-x-md">
-                  <q-btn dense flat round icon="more_vert" padding="6px">
+                  <q-btn aria-label="comments button" dense flat round icon="more_vert" padding="6px">
                     <q-menu auto-close>
                       <q-btn-group push>
-                        <q-btn v-if="c.owner === true && c.delete === false" :disable="loading" round dense flat
-                          icon="delete" color="grey-6" @click="show('delete', c)" />
-                        <q-btn v-if="c.owner === true && c.delete === false" :disable="loading" round dense flat
-                          icon="edit" color="grey-6" @click="show('modify', c)" />
-                        <q-btn v-if="c.delete === false && (c.secret === false || c.owner === true || c.reply)"
+                        <q-btn aria-label="comments button" v-if="c.owner === true && c.delete === false"
+                          :disable="loading" round dense flat icon="delete" color="grey-6" @click="show('delete', c)" />
+                        <q-btn aria-label="comments button" v-if="c.owner === true && c.delete === false"
+                          :disable="loading" round dense flat icon="edit" color="grey-6" @click="show('modify', c)" />
+                        <q-btn aria-label="comments button"
+                          v-if="c.delete === false && (c.secret === false || c.owner === true || c.reply)"
                           :disable="loading" round dense flat icon="reply" color="grey-6" @click="show('reply', c)" />
                       </q-btn-group>
                     </q-menu>
                   </q-btn>
                 </div>
                 <div class="gt-xs row justify-end q-gutter-x-sm">
-                  <q-btn v-if="c.owner === true && c.delete === false" :disable="loading" round dense flat icon="delete"
-                    color="grey-6" @click="show('delete', c)" />
-                  <q-btn v-if="c.owner === true && c.delete === false" :disable="loading" round dense flat icon="edit"
-                    color="grey-6" @click="show('modify', c)" />
-                  <q-btn v-if="c.delete === false && (c.secret === false || c.owner === true || c.reply)"
-                    :disable="loading" round dense flat icon="reply" color="grey-6" @click="show('reply', c)" />
+                  <q-btn aria-label="comments button" v-if="c.owner === true && c.delete === false" :disable="loading"
+                    round dense flat icon="delete" color="grey-6" @click="show('delete', c)" />
+                  <q-btn aria-label="comments button" v-if="c.owner === true && c.delete === false" :disable="loading"
+                    round dense flat icon="edit" color="grey-6" @click="show('modify', c)" />
+                  <q-btn aria-label="comments button"
+                    v-if="c.delete === false && (c.secret === false || c.owner === true || c.reply)" :disable="loading"
+                    round dense flat icon="reply" color="grey-6" @click="show('reply', c)" />
                 </div>
               </div>
             </q-item-label>
@@ -282,26 +285,28 @@ defineExpose({
                 <div v-if="signStatus" class="row justify-end">
                   <div v-if="(r.secret === false || r.owner === true) && r.delete === false"
                     class="lt-sm row justify-end q-gutter-x-md">
-                    <q-btn dense flat round icon="more_vert" padding="6px">
+                    <q-btn aria-label="comments button" dense flat round icon="more_vert" padding="6px">
                       <q-menu auto-close>
                         <q-btn-group push>
-                          <q-btn v-if="r.owner === true && r.delete === false" :disable="loading" round dense flat
-                            icon="delete" color="grey-6" @click="show('delete', r)" />
-                          <q-btn v-if="r.owner === true && r.delete === false" :disable="loading" round dense flat
-                            icon="edit" color="grey-6" @click="show('modify', r)" />
-                          <q-btn v-if="r.delete === false && (r.secret === false || r.owner === true || c.reply)"
+                          <q-btn aria-label="comments button" v-if="r.owner === true && r.delete === false"
+                            :disable="loading" round dense flat icon="delete" color="grey-6" @click="show('delete', r)" />
+                          <q-btn aria-label="comments button" v-if="r.owner === true && r.delete === false"
+                            :disable="loading" round dense flat icon="edit" color="grey-6" @click="show('modify', r)" />
+                          <q-btn aria-label="comments button"
+                            v-if="r.delete === false && (r.secret === false || r.owner === true || c.reply)"
                             :disable="loading" round dense flat icon="reply" color="grey-6" @click="show('reply', r)" />
                         </q-btn-group>
                       </q-menu>
                     </q-btn>
                   </div>
                   <div class="gt-xs row justify-end q-gutter-x-sm">
-                    <q-btn v-if="r.owner === true && r.delete === false" :disable="loading" round dense flat
-                      icon="delete" color="grey-6" @click="show('delete', r)" />
-                    <q-btn v-if="r.owner === true && r.delete === false" :disable="loading" round dense flat icon="edit"
-                      color="grey-6" @click="show('modify', r)" />
-                    <q-btn v-if="r.delete === false && (r.secret === false || r.owner === true || c.reply)"
-                      :disable="loading" round dense flat icon="reply" color="grey-6" @click="show('reply', r)" />
+                    <q-btn aria-label="comments button" v-if="r.owner === true && r.delete === false" :disable="loading"
+                      round dense flat icon="delete" color="grey-6" @click="show('delete', r)" />
+                    <q-btn aria-label="comments button" v-if="r.owner === true && r.delete === false" :disable="loading"
+                      round dense flat icon="edit" color="grey-6" @click="show('modify', r)" />
+                    <q-btn aria-label="comments button"
+                      v-if="r.delete === false && (r.secret === false || r.owner === true || c.reply)" :disable="loading"
+                      round dense flat icon="reply" color="grey-6" @click="show('reply', r)" />
                   </div>
                 </div>
               </q-item-label>
@@ -322,8 +327,8 @@ defineExpose({
       <q-item class="no-padding">
         <q-item-section class="q-py-md">
           <div class="row justify-center">
-            <q-btn v-if="signStatus && authority" class="lt-sm" :disable="loading" dense :label="t('btn.leave')"
-              @click="show('leave')" />
+            <q-btn aria-label="comments button" v-if="signStatus && authority" class="lt-sm" :disable="loading" dense
+              :label="t('btn.leave')" @click="show('leave')" />
             <q-form autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" class="gt-xs textarea">
               <q-input :disable="loading" v-if="signStatus" v-model="desktop.contents" color="grey-6"
                 :error="desktop.error" input-class="no-scroll" :bg-color="isDark ? 'black' : 'white'"
@@ -347,8 +352,8 @@ defineExpose({
       </q-item>
     </q-list>
   </div>
-  <q-dialog v-if="signStatus" v-model="dialog"
-    :position="screen.lt.sm && info.mode === 'change' ? 'bottom' : 'standard'" @before-hide="hide">
+  <q-dialog v-if="signStatus" v-model="dialog" :position="screen.lt.sm && info.mode === 'change' ? 'bottom' : 'standard'"
+    @before-hide="hide">
     <q-card v-if="['leave', 'modify', 'reply'].includes(info.mode)" style="width:90vw;max-width:500px">
       <q-card-section>
         <q-form autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" autofocus>
@@ -375,8 +380,9 @@ defineExpose({
         {{ t('d2r.comments.message.confirmDelete') }}
       </q-card-section>
       <q-card-actions align="right">
-        <q-btn :disable="loading" dense outline :label="t('btn.cancel')" v-close-popup />
-        <q-btn :disable="loading" dense color="secondary" :label="t('btn.confirm')" @click="process" />
+        <q-btn aria-label="comments button" :disable="loading" dense outline :label="t('btn.cancel')" v-close-popup />
+        <q-btn aria-label="comments button" :disable="loading" dense color="secondary" :label="t('btn.confirm')"
+          @click="process" />
       </q-card-actions>
     </q-card>
   </q-dialog>
@@ -418,5 +424,4 @@ defineExpose({
 
 .info {
   color: rgba(150, 150, 150, 1);
-}
-</style>
+}</style>

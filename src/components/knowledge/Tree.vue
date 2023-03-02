@@ -65,8 +65,8 @@ const reset = () => {
               {{ i }}</div>
           </div>
           <div class="col-1 text-right relative-position" style="z-index: 2;">
-            <q-btn v-if="treePoints > 0" :size="platform.is.mobile ? '7px' : '10px'" padding="2px" unelevated dense
-              color="secondary" class="text-weight-bold" @click="reset">
+            <q-btn aria-label="Reset Skills" v-if="treePoints > 0" :size="platform.is.mobile ? '7px' : '10px'"
+              padding="2px" unelevated dense color="secondary" class="text-weight-bold" @click="reset">
               <q-icon name="close" />
             </q-btn>
           </div>

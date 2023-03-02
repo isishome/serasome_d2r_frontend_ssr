@@ -117,13 +117,13 @@ const parsMaterial = (material) => {
 <template>
   <div>
     <div class="row justify-end">
-      <q-btn dense flat icon="clear_all" class="text-weight-bold" padding="4px" :label="t('d2r.knowledge.items.reset')"
-        :size="screen.gt.sm ? 'md' : 'sm'" @click="refresh" />
+      <q-btn aria-label="Reset" dense flat icon="clear_all" class="text-weight-bold" padding="4px"
+        :label="t('d2r.knowledge.items.reset')" :size="screen.gt.sm ? 'md' : 'sm'" @click="refresh" />
     </div>
     <div class="row justify-start text-center q-col-gutter-sm non-selectable">
       <div v-for="rune in runes" :key="rune.no" class="rune col-2 col-md-1">
-        <q-btn no-caps dense flat class="row fit" :class="rune.selected ? 'selected' : ''" :ripple="!platform.is.mobile"
-          @click="selectedRune(rune)">
+        <q-btn aria-label="Selected" no-caps dense flat class="row fit" :class="rune.selected ? 'selected' : ''"
+          :ripple="!platform.is.mobile" @click="selectedRune(rune)">
           <div class="col-12 column items-center q-gutter-y-xs">
             <img :src="`/images/knowledge/items/runes/${rune.file}.png`"
               style="width: 100%;max-width:50px;max-height:50px;" />
@@ -285,8 +285,8 @@ const parsMaterial = (material) => {
             <q-separator />
             <q-card-section>
               <div class="text-subtitle2 word-keep row justify-around">
-                <div v-for="(m, idx) in parsMaterial(props.row.materials)" :key="idx">{{ m }}<span
-                    class="text-red-5">({{ props.row.runeword.length }})</span>
+                <div v-for="(m, idx) in parsMaterial(props.row.materials)" :key="idx">{{ m }}<span class="text-red-5">({{
+                  props.row.runeword.length }})</span>
                 </div>
               </div>
             </q-card-section>

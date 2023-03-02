@@ -71,7 +71,7 @@ const itemClick = (item) => {
               </div>
             </q-item-label>
             <q-item class="no-padding" v-for="summary in sec.summary" :key="summary.pid">
-              <q-btn flat unelevated no-caps class="text-body fit" @click="itemClick(summary)">
+              <q-btn aria-label="View Post" flat unelevated no-caps class="text-body fit" @click="itemClick(summary)">
                 <q-item-section top avatar>
                   <q-avatar rounded class="outlined" size="70px">
                     <q-badge v-if="isNew(summary.upd_date, 1000 * 60 * 60 * 24 * 7)" rounded color="red-6" floating

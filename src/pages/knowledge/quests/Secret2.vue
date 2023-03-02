@@ -96,7 +96,8 @@ onUnmounted(() => {
         <q-separator inset />
         <q-card-actions class="q-px-lg" align="between">
           <div>
-            <q-btn v-if="!disable" icon="refresh" flat round :loading="loading" @click="getInfo(2000)" />
+            <q-btn aria-label="refresh" v-if="!disable" icon="refresh" flat round :loading="loading"
+              @click="getInfo(2000)" />
           </div>
           <div>
             <q-toggle v-model="ladder" color="primary" :disable="loading" :label="secretData.uberData.ladder" />
@@ -130,7 +131,7 @@ onUnmounted(() => {
         }}</a>
       & <a style="text-decoration: none;" class=" text-green-4" target="_blank"
         href="https://namu.wiki/w/%EC%9A%B0%EB%B2%84%20%EB%94%94%EC%95%84%EB%B8%94%EB%A1%9C">{{
-  t('d2r.knowledge.namuWiki')
+          t('d2r.knowledge.namuWiki')
         }}</a>
     </p>
   </div>

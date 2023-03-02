@@ -22,8 +22,8 @@ const play = (name, event) => {
   
 <template>
   <div>
-    <q-table class="no-shadow knowledge-table" card-container-class="q-col-gutter-md" :grid="$q.screen.lt.lg"
-      :rows="data" :pagination="pagination" dense bordered hide-header hide-pagination wrap-cells>
+    <q-table class="no-shadow knowledge-table" card-container-class="q-col-gutter-md" :grid="$q.screen.lt.lg" :rows="data"
+      :pagination="pagination" dense bordered hide-header hide-pagination wrap-cells>
       <template #body="props">
         <q-tr class="text-center">
           <q-td>
@@ -46,7 +46,8 @@ const play = (name, event) => {
           </q-td>
           <q-td>
             <div class="q-px-md">
-              <q-btn flat dense round color="secondary" icon="headset" @click.stop="play(props.row.voice, $event)" />
+              <q-btn aria-label="Play Sound" flat dense round color="secondary" icon="headset"
+                @click.stop="play(props.row.voice, $event)" />
             </div>
           </q-td>
         </q-tr>
@@ -56,8 +57,8 @@ const play = (name, event) => {
           <q-card class="no-shadow text-center text-body2 word-keep">
             <q-card-section>
               <img :src='props.row.image' style="max-width:200px" />
-              <q-btn round dense flat class="absolute-top-right q-ma-sm" icon="headset" color="secondary"
-                @click="play(props.row.voice, $event)" />
+              <q-btn aria-label="Play Sound" round dense flat class="absolute-top-right q-ma-sm" icon="headset"
+                color="secondary" @click="play(props.row.voice, $event)" />
             </q-card-section>
             <q-card-section class="no-padding">
               <div class="text-h6 text-primary">

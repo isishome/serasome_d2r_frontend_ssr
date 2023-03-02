@@ -30,17 +30,15 @@ const value = computed({
     <q-dialog v-model="value">
       <q-card class="d2r-confirm">
         <q-card-section>
-          <span class="col q-ml-sm">{{message}}</span>
+          <span class="col q-ml-sm">{{ message }}</span>
         </q-card-section>
         <q-card-actions align="right">
-          <q-btn outline :label="t('btn.cancel')" @click="emit('cancel')" />
-          <q-btn color="negative" :label="t('btn.confirm')" @click="emit('confirm')" />
+          <q-btn aria-label="Cancel Confirm" outline :label="t('btn.cancel')" @click="emit('cancel')" />
+          <q-btn aria-label="Confirm" color="negative" :label="t('btn.confirm')" @click="emit('confirm')" />
         </q-card-actions>
       </q-card>
     </q-dialog>
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

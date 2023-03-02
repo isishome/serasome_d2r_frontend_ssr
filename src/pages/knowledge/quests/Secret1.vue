@@ -23,7 +23,7 @@ const play = () => {
   <div class="column quests word-keep text-body2">
     <div class="row justify-center items-center q-gutter-x-lg">
       <img :src="'/images/knowledge/quests/secret1/hellbovine.gif'" style="max-width:93px" />
-      <q-btn round dense flat color="secondary" icon="headset" @click="play" />
+      <q-btn aria-label="Play Sound" round dense flat color="secondary" icon="headset" @click="play" />
     </div>
     <div class="column items-start q-gutter-y-lg">
       <div v-for="(contents, index) in secretData" :key="index" class="full-width">
@@ -39,8 +39,8 @@ const play = () => {
         </div>
       </div>
     </div>
-    <p class="q-mt-xl self-end text-grey-6 text-body2">{{ t('d2r.knowledge.source') }} : <a
-        style="text-decoration: none;" target="_blank" href="http://classic.battle.net/diablo2exp/quests/cow.shtml">{{
+    <p class="q-mt-xl self-end text-grey-6 text-body2">{{ t('d2r.knowledge.source') }} : <a style="text-decoration: none;"
+        target="_blank" href="http://classic.battle.net/diablo2exp/quests/cow.shtml">{{
           t('d2r.knowledge.arreatSummit')
         }}</a> & <a style="text-decoration: none;" class=" text-green-4" target="_blank"
         href="https://namu.wiki/w/%EC%B9%B4%EC%9A%B0%20%EB%A0%88%EB%B2%A8">{{ t('d2r.knowledge.namuWiki') }}</a>
@@ -48,6 +48,4 @@ const play = () => {
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

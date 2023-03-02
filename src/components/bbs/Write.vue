@@ -249,8 +249,7 @@ const failed = (msg) => {
           <q-separator />
           <div>
             <q-input dense outlined hide-bottom-space no-error-icon color="grey-5" :disable="loading" maxlength="200"
-              type="text" :label="t('post.title')" v-model="writeInfo.title"
-              :rules="[val => val && val.trim() !== '']" />
+              type="text" :label="t('post.title')" v-model="writeInfo.title" :rules="[val => val && val.trim() !== '']" />
           </div>
           <div>
             <Editor ref="editor" :contents="writeInfo.contents" :factory-fn="factoryFn" :disable="loading"
@@ -263,8 +262,8 @@ const failed = (msg) => {
                         @click="insert(f.__img.src)" @remove="remove(f)" />
                     </div>
                   </div>
-                  <q-btn v-if="files.length > 0" no-caps unelevated dense color="grey-9" class="self-end" @click="clear"
-                    label="Clear All" />
+                  <q-btn aria-label="Clear All" v-if="files.length > 0" no-caps unelevated dense color="grey-9"
+                    class="self-end" @click="clear" label="Clear All" />
                 </div>
               </template>
             </Editor>
@@ -287,16 +286,16 @@ const failed = (msg) => {
                     </q-item-label>
                   </q-item-section>
                   <q-item-section center side>
-                    <q-btn size="md" flat round dense icon="delete" @click="deleteFile(file)" />
+                    <q-btn aria-label="Delete File" size="md" flat round dense icon="delete" @click="deleteFile(file)" />
                   </q-item-section>
                 </q-item>
               </template>
             </q-list>
           </div>
           <div class="row justify-end q-gutter-x-sm">
-            <q-btn dense outline :disable="loading" :label="t('btn.cancel')"
+            <q-btn aria-label="Cancel Write" dense outline :disable="loading" :label="t('btn.cancel')"
               :to="pid !== null ? { name: 'd2r-read', params: { sec: sec, pid: pid } } : { name: 'd2r-bbs', params: { sec: sec } }" />
-            <q-btn dense unelevated color="primary" :loading="loading" type="submit"
+            <q-btn aria-label="Submit Write" dense unelevated color="primary" :loading="loading" type="submit"
               :label="pid ? t('btn.modify') : t('btn.posting')" />
           </div>
         </q-form>

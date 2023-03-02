@@ -336,18 +336,18 @@ defineExpose({ focus, getAttach, upload })
         @update:model-value="update" @paste="onPaste" min-height="50rem" max-height="50rem" class="editor"
         :definitions="definitions" :toolbar="toolbar" @keydown.enter.exact="escape" @keydown.tab.prevent>
         <template #textColor>
-          <q-btn dense flat size="sm" icon="format_color_text">
+          <q-btn aria-label="Text Color" dense flat size="sm" icon="format_color_text">
             <q-tooltip :delay="1000">
               Change Text Color
             </q-tooltip>
             <q-menu auto-close no-focus no-refocus>
-              <q-color @mousedown.prevent v-model="hex" no-header no-footer default-view="palette"
-                style="max-width:250px" @update:model-value="changeColor" />
+              <q-color @mousedown.prevent v-model="hex" no-header no-footer default-view="palette" style="max-width:250px"
+                @update:model-value="changeColor" />
             </q-menu>
           </q-btn>
         </template>
         <template #highlight>
-          <q-btn dense flat icon="code" size="sm"
+          <q-btn aria-label="Code Area" dense flat icon="code" size="sm"
             :class="languages.filter(l => l.active(l) === true).length > 0 ? 'text-active-toggle' : ''">
             <q-tooltip :delay="1000">
               Insert Code Highlight
@@ -370,7 +370,7 @@ defineExpose({ focus, getAttach, upload })
           </q-btn>
         </template>
         <template #add>
-          <q-btn @mousedown.prevent dense flat icon="add" size="sm"
+          <q-btn aria-label="expansion" @mousedown.prevent dense flat icon="add" size="sm"
             :class="extensions.filter(ex => ex.active(ex) === true).length > 0 ? 'text-active-toggle' : ''">
             <q-tooltip :delay="1000">
               Extension List

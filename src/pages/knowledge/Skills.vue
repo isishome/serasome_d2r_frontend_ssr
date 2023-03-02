@@ -209,7 +209,7 @@ complete.value = computed(() => Object.keys(loadedSkill).map(k => loadedSkill[k]
             <div v-for="(k, idx1) in d.key" :key="`k${idx}_${idx1}`"
               class="row justify-center items-center q-gutter-x-xs no-wrap">
               <div>
-                <q-btn dense push size="12px" color="grey-5" text-color="black">{{ k }}</q-btn>
+                <q-btn aria-label="Key" dense push size="12px" color="grey-5" text-color="black">{{ k }}</q-btn>
               </div>
               <div v-if="idx1 !== d.key.length" class="text-grey-6">
                 <q-icon name="add" color="grey-6" />
@@ -255,8 +255,8 @@ complete.value = computed(() => Object.keys(loadedSkill).map(k => loadedSkill[k]
           </q-input>
         </div>
         <div>
-          <q-btn unelevated icon="share" color="primary" :label="t('d2r.knowledge.skills.btn.share')" @click="share"
-            :loading="loading" />
+          <q-btn aria-label="Share" unelevated icon="share" color="primary" :label="t('d2r.knowledge.skills.btn.share')"
+            @click="share" :loading="loading" />
         </div>
       </div>
     </div>
