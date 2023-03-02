@@ -57,7 +57,7 @@ const itemClick = (item) => {
         <div class="summary">
           <q-toolbar dense flat class="row justify-between sub">
             <div class="lt-sm col-4"></div>
-            <div class="col-4 text-weight-bold font-kodia text-subtitle1" :class="$q.screen.lt.sm ? 'text-center' : ''">
+            <div class="col-4 text-weight-bold text-subtitle1" :class="$q.screen.lt.sm ? 'text-center' : ''">
               {{ sec.title }}
             </div>
             <div class="col text-right">

@@ -231,9 +231,9 @@ onMounted(() => {
       @contextmenu.shift.exact.prevent="selected(-1000)">
       <img class="img" :class="points > 0 ? 'learned' : ''" draggable="false"
         :src="`/images/knowledge/skills/${part}/${treeId}/${skillId}.jpg`" />
-      <q-tooltip v-if="!platform.is.mobile" class="skill-tooltip font-kodia text-body2 text-center"
-        :scroll-target="scrollTarget" size="xs" :anchor="`bottom ${info.position || 'middle'}`"
-        :self="`top ${info.position || 'middle'}`" :offset="[0, 0]" transition-show="none" transition-hide="none">
+      <q-tooltip v-if="!platform.is.mobile" class="skill-tooltip text-body2 text-center" :scroll-target="scrollTarget"
+        size="xs" :anchor="`bottom ${info.position || 'middle'}`" :self="`top ${info.position || 'middle'}`"
+        :offset="[0, 0]" transition-show="none" transition-hide="none">
         <div class="full-width column items-center word-keep"
           :class="[disable ? 'text-red-5' : 'text-grey-4', screen.lt.sm ? 'q-gutter-xs' : 'q-gutter-md']">
           <div v-if="points === 0" class="d2r-green">
@@ -244,7 +244,7 @@ onMounted(() => {
           </div>
           <div class="q-mt-none column items-center">
             <div v-for="(d, idx) in info.desc" :key="idx">{{ d }}</div>
-            <div v-if="points !== 20">{{ lang.required }} {{ Number(info.level) + points}}
+            <div v-if="points !== 20">{{ lang.required }} {{ Number(info.level) + points }}
             </div>
             <div v-else>{{ lang.reached }}</div>
           </div>
@@ -261,7 +261,7 @@ onMounted(() => {
             </div>
           </div>
           <div v-if="points !== 20" class="column items-center">
-            <div>{{ points > 0 ? lang.next : lang.first}} {{ lang.level }}
+            <div>{{ points > 0 ? lang.next : lang.first }} {{ lang.level }}
             </div>
             <div v-for="(n, idx) in nexts" :key="idx">
               {{ n }}
@@ -280,7 +280,7 @@ onMounted(() => {
         </div>
       </q-tooltip>
       <template v-else>
-        <q-dialog full-width v-model="dialog" class="font-kodia text-body2 text-center">
+        <q-dialog full-width v-model="dialog" class="text-body2 text-center">
           <div class="bg-black full-width no-scroll column items-center word-keep q-px-none q-py-sm"
             :class="[disable ? 'text-red-5' : 'text-grey-4', 'q-gutter-y-sm']">
             <div v-if="points === 0" class="d2r-green first-letter">
@@ -291,7 +291,7 @@ onMounted(() => {
             </div>
             <div class="q-mt-none column items-center">
               <div v-for="(d, idx) in info.desc" :key="idx">{{ d }}</div>
-              <div v-if="points !== 20">{{ lang.required }} {{ Number(info.level) + points}}
+              <div v-if="points !== 20">{{ lang.required }} {{ Number(info.level) + points }}
               </div>
               <div v-else>{{ lang.reached }}</div>
             </div>
@@ -306,7 +306,7 @@ onMounted(() => {
               </div>
             </div>
             <div v-if="points !== 20" class="column items-center">
-              <div>{{ points > 0 ? lang.next : lang.first}} {{ lang.level }}
+              <div>{{ points > 0 ? lang.next : lang.first }} {{ lang.level }}
               </div>
               <div v-for="(n, idx) in nexts" :key="idx">{{ n }}
               </div>

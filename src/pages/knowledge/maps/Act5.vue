@@ -151,7 +151,7 @@ onMounted(() => {
             </q-card>
           </div>
         </q-timeline-entry>
-        <q-timeline-entry color="primary" class="text-h5 text-weight-bold font-kodia" icon="flag">
+        <q-timeline-entry color="primary" class="text-h5 text-weight-bold" icon="flag">
           액트 V - 파트 I 완료
         </q-timeline-entry>
       </q-timeline>
@@ -241,7 +241,7 @@ onMounted(() => {
             </q-card>
           </div>
         </q-timeline-entry>
-        <q-timeline-entry color="primary" class="text-h5 text-weight-bold font-kodia" icon="flag">
+        <q-timeline-entry color="primary" class="text-h5 text-weight-bold" icon="flag">
           액트 V - 파트 II 완료
         </q-timeline-entry>
       </q-timeline>
@@ -427,7 +427,7 @@ onMounted(() => {
             <div class="col gt-xs"></div>
           </div>
         </q-timeline-entry>
-        <q-timeline-entry color="primary" class="text-h5 text-weight-bold font-kodia" icon="flag">
+        <q-timeline-entry color="primary" class="text-h5 text-weight-bold" icon="flag">
           액트 V - 파트 III 완료
         </q-timeline-entry>
       </q-timeline>
@@ -564,7 +564,7 @@ onMounted(() => {
             </q-card>
           </div>
         </q-timeline-entry>
-        <q-timeline-entry color="primary" class="text-h5 text-weight-bold font-kodia" icon="flag">
+        <q-timeline-entry color="primary" class="text-h5 text-weight-bold" icon="flag">
           Act V - Part I Completed
         </q-timeline-entry>
       </q-timeline>
@@ -654,7 +654,7 @@ onMounted(() => {
             </q-card>
           </div>
         </q-timeline-entry>
-        <q-timeline-entry color="primary" class="text-h5 text-weight-bold font-kodia" icon="flag">
+        <q-timeline-entry color="primary" class="text-h5 text-weight-bold" icon="flag">
           Act V - Part II Completed
         </q-timeline-entry>
       </q-timeline>
@@ -840,7 +840,7 @@ onMounted(() => {
             <div class="col gt-xs"></div>
           </div>
         </q-timeline-entry>
-        <q-timeline-entry color="primary" class="text-h5 text-weight-bold font-kodia" icon="flag">
+        <q-timeline-entry color="primary" class="text-h5 text-weight-bold" icon="flag">
           Act V - Part III Completed
         </q-timeline-entry>
       </q-timeline>
@@ -854,6 +854,4 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

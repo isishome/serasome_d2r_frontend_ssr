@@ -306,7 +306,7 @@ onMounted(() => {
             </q-card>
           </div>
         </q-timeline-entry>
-        <q-timeline-entry color="primary" class="text-h5 text-weight-bold font-kodia" icon="flag">액트 I 완료
+        <q-timeline-entry color="primary" class="text-h5 text-weight-bold" icon="flag">액트 I 완료
         </q-timeline-entry>
       </q-timeline>
     </template>
@@ -597,7 +597,7 @@ onMounted(() => {
             </q-card>
           </div>
         </q-timeline-entry>
-        <q-timeline-entry color="primary" class="text-h5 text-weight-bold font-kodia" icon="flag">
+        <q-timeline-entry color="primary" class="text-h5 text-weight-bold" icon="flag">
           Act I Completed
         </q-timeline-entry>
       </q-timeline>
@@ -611,6 +611,4 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

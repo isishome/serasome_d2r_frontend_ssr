@@ -45,7 +45,7 @@ const authority = computed(() => store.getAuthority)
 const searchObj = ref(null)
 
 // about board
-const _filter = reactive(JSON.parse(JSON.stringify(props.filter)) )
+const _filter = reactive(JSON.parse(JSON.stringify(props.filter)))
 const table = ref(null)
 const pagination = reactive({
   page: Number(route.query.page) || 1,
@@ -156,11 +156,11 @@ watch(() => route.query.page, (val, old) => {
   <div class="contents-wrap" v-show="!(search && data.length === 0)">
     <div class="row justify-between items-center q-gutter-x-xs" :class="search ? '' : 'lt-md'">
       <div class="row items-center">
-        <div class="q-ml-xs q-mb-sm text-uppercase font-kodia">{{ secInfo.label }}</div>
+        <div class="q-ml-xs q-mb-sm text-uppercase">{{ secInfo.label }}</div>
       </div>
     </div>
-    <Table ref="table" :pagination="pagination" :columns="columns[sec] || columns.default" :data="data"
-      :search="search" :grid="$q.screen.lt.md" @request="getList">
+    <Table ref="table" :pagination="pagination" :columns="columns[sec] || columns.default" :data="data" :search="search"
+      :grid="$q.screen.lt.md" @request="getList">
       <template v-if="!search && (sec === 'trade' || signStatus)" #top-right>
         <div class="row justify-end q-gutter-x-md" :class="[$q.screen.gt.sm ? '' : 'no-margin']">
           <div v-if="sec === 'trade'">

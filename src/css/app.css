@@ -14,16 +14,6 @@
   --q-info: #880000 !important;
 }
 
-@font-face {
-  font-family: 'Kodia';
-  src: url('/fonts/kodia.woff2') format('woff2'),
-    url('/fonts/kodia.woff') format('woff');
-}
-
-.font-kodia {
-  font-family: 'Kodia';
-}
-
 body {
   overflow-y: scroll;
   width: 100%;

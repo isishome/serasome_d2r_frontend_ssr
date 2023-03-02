@@ -59,7 +59,7 @@ onMounted(() => {
   <div class="q-pa-sm">
     <q-toolbar class="title no-margin">
       <q-toolbar-title>
-        <div class="title-text font-kodia">
+        <div class="title-text">
           {{ t('d2r.main.recentPosts') }}
         </div>
       </q-toolbar-title>
@@ -67,7 +67,7 @@ onMounted(() => {
     <Summary :data="latest" more @more-click="more" @item-click="boardItem" :loading="loading.latest" />
     <q-toolbar class="title">
       <q-toolbar-title>
-        <div class="title-text font-kodia">
+        <div class="title-text">
           {{ t('d2r.main.topPosts') }}
         </div>
       </q-toolbar-title>

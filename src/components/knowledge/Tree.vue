@@ -53,7 +53,7 @@ const reset = () => {
 
 <template>
   <div class="row justify-center">
-    <div class="font-kodia relative-position" @contextmenu.prevent>
+    <div class="relative-position" @contextmenu.prevent>
       <q-inner-loading :showing="loading" class="loading">
         <q-spinner-ball size="16%" color="secondary" />
       </q-inner-loading>

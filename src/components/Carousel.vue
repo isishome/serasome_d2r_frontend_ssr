@@ -26,17 +26,17 @@ const textSub = computed(() => {
 
 <template>
   <div>
-    <q-carousel class="full-width bg-transparent" :height="$q.screen.gt.xs ? '350px' : '150px'" animated
-      :autoplay="10000" infinite v-model="slide" transition-duration="2000">
+    <q-carousel class="full-width bg-transparent" :height="$q.screen.gt.xs ? '350px' : '150px'" animated :autoplay="10000"
+      infinite v-model="slide" transition-duration="2000">
       <q-carousel-slide class="no-padding" v-for="(no, index) in tm('d2r.main.carousel')" :key="index"
         :name="rt(no.name)">
         <q-img :src="`/images/${rt(no.img)}.jpg`" :srcset="`/images/${rt(no.img)}_1x.jpg 400w,
-        /images/${rt(no.img)}_2x.jpg 800w,
-        /images/${rt(no.img)}_3x.jpg 1200w,
-        /images/${rt(no.img)}_4x.jpg 1600w`" class="fit absolute" sizes="(max-width: 400px) 400w,
-              (min-width: 400px) and (max-width: 800px) 800w,
-              (min-width: 800px) and (max-width: 1200px) 1200w,
-              (min-width: 1200px) 1600w" />
+                  /images/${rt(no.img)}_2x.jpg 800w,
+                  /images/${rt(no.img)}_3x.jpg 1200w,
+                  /images/${rt(no.img)}_4x.jpg 1600w`" class="fit absolute" sizes="(max-width: 400px) 400w,
+                (min-width: 400px) and (max-width: 800px) 800w,
+                (min-width: 800px) and (max-width: 1200px) 1200w,
+                (min-width: 1200px) 1600w" />
         <div class="full-width bg-transparent custom-caption"
           :class="$q.screen.lt.sm ? 'absolute-center no-padding' : 'absolute-center'">
           <div class="d2r-top-title q-mb-sm word-keep" :style="textFlame">{{ rt(no.title) }}</div>
@@ -58,8 +58,6 @@ const textSub = computed(() => {
 }
 
 .d2r-top-title {
-  font-family: 'Kodia';
-  /* font-family: 'New Rocker', 'Do Hyeon', cursive; */
   font-weight: bolder;
   color: #000000 !important;
   text-shadow: 1px 1px 1px rgb(0, 0, 0), 0 0 3px rgb(251, 255, 0), 0 -1px 5px rgb(255, 136, 0), 0 -3px 10px rgb(255, 38, 0);
@@ -74,8 +72,6 @@ const textSub = computed(() => {
 }
 
 .d2r-top-desc {
-  font-family: 'Kodia';
-  /* font-family: 'Nosifer', 'Black Han Sans', cursive; */
   font-weight: bolder;
   text-shadow: 0 0 8px rgba(0, 0, 0, 1);
   color: rgb(240, 156, 0);

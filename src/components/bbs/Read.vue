@@ -304,7 +304,7 @@ onMounted(() => {
   <div class="contents-wrap">
     <q-card v-if="data.title" class="contents-on">
       <q-card-section class="q-py-sm">
-        <div class="font-kodia">
+        <div>
           {{ screen.lt.md ? `${secInfo.label} > ` : '' }}{{ classifyName(sec, data.classify) }}
         </div>
       </q-card-section>
@@ -409,7 +409,7 @@ onMounted(() => {
         </q-card-actions>
       </q-card>
     </q-dialog>
-</div>
+  </div>
 </template>
 
 <style scoped>

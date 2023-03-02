@@ -176,20 +176,20 @@ watch(() => route.path, (val, old) => {
     <q-header class="header q-py-sm">
       <q-toolbar :class="screen.gt.md ? 'q-px-xl' : ''">
         <div class="lt-lg func">
-          <q-btn dense flat :ripple="false" @click="()=>leftDrawer = !leftDrawer" icon="menu" />
+          <q-btn dense flat :ripple="false" @click="() => leftDrawer = !leftDrawer" icon="menu" />
         </div>
         <q-toolbar-title :shrink="screen.gt.md" class="no-padding q-mr-md row justify-center">
           <div class="row items-center cursor-pointer"
             :class="[screen.lt.lg ? 'justify-center' : '', !isDark ? 'light' : '']" @click="home">
             <q-icon flat class="text-secondary rotate-180 q-mr-xs text-title" name="align_vertical_center" size="24px" />
-            <div class="gt-md font-kodia column items-center">
+            <div class="gt-md column items-center">
               <div class="text-h5 text-primary text-title" style="line-height:1">DIABLO® II</div>
               <div class="text-caption text-primary" style="line-height:1">Resurrected</div>
             </div>
-            <div class="lt-lg font-kodia text-h4 text-primary text-title">D2R</div>
+            <div class="lt-lg text-h4 text-primary text-title">D2R</div>
           </div>
         </q-toolbar-title>
-        <div class="q-pl-xl gt-md row items-center justify-start q-gutter-x-sm nav font-kodia">
+        <div class="q-pl-xl gt-md row items-center justify-start q-gutter-x-sm nav">
           <q-btn v-for="sec in section" :key="sec.name" type="a" :class="sec.value === route.params.sec ? 'active' : ''"
             :to="{ name: 'd2r-bbs', params: { sec: sec.value } }" :ripple="false" flat no-caps padding="0 5px" size="18px"
             :label="sec.label" />
@@ -212,7 +212,7 @@ watch(() => route.path, (val, old) => {
             <q-menu anchor="bottom end" self="top end">
               <q-list separator bordered>
                 <q-item dense v-for="(option, index) in options" :key="index" :clickable="locale !== option.value"
-                  :v-close-popup="locale !== option.value" @click="()=>toggleLang(option.value)"
+                  :v-close-popup="locale !== option.value" @click="() => toggleLang(option.value)"
                   :active="locale === option.value" active-class="text-primary">
                   <q-item-section>
                     <q-item-label>{{ option.label }}</q-item-label>
@@ -230,13 +230,12 @@ watch(() => route.path, (val, old) => {
     </q-header>
     <q-drawer :elevated="false" no-swipe-open no-swipe-close no-swipe-backdrop overay v-model="leftDrawer" side="left"
       behavior="mobile" :width="240">
-      <q-list class="font-kodia drawer-list">
+      <q-list class="drawer-list">
         <div class="drawer-top">
           <q-item>
             <q-item-section>
               <q-select dense outlined separator emit-value map-options color="primary" behavior="menu" v-model="locale"
-                :options="options" popup-content-class="font-kodia" :label="t('language')"
-                @update:model-value="()=> toggleLang(locale)" />
+                :options="options" :label="t('language')" @update:model-value="() => toggleLang(locale)" />
             </q-item-section>
             <q-item-section side>
               <q-btn dense flat :ripple="false" @click="toggleDark" :icon="isDark ? 'light_mode' : 'dark_mode'" />
@@ -266,10 +265,10 @@ watch(() => route.path, (val, old) => {
     </q-drawer>
     <q-drawer v-if="isKnowledge && partList.length > 1" :elevated="false" no-swipe-open no-swipe-close no-swipe-backdrop
       overay v-model="rightDrawer" side="right" behavior="mobile" :width="240">
-      <q-toolbar class="bg-primary q-pl-lg text-white shadow-2 font-kodia">
+      <q-toolbar class="bg-primary q-pl-lg text-white shadow-2">
         <q-toolbar-title> {{ sectionList.find(s => s.value === _section).label }}</q-toolbar-title>
       </q-toolbar>
-      <q-list class="font-kodia">
+      <q-list>
         <q-item v-for="part in partList" :key="part.value" :inset-level="0.5"
           :to="{ name: 'd2r-knowledge-part', params: { section: _section, part: part.value } }"
           active-class="text-primary">
@@ -472,12 +471,12 @@ watch(() => route.path, (val, old) => {
 .drawer-list {
   position: relative;
   overflow: scroll;
-  height:100%;
+  height: 100%;
 }
 
 .drawer-top {
-  position:sticky;
-  top:0;
+  position: sticky;
+  top: 0;
   background-color: var(--q-dark);
   z-index: 1;
 }
