@@ -72,9 +72,11 @@ onMounted(() => {
       </q-toolbar-title>
     </q-toolbar>
     <Summary :data="latest" more @more-click="more" @item-click="boardItem" :loading="loading.latest" />
-    <AdSense v-if="platform.is.mobile && !noAD" data-ad-client="ca-pub-5110777286519562" data-ad-slot="7884972370"
-      data-ad-format="auto" data-full-width-responsive="true" :data-adtest="isProduction ? null : 'on'"
-      :key="`tr1-${key}`" />
+    <div>
+      <AdSense v-if="platform.is.mobile && !noAD" data-ad-client="ca-pub-5110777286519562" data-ad-slot="7884972370"
+        data-ad-format="auto" data-full-width-responsive="true" :data-adtest="isProduction ? null : 'on'"
+        :key="`tr1-${key}`" />
+    </div>
     <q-toolbar class="title">
       <q-toolbar-title>
         <div class="title-text font-kodia">
