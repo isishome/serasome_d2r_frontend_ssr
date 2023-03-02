@@ -1,10 +1,14 @@
 <script setup>
-import { reactive, ref, onMounted } from 'vue'
+import { computed, reactive, ref, onMounted } from 'vue'
+import { useQuasar } from 'quasar'
+import { useStore } from 'stores/store'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { api } from 'boot/axios'
 import Summary from 'components/Summary.vue'
 
+const $q = useQuasar()
+const store = useStore()
 const { t } = useI18n()
 const router = useRouter()
 
@@ -14,6 +18,9 @@ const loading = reactive({
   storage: true
 })
 
+const platform = computed(() => $q.platform)
+const noAD = computed(() => store.noAD)
+const key = computed(() => store.key)
 const latest = ref([])
 const top = ref([])
 
@@ -65,6 +72,9 @@ onMounted(() => {
       </q-toolbar-title>
     </q-toolbar>
     <Summary :data="latest" more @more-click="more" @item-click="boardItem" :loading="loading.latest" />
+    <AdSense v-if="platform.is.mobile && !noAD" data-ad-client="ca-pub-5110777286519562" data-ad-slot="7884972370"
+      data-ad-format="auto" data-full-width-responsive="true" :data-adtest="isProduction ? null : 'on'"
+      :key="`tr1-${key}`" />
     <q-toolbar class="title">
       <q-toolbar-title>
         <div class="title-text font-kodia">
