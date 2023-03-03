@@ -10,7 +10,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, reactive, watch, inject } from 'vue'
+import { ref, computed, reactive, watch, inject, useSSRContext } from 'vue'
 import { useMeta, useQuasar } from 'quasar'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
@@ -135,6 +135,9 @@ const tt = computed(() => isKnow.value ? `${pascalCase(route.params.section)}${r
 const descList = computed(() => route.matched.filter(r => r.meta && r.meta.description))
 const d = computed(() => store.post.contents ? store.post.contents.replace(/<[^>]*>/gi, '').substr(0, 150).concat('...') : route.meta.desc ? `${route.meta.desc} | ` : descList.value.length > 0 ? `${descList.value[0].meta.description} | ` : ' ')
 
+const ssrContext = process.env.SERVER ? useSSRContext() : null
+const url = process.env.SERVER ? `${ssrContext.req.protocol}://${ssrContext.req.get('host')}` : window.location.origin
+
 useMeta(() => {
   return {
     title: `${bt.value}${tt.value}`,
@@ -154,7 +157,7 @@ useMeta(() => {
       }
     },
     link: {
-      canonical: { rel: 'canonical', href: route.path }
+      canonical: { rel: 'canonical', href: `${url}${route.path}` }
     }
   }
 })
