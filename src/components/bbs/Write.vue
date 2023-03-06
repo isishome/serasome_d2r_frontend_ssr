@@ -312,7 +312,7 @@ const failed = (msg) => {
 }
 
 .body--dark .card-wrap {
-  box-shadow: 0 0 0 1px rgba(40, 40, 40, 1) !important;
+  box-shadow: 0 0 0 1px rgba(60, 60, 60, 1) !important;
   background-color: rgba(24, 24, 24, 1) !important;
 }
 

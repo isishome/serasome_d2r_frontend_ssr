@@ -61,8 +61,8 @@ defineExpose({
   <div class="contents-on" :class="tableClass">
     <q-table class="no-padding" :columns="columns" :rows="data" row-key="index"
       card-container-class="bg-transparent non-selectable" card-class="bg-transparent non-selectable" :grid="grid"
-      :pagination="paginationClone" :loading="loading" no-data-label @request="onRequest" separator="none"
-      hide-pagination flat :hide-header="!columns || columns.length === 0">
+      :pagination="paginationClone" :loading="loading" no-data-label @request="onRequest" separator="none" hide-pagination
+      flat :hide-header="!columns || columns.length === 0">
       <template v-if="slots.top" #top="props">
         <slot name="top" :props="props"></slot>
       </template>

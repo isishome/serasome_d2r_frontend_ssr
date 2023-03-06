@@ -76,7 +76,7 @@ body.body--dark .bg-invert {
 
 
 .body--dark .contents-wrap {
-  box-shadow: 0 0 0 1px rgba(40, 40, 40, 1) !important;
+  box-shadow: 0 0 0 1px rgba(60, 60, 60, 1) !important;
   background-color: rgba(24, 24, 24, 1) !important;
 }
 
@@ -101,7 +101,7 @@ body.body--dark .bg-invert {
 }
 
 .body--dark .box {
-  box-shadow: inset 0 0 0 1px rgba(40, 40, 40, 1) !important;
+  box-shadow: inset 0 0 0 1px rgba(60, 60, 60, 1) !important;
   background-color: rgba(24, 24, 24, 1) !important;
 }
 

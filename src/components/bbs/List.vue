@@ -244,7 +244,7 @@ watch(() => route.query.page, (val, old) => {
         </q-tr>
       </template>
       <template #item="{ props }">
-        <div class="q-pa-sm col-xs-6 col-sm-4 col-md-3">
+        <div class="q-pa-md col-xs-6 col-sm-4 col-md-3">
           <q-card @click="rowClick(props.row.pid)" class="d2r-card-list"
             :class="props.row.status === 'FIN' ? 'finish' : ''">
             <q-card-section class="no-padding absolute-top-left" style="z-index:1;left:-6px;top:-6px;opacity: .8;">
@@ -334,7 +334,7 @@ watch(() => route.query.page, (val, old) => {
 }
 
 .body--dark .d2r-card-list {
-  box-shadow: 0 0 0 1px rgba(40, 40, 40, 1) !important;
+  box-shadow: 0 0 0 1px rgba(60, 60, 60, 1) !important;
 }
 
 .table-row {
