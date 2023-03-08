@@ -268,9 +268,8 @@ watch(() => route.query.page, (val, old) => {
               </template>
             </q-img>
             <q-card-section :class="$q.screen.lt.sm ? 'q-py-xs q-px-sm' : 'q-pa-sm'">
-              <div class="row justify-start no-wrap q-gutter-x-xs">
-                <div class="ellipsis-2-lines text-caption" style="min-height:40px"
-                  :class="`${props.row.classify}-title`"
+              <div class="row justify-start items-end no-wrap q-gutter-x-xs" style="min-height:40px">
+                <div class="ellipsis-2-lines text-caption" :class="`${props.row.classify}-title`"
                   v-html="parsSearch(['title', 'titleWithContents'], props.row.title)"></div>
                 <div class="text-caption text-amber-8 text-weight-bold" v-if="props.row.cmt">
                   [{{ isView(props.row.cmt) }}]
