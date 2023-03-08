@@ -244,7 +244,7 @@ watch(() => route.query.page, (val, old) => {
         </q-tr>
       </template>
       <template #item="{ props }">
-        <div class="q-pa-md col-xs-6 col-sm-4 col-md-3">
+        <div class="q-pa-sm col-xs-6 col-sm-4 col-md-3">
           <q-card @click="rowClick(props.row.pid)" class="d2r-card-list"
             :class="props.row.status === 'FIN' ? 'finish' : ''">
             <q-card-section class="no-padding absolute-top-left" style="z-index:1;left:-6px;top:-6px;opacity: .8;">
@@ -253,8 +253,8 @@ watch(() => route.query.page, (val, old) => {
                 <div>
                   {{ classifyName(sec, props.row.classify).substring(0, 4) }}
                 </div>
-                <q-icon v-if="props.row.status === 'FIN'" name="check_circle_outline" class="absolute-center finish-icon"
-                  size="md" />
+                <q-icon v-if="props.row.status === 'FIN'" name="check_circle_outline"
+                  class="absolute-center finish-icon" size="md" />
               </q-chip>
             </q-card-section>
             <q-card-section class="no-padding absolute-top-right" style="z-index:1;top:-2px;right:1px;opacity: .8;">
@@ -269,7 +269,8 @@ watch(() => route.query.page, (val, old) => {
             </q-img>
             <q-card-section :class="$q.screen.lt.sm ? 'q-py-xs q-px-sm' : 'q-pa-sm'">
               <div class="row justify-start no-wrap q-gutter-x-xs">
-                <div class="ellipsis text-caption" :class="`${props.row.classify}-title`"
+                <div class="ellipsis-2-lines text-caption" style="min-height:40px"
+                  :class="`${props.row.classify}-title`"
                   v-html="parsSearch(['title', 'titleWithContents'], props.row.title)"></div>
                 <div class="text-caption text-amber-8 text-weight-bold" v-if="props.row.cmt">
                   [{{ isView(props.row.cmt) }}]
@@ -279,7 +280,8 @@ watch(() => route.query.page, (val, old) => {
             <q-card-section :class="$q.screen.lt.sm ? 'q-py-xs q-px-sm' : 'q-pa-sm'">
               <div class="text-caption row justify-end no-wrap items-center">
                 <q-avatar rounded class="q-mr-xs avatar text-uppercase" size="16px">
-                  <q-img no-spinner no-transition v-if="props.row.avatar" :src="props.row.avatar" width="100%" :ratio="1">
+                  <q-img no-spinner no-transition v-if="props.row.avatar" :src="props.row.avatar" width="100%"
+                    :ratio="1">
                     <template #error>
                       <div class="bg-d2r absolute-center">
                         {{ props.row.writer.substring(0, 1) }}
@@ -303,11 +305,13 @@ watch(() => route.query.page, (val, old) => {
       <template #pagination>
         <q-pagination v-if="data.length > 0" class="pagination row justify-end"
           :class="screen.gt.xs ? 'justify-end' : 'justify-center'" :disable="loading" v-model="pagination.page"
-          @update:model-value="go" :max="pagination.rowsNumber" :max-pages="5" :ellipses="false" :boundary-numbers="false"
-          direction-links icon-prev="keyboard_arrow_left" icon-next="keyboard_arrow_right" :ripple="false" dense flat />
+          @update:model-value="go" :max="pagination.rowsNumber" :max-pages="5" :ellipses="false"
+          :boundary-numbers="false" direction-links icon-prev="keyboard_arrow_left" icon-next="keyboard_arrow_right"
+          :ripple="false" dense flat />
       </template>
     </Table>
-    <q-page-sticky v-if="!search && authority(sec, 'write')" position="bottom-right" :offset="[0, 0]" style="z-index: 4;">
+    <q-page-sticky v-if="!search && authority(sec, 'write')" position="bottom-right" :offset="[0, 0]"
+      style="z-index: 4;">
       <q-btn aria-label="Add Post" push color="primary"
         :style="$q.screen.gt.lg ? 'right:22vw;bottom:20px' : $q.screen.gt.md ? 'right:13vw;bottom:20px' : 'right:10px;bottom:30px'"
         round size="md" icon="add" :to="`${sec}/write`" :disable="loading" />
