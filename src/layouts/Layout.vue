@@ -181,15 +181,10 @@ watch(() => route.path, (val, old) => {
         <div class="lt-lg func">
           <q-btn aria-label="Menu" dense flat :ripple="false" @click="() => leftDrawer = !leftDrawer" icon="menu" />
         </div>
-        <q-toolbar-title :shrink="screen.gt.md" class="no-padding q-mr-md row justify-center">
+        <q-toolbar-title :shrink="screen.gt.md" class="no-padding">
           <div class="row items-center cursor-pointer"
             :class="[screen.lt.lg ? 'justify-center' : '', !isDark ? 'light' : '']" @click="home">
-            <q-icon flat class="text-secondary rotate-180 q-mr-xs text-title" name="align_vertical_center" size="24px" />
-            <div class="gt-md column items-center">
-              <div class="text-h5 text-primary text-title" style="line-height:1">DIABLO® II</div>
-              <div class="text-caption text-primary" style="line-height:1">Resurrected</div>
-            </div>
-            <div class="lt-lg text-h4 text-primary text-title">D2R</div>
+            <img src="/images/logo.webp" />
           </div>
         </q-toolbar-title>
         <div class="q-pl-xl gt-md row items-center justify-start q-gutter-x-sm nav">
@@ -209,8 +204,6 @@ watch(() => route.path, (val, old) => {
         </div>
         <q-space class="gt-md" />
         <div class="row justify-end items-center func" :class="screen.gt.sm ? 'q-gutter-x-sm' : ''">
-          <q-btn aria-label="Sign" dense flat :loading="processSignOut" :ripple="false" @click="sign"
-            :icon="signStatus ? 'logout' : 'login'" />
           <q-btn aria-label="Language" class="gt-md" :ripple="false" dense flat icon="language">
             <q-menu anchor="bottom end" self="top end">
               <q-list separator bordered>
@@ -228,6 +221,7 @@ watch(() => route.path, (val, old) => {
             :icon="isDark ? 'light_mode' : 'dark_mode'" />
           <q-btn aria-label="Drawer" v-if="isKnowledge && partList.length > 1" class="lt-lg" dense flat :ripple="false"
             @click="() => rightDrawer = !rightDrawer" icon="assignment" />
+          <q-btn v-else flat @click.stop :ripple="false" />
         </div>
       </q-toolbar>
     </q-header>
@@ -240,7 +234,11 @@ watch(() => route.path, (val, old) => {
               <q-select dense outlined separator emit-value map-options color="primary" behavior="menu" v-model="locale"
                 :options="options" :label="t('language')" @update:model-value="() => toggleLang(locale)" />
             </q-item-section>
-            <q-item-section side>
+            <q-item-section side style="padding-left: 4px !important">
+              <q-btn aria-label="Sign" dense flat :loading="processSignOut" :ripple="false" @click="sign"
+                :icon="signStatus ? 'logout' : 'login'" />
+            </q-item-section>
+            <q-item-section side style="padding-left: 4px !important">
               <q-btn aria-label="Dark" dense flat :ripple="false" @click="toggleDark"
                 :icon="isDark ? 'light_mode' : 'dark_mode'" />
             </q-item-section>
@@ -474,7 +472,7 @@ watch(() => route.path, (val, old) => {
 
 .drawer-list {
   position: relative;
-  overflow: scroll;
+  overflow-y: scroll;
   height: 100%;
 }
 
