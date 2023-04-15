@@ -12,7 +12,7 @@ export default {
 
 <script setup>
 import { reactive, computed } from 'vue'
-import { useRoute, onBeforeRouteLeave } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import List from 'components/bbs/List.vue'
 import Read from 'components/bbs/Read.vue'
@@ -52,12 +52,6 @@ const reset = () => {
   filter.filterBy = 'titleWithContents'
   filter.filter = null
 }
-
-onBeforeRouteLeave((to, from) => {
-  if (to !== from && from.name === 'd2r-read')
-    store.clearPost()
-})
-
 </script>
 <template>
   <div>

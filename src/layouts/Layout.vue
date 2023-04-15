@@ -164,6 +164,9 @@ useMeta(() => {
 
 watch(() => route.path, (val, old) => {
   if (val !== old && old !== null) {
+    if (route.name !== 'd2r-read')
+      store.clearPost()
+
     _section.value = route.params.section
     _part.value = route.params.part
     progress.value = 0
@@ -182,15 +185,17 @@ watch(() => route.path, (val, old) => {
           <q-btn aria-label="Menu" dense flat :ripple="false" @click="() => leftDrawer = !leftDrawer" icon="menu" />
         </div>
         <q-toolbar-title :shrink="screen.gt.md" class="no-padding">
-          <div class="row items-center cursor-pointer"
-            :class="[screen.lt.lg ? 'justify-center' : '', !isDark ? 'light' : '']" @click="home">
-            <img src="/images/logo.webp" width="71" height="50" />
+          <div class="row items-center" :class="[screen.lt.lg ? 'justify-center' : '', isDark ? 'dark' : '']">
+            <q-btn flat :ripple="false" @click="home">
+              <img src="/images/logo.webp" width="95" height="48" />
+            </q-btn>
           </div>
         </q-toolbar-title>
         <div class="q-pl-xl gt-md row items-center justify-start q-gutter-x-sm nav">
           <q-btn aria-label="Goto BBS" v-for="sec in section" :key="sec.name" type="a"
-            :class="sec.value === route.params.sec ? 'active' : ''" :to="{ name: 'd2r-bbs', params: { sec: sec.value } }"
-            :ripple="false" flat no-caps padding="0 5px" size="18px" :label="sec.label" />
+            :class="sec.value === route.params.sec ? 'active' : ''"
+            :to="{ name: 'd2r-bbs', params: { sec: sec.value } }" :ripple="false" flat no-caps padding="0 5px"
+            size="18px" :label="sec.label" />
           <div class="column justify-center items-start" style="height:56px">
             <q-btn aria-label="Goto Knowledge" type="a" :style="isKnowledge ? 'opacity:1' : ''"
               :to="{ name: 'd2r-knowledge-part', params: { section: 'classes', part: 'amazon' } }" :ripple="false" flat
@@ -303,8 +308,8 @@ watch(() => route.path, (val, old) => {
                 <div class="column no-wrap q-gutter-y-sm">
                   <q-btn aria-label="Part List" type="a" v-for="part in partList" :key="part.value" dense flat
                     :class="_part === part.value ? 'active' : ''" @click="() => toPart(part.value)">
-                    <q-img no-spinner no-transition :src="part.img" :ratio="2" :height="`${600 / partList.length - 12}px`"
-                      :data-class="part.label" />
+                    <q-img no-spinner no-transition :src="part.img" :ratio="2"
+                      :height="`${600 / partList.length - 12}px`" :data-class="part.label" />
                   </q-btn>
                 </div>
               </div>
@@ -352,8 +357,8 @@ watch(() => route.path, (val, old) => {
   background-color: var(--q-dark-half);
 }
 
-.light {
-  filter: grayscale(100%);
+.dark {
+  filter: invert(8%) sepia(84%) saturate(5046%) hue-rotate(357deg) brightness(88%) contrast(95%);
 }
 
 .nav:deep(.q-btn) {
