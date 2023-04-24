@@ -83,14 +83,15 @@ export const useStore = defineStore('main', {
     addKey() {
       this.key++
     },
-    setPost(sec, pid) {
+    setPost(sec, pid, isServer) {
       const state = this
       return new Promise((resolve, reject) => {
         api
           .get('/d2r/board/cont', {
             params: {
               sec: sec,
-              pid: pid
+              pid: pid,
+              isServer:isServer 
             }
           }).then((response) => {
             state.post = response.data
