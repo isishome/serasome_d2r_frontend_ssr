@@ -77,7 +77,7 @@ const key = ref(0)
 const secInfo = computed(() => store.getSecInfo(props.sec))
 const contents = computed(() => data.contents ? data.contents.replace(/<p><\/p>/gi, '<p><br><p>') : '')
 const classifyName = computed(() => store.getClassifyName)
-const authority = computed(() => store.getAuthority)
+const authority = store.getAuthority
 const noAD = computed(() => store.noAD)
 
 const isQuiz = computed(() => data.sec === 'trade' && data.classify === 'give' && data.quiz && data.quiz.enable === true)
@@ -355,9 +355,9 @@ onMounted(() => {
             </div>
             <div v-else class="row justify-end items-center q-col-gutter-x-sm text-right">
               <div class="col-9 col-sm-4 col-md-3">
-                <q-input dense borderless hide-bottom-space no-error-icon class="q-px-sm input-place quiz" color="grey-5"
-                  :disable="loading" maxlength="20" type="text" :label="t('d2r.bbs.answer')" v-model="answer"
-                  :rules="[val => val && val.trim() !== '' || '']" />
+                <q-input dense borderless hide-bottom-space no-error-icon class="q-px-sm input-place quiz"
+                  color="grey-5" :disable="loading" maxlength="20" type="text" :label="t('d2r.bbs.answer')"
+                  v-model="answer" :rules="[val => val && val.trim() !== '' || '']" />
               </div>
               <div>
                 <q-btn aria-label="Submit Post" dense padding="0 10px" type="submit" text-color="black"

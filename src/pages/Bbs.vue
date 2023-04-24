@@ -4,7 +4,7 @@ export default {
   preFetch({ store, currentRoute }) {
     if (currentRoute.name === 'd2r-read') {
       const s = useStore(store)
-      return s.setPost(currentRoute.params.sec, currentRoute.params.pid, process.env.SERVER)
+      return s.setPost(currentRoute.params.sec, currentRoute.params.pid)
     }
   }
 }
@@ -15,8 +15,6 @@ import { reactive, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import List from 'components/bbs/List.vue'
-import Read from 'components/bbs/Read.vue'
-import Write from 'components/bbs/Write.vue'
 
 defineProps({
   sec: {
@@ -29,7 +27,6 @@ defineProps({
   }
 })
 
-const store = useStore()
 const route = useRoute()
 const routeName = computed(() => route.name)
 const { t } = useI18n()
@@ -55,8 +52,7 @@ const reset = () => {
 </script>
 <template>
   <div>
-    <Read v-if="routeName === 'd2r-read'" :sec="sec" :pid="pid" />
-    <Write v-else-if="['d2r-write', 'd2r-modify'].includes(routeName)" :sec="sec" :pid="pid" />
+    <router-view v-if="['d2r-read', 'd2r-write', 'd2r-modify'].includes(routeName)" />
     <List v-else :sec="sec" :filter="filter" @reset="reset" />
     <div class="bg-transparent q-py-lg"></div>
   </div>

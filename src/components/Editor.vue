@@ -327,75 +327,73 @@ defineExpose({ focus, getAttach, upload })
 </script>
 
 <template>
-  <form autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false">
-    <q-uploader ref="uploader" v-show="false" :disable="disable" :max-files="maxFiles" :accept="accept" multiple batch
-      @added="added" :factory="factoryFn" @uploaded="emit('complete')"
-      @failed="info => emit('failed', info.xhr.responseText)" />
-    <div class="relative-position">
-      <q-editor ref="editor" :disable="disable" toolbar-toggle-color="active-toggle" v-model="_contents"
-        @update:model-value="update" @paste="onPaste" min-height="50rem" max-height="50rem" class="editor"
-        :definitions="definitions" :toolbar="toolbar" @keydown.enter.exact="escape" @keydown.tab.prevent>
-        <template #textColor>
-          <q-btn aria-label="Text Color" dense flat size="sm" icon="format_color_text">
-            <q-tooltip :delay="1000">
-              Change Text Color
-            </q-tooltip>
-            <q-menu auto-close no-focus no-refocus>
-              <q-color @mousedown.prevent v-model="hex" no-header no-footer default-view="palette" style="max-width:250px"
-                @update:model-value="changeColor" />
-            </q-menu>
-          </q-btn>
-        </template>
-        <template #highlight>
-          <q-btn aria-label="Code Area" dense flat icon="code" size="sm"
-            :class="languages.filter(l => l.active(l) === true).length > 0 ? 'text-active-toggle' : ''">
-            <q-tooltip :delay="1000">
-              Insert Code Highlight
-            </q-tooltip>
-            <q-menu auto-close no-focus no-refocus>
-              <q-list dense>
-                <q-item @mousedown.prevent clickable v-for="l in languages" :key="l.name" @click="code(l.name)"
-                  :active="l.active(l)" active-class="text-active-toggle">
-                  <q-item-section side>
-                    <q-icon :name="l.icon" size="sm" />
-                  </q-item-section>
-                  <q-item-section>
-                    <q-item-label>
-                      {{ l.label }}
-                    </q-item-label>
-                  </q-item-section>
-                </q-item>
-              </q-list>
-            </q-menu>
-          </q-btn>
-        </template>
-        <template #add>
-          <q-btn aria-label="expansion" @mousedown.prevent dense flat icon="add" size="sm"
-            :class="extensions.filter(ex => ex.active(ex) === true).length > 0 ? 'text-active-toggle' : ''">
-            <q-tooltip :delay="1000">
-              Extension List
-            </q-tooltip>
-            <q-menu auto-close no-focus no-refocus>
-              <q-list dense>
-                <q-item dense @mousedown.prevent clickable v-for="ex in extensions" :key="ex.name" @click="apply(ex)"
-                  :active="ex.active(ex)" active-class="text-active-toggle">
-                  <q-item-section side>
-                    <q-icon :name="ex.icon" size="xs" />
-                  </q-item-section>
-                  <q-item-section>
-                    <q-item-label>
-                      {{ ex.label }}
-                    </q-item-label>
-                  </q-item-section>
-                </q-item>
-              </q-list>
-            </q-menu>
-          </q-btn>
-        </template>
-      </q-editor>
-    </div>
-    <slot name="attach" :files="attach" :insert="insertImage" :remove="remove" :clear="clear"></slot>
-  </form>
+  <q-uploader ref="uploader" v-show="false" :disable="disable" :max-files="maxFiles" :accept="accept" multiple batch
+    @added="added" :factory="factoryFn" @uploaded="emit('complete')"
+    @failed="info => emit('failed', info.xhr.responseText)" />
+  <div class="relative-position">
+    <q-editor ref="editor" :disable="disable" toolbar-toggle-color="active-toggle" v-model="_contents"
+      @update:model-value="update" @paste="onPaste" min-height="50rem" max-height="50rem" class="editor"
+      :definitions="definitions" :toolbar="toolbar" @keydown.enter.exact="escape" @keydown.tab.prevent>
+      <template #textColor>
+        <q-btn aria-label="Text Color" dense flat size="sm" icon="format_color_text">
+          <q-tooltip :delay="1000">
+            Change Text Color
+          </q-tooltip>
+          <q-menu auto-close no-focus no-refocus>
+            <q-color @mousedown.prevent v-model="hex" no-header no-footer default-view="palette" style="max-width:250px"
+              @update:model-value="changeColor" />
+          </q-menu>
+        </q-btn>
+      </template>
+      <template #highlight>
+        <q-btn aria-label="Code Area" dense flat icon="code" size="sm"
+          :class="languages.filter(l => l.active(l) === true).length > 0 ? 'text-active-toggle' : ''">
+          <q-tooltip :delay="1000">
+            Insert Code Highlight
+          </q-tooltip>
+          <q-menu auto-close no-focus no-refocus>
+            <q-list dense>
+              <q-item @mousedown.prevent clickable v-for="l in languages" :key="l.name" @click="code(l.name)"
+                :active="l.active(l)" active-class="text-active-toggle">
+                <q-item-section side>
+                  <q-icon :name="l.icon" size="sm" />
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label>
+                    {{ l.label }}
+                  </q-item-label>
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-menu>
+        </q-btn>
+      </template>
+      <template #add>
+        <q-btn aria-label="expansion" @mousedown.prevent dense flat icon="add" size="sm"
+          :class="extensions.filter(ex => ex.active(ex) === true).length > 0 ? 'text-active-toggle' : ''">
+          <q-tooltip :delay="1000">
+            Extension List
+          </q-tooltip>
+          <q-menu auto-close no-focus no-refocus>
+            <q-list dense>
+              <q-item dense @mousedown.prevent clickable v-for="ex in extensions" :key="ex.name" @click="apply(ex)"
+                :active="ex.active(ex)" active-class="text-active-toggle">
+                <q-item-section side>
+                  <q-icon :name="ex.icon" size="xs" />
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label>
+                    {{ ex.label }}
+                  </q-item-label>
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-menu>
+        </q-btn>
+      </template>
+    </q-editor>
+  </div>
+  <slot name="attach" :files="attach" :insert="insertImage" :remove="remove" :clear="clear"></slot>
 </template>
 
 <style>
@@ -512,8 +510,13 @@ defineExpose({ focus, getAttach, upload })
 }
 
 .editor:deep(.q-editor__toolbars-container) {
+  background-color: var(--q-dark-page);
   position: sticky;
   top: 72px;
+}
+
+.body--light .editor:deep(.q-editor__toolbars-container) {
+  background-color: var(--q-light-page);
 }
 
 .body--dark .editor:deep(.q-editor__toolbar .text-active-toggle),

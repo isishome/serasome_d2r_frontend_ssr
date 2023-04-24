@@ -20,17 +20,15 @@ export const routes = [
         component: () => import('pages/Bbs.vue'),
         props: true,
         meta: {
-          checkGrade: 'list',
           description: 'Diablo® II Resurrected\'s news, trade, laboratory, information, etc. A place of communication.'
         },
         children: [
           {
             name: 'd2r-read',
             path: 'read/:pid',
-            component: () => import('pages/Bbs.vue'),
+            component: () => import('components/bbs/Read.vue'),
             props: true,
             meta: {
-              checkGrade: 'read',
               progress: true,
               topScroll: true
             }
@@ -38,21 +36,15 @@ export const routes = [
           {
             name: 'd2r-write',
             path: 'write',
-            component: () => import('pages/Bbs.vue'),
-            meta: {
-              checkGrade: 'write'
-            },
-            children: [
-              {
-                name: 'd2r-modify',
-                path: ':pid',
-                component: () => import('pages/Bbs.vue'),
-                props: true,
-                meta: {
-                  checkGrade: 'write'
-                }
-              }]
+            component: () => import('components/bbs/Write.vue'),
+            props: true
           },
+          {
+            name: 'd2r-modify',
+            path: 'write/:pid',
+            component: () => import('components/bbs/Write.vue'),
+            props: true
+          }
         ]
       },
       {

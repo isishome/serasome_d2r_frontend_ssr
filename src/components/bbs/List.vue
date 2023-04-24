@@ -41,7 +41,7 @@ const $q = useQuasar()
 const screen = computed(() => $q.screen)
 const loading = ref(false)
 const signStatus = computed(() => store.signStatus)
-const authority = computed(() => store.getAuthority)
+const authority = store.getAuthority
 const searchObj = ref(null)
 
 // about board

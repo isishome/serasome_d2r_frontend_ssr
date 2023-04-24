@@ -90,8 +90,7 @@ export const useStore = defineStore('main', {
           .get('/d2r/board/cont', {
             params: {
               sec: sec,
-              pid: pid,
-              isServer:isServer 
+              pid: pid
             }
           }).then((response) => {
             state.post = response.data

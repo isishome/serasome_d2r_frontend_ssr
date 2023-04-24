@@ -50,7 +50,7 @@ const writeInfo = reactive({
 })
 
 const info = computed(() => store.getInfo)
-const authority = computed(() => store.getAuthority)
+const authority = store.getAuthority
 const classifies = computed(() => {
   const findClassifies = info.value && info.value.section.filter(s => s.value === props.sec).length > 0 ? info.value.section.filter(s => s.value === props.sec)[0].classifies : []
   return findClassifies.filter(c => c.auth <= info.value.grade)
@@ -213,7 +213,8 @@ const failed = (msg) => {
   <div class="card-wrap">
     <q-card class="write-card">
       <q-card-section>
-        <q-form class="no-wrap column q-gutter-y-sm" @submit="onSubmit">
+        <q-form class="no-wrap column q-gutter-y-sm" @submit="onSubmit" autocorrect="off" autocapitalize="off"
+          autocomplete="off" spellcheck="false">
           <div class="row justify-start q-col-gutter-x-sm">
             <div class="col col-md-3 col-lg-3">
               <q-select dense outlined emit-value no-error-icon hide-bottom-space map-options class="col-12 col-lg-3"
@@ -249,7 +250,8 @@ const failed = (msg) => {
           <q-separator />
           <div>
             <q-input dense outlined hide-bottom-space no-error-icon color="grey-5" :disable="loading" maxlength="200"
-              type="text" :label="t('post.title')" v-model="writeInfo.title" :rules="[val => val && val.trim() !== '']" />
+              type="text" :label="t('post.title')" v-model="writeInfo.title"
+              :rules="[val => val && val.trim() !== '']" />
           </div>
           <div>
             <Editor ref="editor" :contents="writeInfo.contents" :factory-fn="factoryFn" :disable="loading"
@@ -286,7 +288,8 @@ const failed = (msg) => {
                     </q-item-label>
                   </q-item-section>
                   <q-item-section center side>
-                    <q-btn aria-label="Delete File" size="md" flat round dense icon="delete" @click="deleteFile(file)" />
+                    <q-btn aria-label="Delete File" size="md" flat round dense icon="delete"
+                      @click="deleteFile(file)" />
                   </q-item-section>
                 </q-item>
               </template>
