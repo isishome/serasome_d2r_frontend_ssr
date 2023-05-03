@@ -32,7 +32,7 @@ const loading = ref(false)
 const editor = ref(null)
 const writeInfo = reactive({
   classify: '',
-  pid: props.pid,
+  pid: props.pid ? props.pid : null,
   title: '',
   contents: '',
   youtube: '',
