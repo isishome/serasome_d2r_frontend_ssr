@@ -9,6 +9,7 @@ const view = ref(false)
 $q.dark.set(isDark)
 
 onMounted(() => {
+  document.documentElement.style.setProperty('color-scheme', isDark ? 'dark' : 'light')
   view.value = true
 })
 </script>
