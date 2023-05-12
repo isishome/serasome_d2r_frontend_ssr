@@ -230,26 +230,24 @@ watch(() => route.path, (val, old) => {
       </q-toolbar>
     </q-header>
     <q-drawer :elevated="false" no-swipe-open no-swipe-close no-swipe-backdrop overay v-model="leftDrawer" side="left"
-      behavior="mobile" :width="240">
-      <q-list class="drawer-list">
-        <div class="drawer-top">
-          <q-item>
-            <q-item-section>
-              <q-select dense outlined separator emit-value map-options color="primary" behavior="menu" v-model="locale"
-                :options="options" :label="t('language')" @update:model-value="() => toggleLang(locale)" />
-            </q-item-section>
-            <q-item-section side style="padding-left: 4px !important">
-              <q-btn aria-label="Sign" dense flat :loading="processSignOut" :ripple="false" @click="sign"
-                :icon="signStatus ? 'logout' : 'login'" />
-            </q-item-section>
-            <q-item-section side style="padding-left: 4px !important">
-              <q-btn aria-label="Dark" dense flat :ripple="false" @click="toggleDark"
-                :icon="isDark ? 'light_mode' : 'dark_mode'" />
-            </q-item-section>
-          </q-item>
-          <q-separator />
-        </div>
-        <div class="scroll">
+      behavior="mobile" :width="240" class="no-scroll">
+      <q-list class="column full-height">
+        <q-item>
+          <q-item-section>
+            <q-select dense outlined separator emit-value map-options color="primary" behavior="menu" v-model="locale"
+              :options="options" :label="t('language')" @update:model-value="() => toggleLang(locale)" />
+          </q-item-section>
+          <q-item-section side style="padding-left: 4px !important">
+            <q-btn aria-label="Sign" dense flat :loading="processSignOut" :ripple="false" @click="sign"
+              :icon="signStatus ? 'logout' : 'login'" />
+          </q-item-section>
+          <q-item-section side style="padding-left: 4px !important">
+            <q-btn aria-label="Dark" dense flat :ripple="false" @click="toggleDark"
+              :icon="isDark ? 'light_mode' : 'dark_mode'" />
+          </q-item-section>
+        </q-item>
+        <q-separator />
+        <q-scroll-area class="col">
           <q-item v-for="sec in section" :key="sec.value" :inset-level="0.5"
             :to="{ name: 'd2r-bbs', params: { sec: sec.value } }" active-class="text-primary">
             <q-item-section>
@@ -266,22 +264,25 @@ watch(() => route.path, (val, old) => {
             </q-item>
           </q-expansion-item>
           <div class="q-py-lg"></div>
-        </div>
+        </q-scroll-area>
       </q-list>
     </q-drawer>
     <q-drawer v-if="isKnowledge && partList.length > 1" :elevated="false" no-swipe-open no-swipe-close no-swipe-backdrop
-      overay v-model="rightDrawer" side="right" behavior="mobile" :width="240">
-      <q-toolbar class="bg-primary q-pl-lg text-white shadow-2">
-        <q-toolbar-title> {{ sectionList.find(s => s.value === _section).label }}</q-toolbar-title>
-      </q-toolbar>
-      <q-list>
-        <q-item v-for="part in partList" :key="part.value" :inset-level="0.5"
-          :to="{ name: 'd2r-knowledge-part', params: { section: _section, part: part.value } }"
-          active-class="text-primary">
-          <q-item-section>
-            {{ part.label }}
-          </q-item-section>
-        </q-item>
+      overay v-model="rightDrawer" side="right" behavior="mobile" class="no-scroll" :width="240">
+      <q-list class="column full-height">
+        <q-toolbar class="bg-primary q-pl-lg text-white shadow-2">
+          <q-toolbar-title> {{ sectionList.find(s => s.value === _section).label }}</q-toolbar-title>
+        </q-toolbar>
+        <q-scroll-area class="col">
+          <q-item v-for="part in partList" :key="part.value" :inset-level="0.5"
+            :to="{ name: 'd2r-knowledge-part', params: { section: _section, part: part.value } }"
+            active-class="text-primary">
+            <q-item-section>
+              {{ part.label }}
+            </q-item-section>
+          </q-item>
+          <div class="q-py-lg"></div>
+        </q-scroll-area>
       </q-list>
     </q-drawer>
     <q-page-container>
@@ -472,22 +473,5 @@ watch(() => route.path, (val, old) => {
 .body--dark .part:deep(.q-img::after) {
   color: var(--q-light-page) !important;
   text-shadow: 2px 0 2px var(--q-dark-page), -2px 0 2px var(--q-dark-page), 0 2px 2px var(--q-dark-page), 0 -2px 2px var(--q-dark-page);
-}
-
-.drawer-list {
-  position: relative;
-  overflow-y: scroll;
-  height: 100%;
-}
-
-.drawer-top {
-  position: sticky;
-  top: 0;
-  background-color: var(--q-dark);
-  z-index: 1;
-}
-
-.body--light .drawer-top {
-  background-color: #ffffff;
 }
 </style>
