@@ -146,7 +146,8 @@ getInfo()
         </tr>
       </thead>
       <tbody v-for="(info, act) in terrorZones" :key="act">
-        <tr v-for="(zone, idx) in info.zones" :key="zone.value" :class="zone.value === terrorZone.value ? 'current' : ''">
+        <tr v-for="(zone, idx) in info.zones" :key="zone.value"
+          :class="zone.value === (terrorZone ? terrorZone.value : '') ? 'current' : ''">
           <th v-if="idx === 0" class="act" :rowspan="info.zones.length">
             {{ info.label }}</th>
           <td class="text-subtitle2">{{ zone.label }}</td>
