@@ -222,6 +222,10 @@ getInfo()
 }
 
 .current {
-  box-shadow: inset 0 0 0 4px var(--q-primary);
+  background-color: var(--q-light-cloud);
+}
+
+.body--light .current {
+  background-color: var(--q-dark-cloud);
 }
 </style>
