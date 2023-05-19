@@ -321,7 +321,7 @@ watch(() => route.path, (val, old) => {
             </template>
             <AdSense v-else-if="screen.gt.md && !noAD" class="text-left" data-ad-client="ca-pub-5110777286519562"
               data-ad-slot="9654321794" :data-adtest="isProduction ? null : 'on'"
-              :width="screen.gt.md ? '160px' : '120px'" height="600px" :key="`ar1-${key}`" />
+              :width="screen.gt.md ? '160px' : '120px'" height="600px" :key="`ar2-${key}`" />
           </div>
         </div>
       </div>
