@@ -10,11 +10,10 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, reactive, watch, inject, useSSRContext } from 'vue'
-import { useMeta, useQuasar } from 'quasar'
+import { ref, computed, reactive, watch, inject } from 'vue'
+import { useQuasar } from 'quasar'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { pascalCase } from 'src/common'
 import AdSense from 'components/AdSense.vue'
 import Zoom from 'components/Zoom.vue'
 
@@ -123,44 +122,6 @@ const sign = () => {
     document.location.href = seras
   }
 }
-
-// set meta
-const isKnow = computed(() => route.matched.some(r => r.name && r.name.indexOf('knowledge') !== -1))
-const isBbs = computed(() => route.matched.some(r => r.name && r.name.indexOf('bbs') !== -1))
-
-const bt = computed(() => store.post.title ? `${store.post.title} : ` : '')
-const tt = computed(() => isKnow.value ? `${pascalCase(route.params.section)}${route.params.part ? ' : ' + pascalCase(route.params.part) : ''} | ` :
-  isBbs.value ? `${pascalCase(route.params.sec)} | ` : ' ')
-
-const descList = computed(() => route.matched.filter(r => r.meta && r.meta.description))
-const d = computed(() => store.post.contents ? store.post.contents.replace(/<[^>]*>/gi, '').substr(0, 150).concat('...') : route.meta.desc ? `${route.meta.desc} | ` : descList.value.length > 0 ? `${descList.value[0].meta.description} | ` : ' ')
-
-const ssrContext = process.env.SERVER ? useSSRContext() : null
-const url = process.env.SERVER ? `${ssrContext.req.protocol}://${ssrContext.req.get('host')}` : window.location.origin
-
-useMeta(() => {
-  return {
-    title: `${bt.value}${tt.value}`,
-    titleTemplate: title => `${title}Sera\'s Diablo® II Resurrected`,
-    meta: {
-      description: { name: 'description', content: d.value },
-      ogTitle: {
-        property: 'og:title',
-        content: `${bt.value}${tt.value}`,
-        template(ogTitle) {
-          return `${ogTitle}Sera\'s Diablo® II Resurrected`
-        }
-      },
-      ogDescription: {
-        property: 'og:description',
-        content: d.value
-      }
-    },
-    link: {
-      canonical: { rel: 'canonical', href: `${url}${route.path}` }
-    }
-  }
-})
 
 watch(() => route.path, (val, old) => {
   if (val !== old && old !== null) {
