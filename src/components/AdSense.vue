@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
 
 const props = defineProps({
   dataAdClient: {
@@ -32,10 +32,11 @@ const props = defineProps({
   }
 })
 
+const adBox = ref(null)
 const boxStyle = computed(() => props.dataFullWidthResponsive === 'true' ? 'display:block;min-height:200px' : `display:inline-block;width:${props.width};height:${props.height}`)
 
 const onWindowLoad = () => {
-  if (window && window.adsbygoogle)
+  if (window && window.adsbygoogle && adBox.value)
     (adsbygoogle = window.adsbygoogle || []).push({})
 }
 
@@ -55,8 +56,9 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <ins class="adsbygoogle box" :data-ad-client="dataAdClient" :data-ad-slot="dataAdSlot" :data-ad-format="dataAdFormat"
-    :data-adtest="dataAdtest" :data-full-width-responsive="dataFullWidthResponsive" :style="boxStyle"></ins>
+  <ins ref="adBox" class="adsbygoogle box" :data-ad-client="dataAdClient" :data-ad-slot="dataAdSlot"
+    :data-ad-format="dataAdFormat" :data-adtest="dataAdtest" :data-full-width-responsive="dataFullWidthResponsive"
+    :style="boxStyle"></ins>
 </template>
 
 <style scoped>
