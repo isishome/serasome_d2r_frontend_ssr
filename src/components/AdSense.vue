@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
 
 const props = defineProps({
   dataAdClient: {
@@ -41,7 +41,13 @@ const onWindowLoad = () => {
 }
 
 onMounted(() => {
-  window.addEventListener("load", onWindowLoad)
+  if (document.readyState !== 'complete')
+    window.addEventListener("load", onWindowLoad)
+  else {
+    nextTick(() => {
+      onWindowLoad()
+    })
+  }
 })
 
 onUnmounted(() => {
