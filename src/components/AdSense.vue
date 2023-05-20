@@ -36,18 +36,18 @@ const adBox = ref(null)
 const boxStyle = computed(() => props.dataFullWidthResponsive === 'true' ? 'display:block;min-height:200px' : `display:inline-block;width:${props.width};height:${props.height}`)
 
 const onWindowLoad = () => {
-  if (window && window.adsbygoogle && adBox.value?.clientHeight > 0)
+  if (window?.adsbygoogle && adBox.value?.clientHeight > 0)
     (adsbygoogle = window.adsbygoogle || []).push({})
 }
 
 onMounted(() => {
-  if (document.readyState !== 'complete')
-    window.addEventListener("load", onWindowLoad)
-  else {
-    nextTick(() => {
-      onWindowLoad()
-    })
-  }
+  // if (document.readyState !== 'complete')
+  //   window.addEventListener("load", onWindowLoad)
+  // else {
+  //   nextTick(() => {
+  onWindowLoad()
+  //})
+  //}
 })
 
 onUnmounted(() => {
