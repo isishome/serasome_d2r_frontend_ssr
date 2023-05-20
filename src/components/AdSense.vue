@@ -1,6 +1,5 @@
 <script setup>
-import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
-import { onBeforeRouteUpdate } from 'vue-router'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps({
   dataAdClient: {
@@ -33,7 +32,6 @@ const props = defineProps({
   }
 })
 
-let updateRoute = false
 const adBox = ref(null)
 const boxStyle = computed(() => props.dataFullWidthResponsive === 'true' ? 'display:block;min-height:200px' : `display:inline-block;width:${props.width};height:${props.height}`)
 
@@ -42,18 +40,8 @@ const onWindowLoad = () => {
     (adsbygoogle = window.adsbygoogle || []).push({})
 }
 
-onBeforeRouteUpdate(() => {
-  updateRoute = true
-})
-
 onMounted(() => {
-  if (!updateRoute)
-    window.addEventListener("load", onWindowLoad)
-  else {
-    nextTick(() => {
-      onWindowLoad()
-    })
-  }
+  window.addEventListener("load", onWindowLoad)
 })
 
 onUnmounted(() => {
