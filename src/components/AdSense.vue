@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
 import { onBeforeRouteUpdate } from 'vue-router'
 
 const props = defineProps({
@@ -49,8 +49,11 @@ onBeforeRouteUpdate(() => {
 onMounted(() => {
   if (!updateRoute)
     window.addEventListener("load", onWindowLoad)
-  else
-    onWindowLoad()
+  else {
+    nextTick(() => {
+      onWindowLoad()
+    })
+  }
 })
 
 onUnmounted(() => {
