@@ -44,9 +44,9 @@ onMounted(() => {
   // if (document.readyState !== 'complete')
   //   window.addEventListener("load", onWindowLoad)
   // else {
-  //   nextTick(() => {
-  onWindowLoad()
-  //})
+  nextTick(() => {
+    onWindowLoad()
+  })
   //}
 })
 
