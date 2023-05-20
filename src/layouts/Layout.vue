@@ -90,17 +90,24 @@ const key = computed(() => store.key)
 const isKnowledge = computed(() => routeName.value.indexOf('knowledge') !== -1)
 store.setSectionList(computed(() => tm('d2r.knowledge.list').map(l => ({ value: rt(l.value), label: rt(l.name) }))))
 const sectionList = computed(() => store.sectionList)
-const _section = ref('')
+const _section = ref(route.params.section)
 const toSection = (val) => {
   router.push({ name: 'd2r-knowledge-section', params: { section: val } })
 }
+watch(() => route.params.section, (val) => {
+  _section.value = val
+})
 
 // part
 const partList = computed(() => store.partList)
-const _part = ref('')
+const _part = ref(route.params.part)
 const toPart = (val) => {
   router.push({ name: 'd2r-knowledge-part', params: { section: _section.value, part: val } })
 }
+watch(() => route.params.part, (val) => {
+  _part.value = val
+})
+
 
 // sign
 const processSignOut = ref(false)
@@ -123,15 +130,15 @@ const sign = () => {
   }
 }
 
-watch(() => route.path, (val, old) => {
-  if (val !== old && old !== null) {
+watch(() => route.params, (val, old) => {
+  if (val !== old) {
     if (route.name !== 'd2r-read')
       store.clearPost()
 
-    _section.value = route.params.section
-    _part.value = route.params.part
     progress.value = 0
-    store.addKey()
+
+    if (val?.sec !== old?.sec || (val?.sec === old?.sec && val?.pid !== old?.pid) || val?.section !== old?.section || (val?.section === old?.section && old?.part && val?.part && val?.part !== old?.part))
+      store.addKey()
   }
 }, {
   immediate: true
