@@ -26,7 +26,7 @@ onMounted(() => {
             <div class="col gt-xs"></div>
             <q-card class="map-card no-shadow">
               <q-card-section class="text-center">
-                <div class="text-h6 text-primary">Pandemonium Fortress</div>
+                <div class="text-h6 text-primary">혼돈의 요새</div>
               </q-card-section>
               <img src="/images/knowledge/maps/act4/PandemoniumFortress.jpg" width="100%" />
               <q-card-section class="text-left text-body2">
@@ -42,7 +42,7 @@ onMounted(() => {
           <div class="row knowledge-item">
             <q-card class="map-card no-shadow">
               <q-card-section class="text-center">
-                <div class="text-h6 text-primary">Outer Steppes</div>
+                <div class="text-h6 text-primary">평원 외곽</div>
               </q-card-section>
               <img src="/images/knowledge/maps/act4/OuterSteppes.jpg" width="100%" />
               <q-card-section class="text-left text-body2">
@@ -60,7 +60,7 @@ onMounted(() => {
             <div class="col gt-xs"></div>
             <q-card class="map-card no-shadow">
               <q-card-section class="text-center">
-                <div class="text-h6 text-primary">Plains of Despair</div>
+                <div class="text-h6 text-primary">절망의 평원</div>
               </q-card-section>
               <img src="/images/knowledge/maps/act4/PlainsofDespair.jpg" width="100%" />
               <q-card-section class="text-left text-body2">
@@ -76,7 +76,7 @@ onMounted(() => {
           <div class="row knowledge-item">
             <q-card class="map-card no-shadow">
               <q-card-section class="text-center">
-                <div class="text-h6 text-primary">City of the Damned</div>
+                <div class="text-h6 text-primary">저주받은 자들의 도시</div>
               </q-card-section>
               <img src="/images/knowledge/maps/act4/CityoftheDamned.jpg" width="100%" />
               <q-card-section class="text-left text-body2">
@@ -94,7 +94,7 @@ onMounted(() => {
             <div class="col gt-xs"></div>
             <q-card class="map-card no-shadow">
               <q-card-section class="text-center">
-                <div class="text-h6 text-primary">River of Flame</div>
+                <div class="text-h6 text-primary">불길의 강</div>
               </q-card-section>
               <img src="/images/knowledge/maps/act4/RiverofFlames.jpg" width="100%" />
               <q-card-section class="text-left text-body2">
@@ -110,7 +110,7 @@ onMounted(() => {
           <div class="row knowledge-item">
             <q-card class="map-card no-shadow">
               <q-card-section class="text-center">
-                <div class="text-h6 text-primary">Chaos Sanctuary</div>
+                <div class="text-h6 text-primary">혼돈의 성역</div>
               </q-card-section>
               <img src="/images/knowledge/maps/act4/ChaosSanctuary.jpg" width="100%" />
               <q-card-section class="text-left text-body2">

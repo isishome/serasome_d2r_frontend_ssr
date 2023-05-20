@@ -26,7 +26,7 @@ onMounted(() => {
             <div class="col gt-xs"></div>
             <q-card class="map-card no-shadow">
               <q-card-section class="text-center">
-                <div class="text-h6 text-primary">Rogue Encampment</div>
+                <div class="text-h6 text-primary">자매단 야영지</div>
               </q-card-section>
               <img src="/images/knowledge/maps/act1/RogueEncampment.jpg" width="100%" />
               <q-card-section class="text-left text-body2">
@@ -42,7 +42,7 @@ onMounted(() => {
           <div class="row knowledge-item">
             <q-card class="map-card no-shadow">
               <q-card-section class="text-center">
-                <div class="text-h6 text-primary">Blood Moor</div>
+                <div class="text-h6 text-primary">핏빛 황무지</div>
               </q-card-section>
               <img src="/images/knowledge/maps/act1/BloodMoor.jpg" width="100%" />
               <q-card-section class="text-left text-body2">
@@ -60,7 +60,7 @@ onMounted(() => {
             <div class="col gt-xs"></div>
             <q-card class="map-card no-shadow">
               <q-card-section class="text-center">
-                <div class="text-h6 text-primary">Cold Plains</div>
+                <div class="text-h6 text-primary">차가운 평야</div>
               </q-card-section>
               <img src="/images/knowledge/maps/act1/ColdPlains.jpg" width="100%" />
               <q-card-section class="text-left text-body2">
@@ -75,7 +75,7 @@ onMounted(() => {
             <div class="col gt-xs"></div>
             <q-card class="map-card no-shadow">
               <q-card-section class="text-center">
-                <div class="text-h6 text-primary">Burial Grounds</div>
+                <div class="text-h6 text-primary">매장지</div>
               </q-card-section>
               <img src="/images/knowledge/maps/act1/BurialGrounds.jpg" width="100%" />
               <q-card-section class="text-left text-body2">
@@ -91,7 +91,7 @@ onMounted(() => {
           <div class="q-mb-lg row">
             <q-card class="map-card no-shadow">
               <q-card-section class="text-center">
-                <div class="text-h6 text-primary">Stony Field</div>
+                <div class="text-h6 text-primary">바위 벌판</div>
               </q-card-section>
               <img src="/images/knowledge/maps/act1/StoneyField.jpg" width="100%" />
               <q-card-section class="text-left text-body2">
@@ -106,7 +106,7 @@ onMounted(() => {
           <div class="row knowledge-item">
             <q-card class="map-card no-shadow">
               <q-card-section class="text-center">
-                <div class="text-h6 text-primary">Tristram</div>
+                <div class="text-h6 text-primary">트리스트럼</div>
               </q-card-section>
               <img src="/images/knowledge/maps/act1/Tristram.jpg" width="100%" />
               <q-card-section class="text-left text-body2">
@@ -124,7 +124,7 @@ onMounted(() => {
             <div class="col gt-xs"></div>
             <q-card class="map-card no-shadow">
               <q-card-section class="text-center">
-                <div class="text-h6 text-primary">The Underground Passage</div>
+                <div class="text-h6 text-primary">지하 통로</div>
               </q-card-section>
               <img src="/images/knowledge/maps/act1/UndergroundPassage.jpg" width="100%" />
               <q-card-section class="text-left text-body2">
@@ -140,7 +140,7 @@ onMounted(() => {
           <div class="row knowledge-item">
             <q-card class="map-card no-shadow">
               <q-card-section class="text-center">
-                <div class="text-h6 text-primary">Dark Wood</div>
+                <div class="text-h6 text-primary">어둠숲</div>
               </q-card-section>
               <img src="/images/knowledge/maps/act1/DarkWood.jpg" width="100%" />
               <q-card-section class="text-left text-body2">
@@ -158,7 +158,7 @@ onMounted(() => {
             <div class="col gt-xs"></div>
             <q-card class="map-card no-shadow">
               <q-card-section class="text-center">
-                <div class="text-h6 text-primary">Black Marsh</div>
+                <div class="text-h6 text-primary">검은 습지</div>
               </q-card-section>
               <img src="/images/knowledge/maps/act1/BlackMarsh.jpg" width="100%" />
               <q-card-section class="text-left text-body2">
@@ -174,7 +174,7 @@ onMounted(() => {
           <div class="row knowledge-item">
             <q-card class="map-card no-shadow">
               <q-card-section class="text-center">
-                <div class="text-h6 text-primary">Tamoe Highland</div>
+                <div class="text-h6 text-primary">타모 고원</div>
               </q-card-section>
               <img src="/images/knowledge/maps/act1/TamoeHighland.jpg" width="100%" />
               <q-card-section class="text-left text-body2">
@@ -192,7 +192,7 @@ onMounted(() => {
             <div class="col gt-xs"></div>
             <q-card class="map-card no-shadow">
               <q-card-section class="text-center">
-                <div class="text-h6 text-primary">Monastery Gate</div>
+                <div class="text-h6 text-primary">수도원 정문</div>
               </q-card-section>
               <img src="/images/knowledge/maps/act1/MonasteryGate.jpg" width="100%" />
               <q-card-section class="text-left text-body2">
@@ -208,7 +208,7 @@ onMounted(() => {
           <div class="row knowledge-item">
             <q-card class="map-card no-shadow">
               <q-card-section class="text-center">
-                <div class="text-h6 text-primary">Outer Cloister</div>
+                <div class="text-h6 text-primary">외부 회랑</div>
               </q-card-section>
               <img src="/images/knowledge/maps/act1/OuterCloister.jpg" width="100%" />
               <q-card-section class="text-left text-body2">
@@ -226,7 +226,7 @@ onMounted(() => {
             <div class="col gt-xs"></div>
             <q-card class="map-card no-shadow">
               <q-card-section class="text-center">
-                <div class="text-h6 text-primary">Barracks</div>
+                <div class="text-h6 text-primary">병영</div>
               </q-card-section>
               <img src="/images/knowledge/maps/act1/Barracks.jpg" width="100%" />
               <q-card-section class="text-left text-body2">
@@ -242,7 +242,7 @@ onMounted(() => {
           <div class="row knowledge-item">
             <q-card class="map-card no-shadow">
               <q-card-section class="text-center">
-                <div class="text-h6 text-primary">Jail</div>
+                <div class="text-h6 text-primary">감옥</div>
               </q-card-section>
               <img src="/images/knowledge/maps/act1/Jail.jpg" width="100%" />
               <q-card-section class="text-left text-body2">
@@ -260,7 +260,7 @@ onMounted(() => {
             <div class="col gt-xs"></div>
             <q-card class="map-card no-shadow">
               <q-card-section class="text-center">
-                <div class="text-h6 text-primary">Inner Cloister</div>
+                <div class="text-h6 text-primary">내부 회랑</div>
               </q-card-section>
               <img src="/images/knowledge/maps/act1/InnerCloister.jpg" width="100%" />
               <q-card-section class="text-left text-body2">
@@ -276,7 +276,7 @@ onMounted(() => {
           <div class="row knowledge-item">
             <q-card class="map-card no-shadow">
               <q-card-section class="text-center">
-                <div class="text-h6 text-primary">Cathedral</div>
+                <div class="text-h6 text-primary">대성당</div>
               </q-card-section>
               <img src="/images/knowledge/maps/act1/Cathedral.jpg" width="100%" />
               <q-card-section class="text-left text-body2">
@@ -294,7 +294,7 @@ onMounted(() => {
             <div class="col gt-xs"></div>
             <q-card class="map-card no-shadow">
               <q-card-section class="text-center">
-                <div class="text-h6 text-primary">Catacombs</div>
+                <div class="text-h6 text-primary">지하 묘지</div>
               </q-card-section>
               <img src="/images/knowledge/maps/act1/Catacombs.jpg" width="100%" />
               <q-card-section class="text-left text-body2">
