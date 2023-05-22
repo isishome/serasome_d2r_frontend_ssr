@@ -47,9 +47,11 @@ export default boot(({ app, ssrContext }) => {
   api.defaults.baseURL = import.meta.env.VITE_APP_BE_HOST ? import.meta.env.VITE_APP_BE_HOST : `${protocol}//${hostname}${port ? ':'.concat(port) : ''}`
 
   const cookies = process.env.SERVER ? Cookies.parseSSR(ssrContext) : Cookies
-  api.defaults.headers = {
-    'Accept-Language': cookies.has(import.meta.env.VITE_APP_LANGUAGE_NAME) ? cookies.get(import.meta.env.VITE_APP_LANGUAGE_NAME) : Quasar.lang.getLocale() || 'ko-KR'
-  }
+    
+  if(process.env.SERVER)
+    api.defaults.headers.common['cookie'] = ssrContext.req.headers.cookie 
+  
+  api.defaults.headers.common['Accept-Language'] = cookies.has(import.meta.env.VITE_APP_LANGUAGE_NAME) ? cookies.get(import.meta.env.VITE_APP_LANGUAGE_NAME) : Quasar.lang.getLocale() || 'ko-KR'
 
   // for use inside Vue files (Options API) through this.$axios and this.$api
 

@@ -39,7 +39,7 @@ const time = setInterval(() => {
 }, 1000)
 
 let time2 = null
-const terrorZone = computed(() => currentZone.value ? terrorZones.value[currentZone.value.act].zones.find(z => z.value === currentZone.value.zone) : null)
+const terrorZone = computed(() => terrorZones.value[currentZone.value?.act]?.zones?.find(z => z.value === currentZone.value?.zone) || lang.value.unknown)
 const currentZone = ref()
 
 const getInfo = (ms) => {
@@ -52,8 +52,9 @@ const getInfo = (ms) => {
         if (response && response.data) {
           if (response.data.act === null || response.data.zone === null)
             failed = true
-          else
+          else {
             currentZone.value = response.data
+          }
         }
       })
       .catch(() => {
@@ -84,13 +85,14 @@ getInfo()
       {{ tm('d2r.knowledge.list').find(l => l.value === 'terrorzones').name }}
     </div>
     <q-card class="terror-zone no-shadow text-body2 word-keep" style="min-height:100px">
-      <q-inner-loading :showing="!terrorZone" color="primary" size="50px" />
+      <q-inner-loading :showing="loading" color="primary" size="50px" />
+
       <q-card-section v-if="terrorZone" horizontal>
         <q-img :src="terrorZone.img" style="max-height:351px;min-height:171px">
           <div class="absolute-bottom">
             <div class="row items-center q-gutter-x-xs">
               <div class="text-h6">{{ terrorZone.label }}</div>
-              <q-btn aria-label="Refresh" :loading="loading" v-if="terrorZone === 'unknown'" icon="refresh"
+              <q-btn aria-label="Refresh" :loading="loading" v-if="terrorZone.value === 'unknown'" icon="refresh"
                 @click="getInfo(2000)" />
             </div>
             <div class="text-subtitle2">{{ terrorZone.superUniques }}</div>
@@ -147,7 +149,8 @@ getInfo()
       </thead>
       <tbody v-for="(info, act) in terrorZones" :key="act">
         <tr v-for="(zone, idx) in info.zones" :key="zone.value"
-          :class="zone.value === (terrorZone ? terrorZone.value : '') ? 'current' : ''">
+          :class="(act === currentZone?.act && zone.value === currentZone?.zone) ? 'current' : ''">
+
           <th v-if="idx === 0" class="act" :rowspan="info.zones.length">
             {{ info.label }}</th>
           <td class="text-subtitle2">{{ zone.label }}</td>
