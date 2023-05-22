@@ -51,7 +51,7 @@ export default boot(({ app, ssrContext }) => {
   if(process.env.SERVER && ssrContext.req.headers.cookie )
     api.defaults.headers.common['cookie'] = ssrContext.req.headers.cookie 
   
-  api.defaults.headers.common['Accept-Language'] = cookies.has(import.meta.env.VITE_APP_LANGUAGE_NAME) ? cookies.get(import.meta.env.VITE_APP_LANGUAGE_NAME) : Quasar.lang.getLocale() || 'ko-KR'
+  api.defaults.headers.common['Accept-Language'] = cookies.has(import.meta.env.VITE_APP_LANGUAGE_NAME) ? cookies.get(import.meta.env.VITE_APP_LANGUAGE_NAME) : Quasar.lang.getLocale() || ssrContext.req.headers['accept-language'] || 'ko-KR'
 
   // for use inside Vue files (Options API) through this.$axios and this.$api
 
