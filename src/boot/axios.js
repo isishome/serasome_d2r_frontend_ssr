@@ -48,7 +48,7 @@ export default boot(({ app, ssrContext }) => {
 
   const cookies = process.env.SERVER ? Cookies.parseSSR(ssrContext) : Cookies
     
-  if(process.env.SERVER)
+  if(process.env.SERVER && ssrContext.req.headers.cookie )
     api.defaults.headers.common['cookie'] = ssrContext.req.headers.cookie 
   
   api.defaults.headers.common['Accept-Language'] = cookies.has(import.meta.env.VITE_APP_LANGUAGE_NAME) ? cookies.get(import.meta.env.VITE_APP_LANGUAGE_NAME) : Quasar.lang.getLocale() || 'ko-KR'
