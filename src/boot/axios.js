@@ -10,36 +10,38 @@ import axios from 'axios'
 // "export default () => {}" function below (which runs individually
 // for each client)
 
-const api = axios.create({
-  withCredentials: true
-})
-
-// Add a response interceptor
-api.interceptors.response.use((response) => {
-
-  // Any status code that lie within the range of 2xx cause this function to trigger
-  // Do something with response data
-  return response
-}, (error) => {
-  const errMsg = error.response && (error.response.data || error.response.statusText)
-  if (errMsg) {
-    const url = error.response.config.url
-    if (error.response.status === 401 && url !== 'info') {
-      Router.push({ name: 'sign' })
-    }
-    else if (errMsg) {
-      Notify.create({
-        message: errMsg,
-        color: 'negative'
-      })
-    }
-  }
-  // Any status codes that falls outside the range of 2xx cause this function to trigger
-  // Do something with response error
-  return Promise.reject(error)
-})
+let api
 
 export default boot(({ app, ssrContext }) => {
+  axios.create({
+    withCredentials: true
+  })
+  
+  // Add a response interceptor
+  api.interceptors.response.use((response) => {
+  
+    // Any status code that lie within the range of 2xx cause this function to trigger
+    // Do something with response data
+    return response
+  }, (error) => {
+    const errMsg = error.response && (error.response.data || error.response.statusText)
+    if (errMsg) {
+      const url = error.response.config.url
+      if (error.response.status === 401 && url !== 'info') {
+        Router.push({ name: 'sign' })
+      }
+      else if (errMsg) {
+        Notify.create({
+          message: errMsg,
+          color: 'negative'
+        })
+      }
+    }
+    // Any status codes that falls outside the range of 2xx cause this function to trigger
+    // Do something with response error
+    return Promise.reject(error)
+  })
+
   const protocol = process.env.SERVER ? ssrContext.req.protocol.concat(':') : window.location.protocol
   const hostname = process.env.SERVER ? ssrContext.req.hostname : window.location.hostname
   const port = import.meta.env.VITE_APP_BE_PORT
