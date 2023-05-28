@@ -13,7 +13,7 @@ import axios from 'axios'
 let api
 
 export default boot(({ app, ssrContext }) => {
-  axios.create({
+  api = axios.create({
     withCredentials: true
   })
   
