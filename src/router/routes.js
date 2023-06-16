@@ -17,7 +17,10 @@ export const routes = [
       {
         name: 'd2r-bbs',
         path: 'bbs/:sec',
-        component: () => import('pages/Bbs.vue'),
+        components: {
+          carousel: () => import('components/Carousel.vue'),
+          default: () => import('pages/Bbs.vue'),
+        },
         props: true,
         meta: {
           description: 'Diablo® II Resurrected\'s news, trade, laboratory, information, etc. A place of communication.'
@@ -50,7 +53,10 @@ export const routes = [
       {
         name: 'd2r-knowledge',
         path: '/knowledge',
-        component: () => import('pages/knowledge/Main.vue'),
+        components: {
+          carousel: () => import('components/Carousel.vue'),
+          default:  () => import('pages/knowledge/Main.vue'),
+        },
         meta: {
           description: 'Diablo® II Resurrected provides various information such as classes, skills, items, NPCs, quests, shrines, maps, and terror zones.'
         },

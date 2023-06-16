@@ -147,8 +147,8 @@ watch(() => route.params, (val, old) => {
 
 <template>
   <q-layout view="lHr lpR lFr">
-    <q-header class="header q-py-sm">
-      <q-toolbar :class="screen.gt.md ? 'q-px-xl' : ''">
+    <q-header class="header q-py-sm row justify-center">
+      <q-toolbar class="col-12 col-lg-8 col-xl-7" :class="{ 'no-padding': $q.screen.gt.md }">
         <div class="lt-lg func">
           <q-btn aria-label="Menu" dense flat :ripple="false" @click="() => leftDrawer = !leftDrawer" icon="menu" />
         </div>
@@ -159,7 +159,7 @@ watch(() => route.params, (val, old) => {
             </q-btn>
           </div>
         </q-toolbar-title>
-        <div class="q-pl-xl gt-md row items-center justify-start q-gutter-x-sm nav">
+        <div class="q-pl-xl gt-md row items-center justify-start q-gutter-x-xs nav">
           <q-btn aria-label="Goto BBS" v-for="sec in section" :key="sec.name" type="a"
             :class="sec.value === route.params.sec ? 'active' : ''" :to="{ name: 'd2r-bbs', params: { sec: sec.value } }"
             :ripple="false" flat no-caps padding="0 5px" size="18px" :label="sec.label" />
@@ -169,8 +169,9 @@ watch(() => route.params, (val, old) => {
               no-caps padding="0 5px" size="18px" :label="tm('d2r.knowledge.title')" />
             <template v-if="isKnowledge">
               <q-separator color="primary" class="full-width" />
-              <q-btn-toggle flat dense v-model="_section" toggle-color="primary" class="section" padding="0 10px"
-                :options="sectionList" @update:model-value="toSection" type="a" :ripple="false" />
+              <q-btn-toggle flat dense v-model="_section" toggle-color="primary" class="section"
+                :padding="$q.screen.gt.lg ? '0 10px' : '0 4px'" :options="sectionList" @update:model-value="toSection"
+                type="a" :ripple="false" />
             </template>
           </div>
         </div>
@@ -258,7 +259,7 @@ watch(() => route.params, (val, old) => {
       <router-view name="carousel" />
       <div class="row knowledge-item">
         <div class="gt-md col row justify-end" style="padding:7px 6px 0 0">
-          <div :class="isKnowledge && partList.length > 1 ? 'fixed' : ''">
+          <div>
             <AdSense v-if="!noAD && screen.gt.md" class="text-right" data-ad-client="ca-pub-5110777286519562"
               data-ad-slot="4948790020" :data-adtest="isProduction ? null : 'on'"
               :width="screen.gt.md ? '160px' : '120px'" height="600px" :key="`al-${key}`" />
@@ -293,7 +294,7 @@ watch(() => route.params, (val, old) => {
           </div>
         </div>
       </div>
-      <div class="platform-ios-only" style="padding-bottom: 12vh;"></div>
+      <div style="padding-bottom: 12vh;"></div>
       <q-page-sticky style="z-index: 1;" expand position="top">
         <q-linear-progress :track-color="isDark ? 'grey-8' : 'grey-5'" :value="progress" animation-speed="400"
           color="primary" size="1px" />

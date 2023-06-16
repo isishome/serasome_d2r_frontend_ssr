@@ -224,7 +224,7 @@ getInfo()
   min-width: 120px;
 }
 
-.current {
+.current td {
   background-color: var(--q-light-cloud);
 }
 

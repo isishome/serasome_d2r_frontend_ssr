@@ -25,20 +25,17 @@ const textSub = computed(() => {
 </script>
 
 <template>
-  <div>
-    <q-carousel class="full-width bg-transparent" :height="$q.screen.gt.xs ? '350px' : '150px'" animated :autoplay="10000"
-      infinite v-model="slide" transition-duration="2000">
+  <div class="wrap-carousel">
+    <q-carousel class="carousel full-width bg-transparent" :height="$q.screen.gt.xs ? '400px' : '200px'" animated
+      :autoplay="10000" infinite v-model="slide" transition-duration="2000">
       <q-carousel-slide class="no-padding" v-for="(no, index) in tm('d2r.main.carousel')" :key="index"
         :name="rt(no.name)">
-        <q-img :src="`/images/${rt(no.img)}.jpg`" :srcset="`/images/${rt(no.img)}_1x.jpg 400w,
-                  /images/${rt(no.img)}_2x.jpg 800w,
-                  /images/${rt(no.img)}_3x.jpg 1200w,
-                  /images/${rt(no.img)}_4x.jpg 1600w`" class="fit absolute" sizes="(max-width: 400px) 400w,
-                (min-width: 400px) and (max-width: 800px) 800w,
-                (min-width: 800px) and (max-width: 1200px) 1200w,
-                (min-width: 1200px) 1600w" />
-        <div class="full-width bg-transparent custom-caption"
-          :class="$q.screen.lt.sm ? 'absolute-center no-padding' : 'absolute-center'">
+        <q-img :src="`/images/${rt(no.img)}.jpg`"
+          :srcset="`/images/${rt(no.img)}_1x.jpg 400w, /images/${rt(no.img)}_2x.jpg 800w, /images/${rt(no.img)}_3x.jpg 1200w, /images/${rt(no.img)}_4x.jpg 1600w`"
+          class="fit absolute"
+          sizes="(max-width: 400px) 400w, (min-width: 400px) and (max-width: 800px) 800w, (min-width: 800px) and (max-width: 1200px) 1200w, (min-width: 1200px) 1600w" />
+        <div class="full-width bg-transparent custom-caption absolute"
+          :style="$q.screen.lt.sm ? 'no-padding' : 'top:50%;transform:translateY(-100%)'">
           <div class="d2r-top-title q-mb-sm word-keep" :style="textFlame">{{ rt(no.title) }}</div>
           <div class="row justify-center">
             <div class="d2r-top-desc col-6 col-xs-10 word-keep" :style="textSub">{{ rt(no.sub) }}</div>
@@ -50,6 +47,27 @@ const textSub = computed(() => {
 </template>
 
 <style scoped>
+.wrap-carousel {
+  height: 250px;
+  position: relative;
+}
+
+.carousel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 50%, #080808);
+}
+
+.body--light .carousel::after {
+  background: linear-gradient(to bottom, transparent 50%, #ffffff);
+}
+
+
 .custom-caption {
   text-align: center;
   padding: 12px;
@@ -66,6 +84,10 @@ const textSub = computed(() => {
 }
 
 @media screen and (max-width:599px) {
+  .wrap-carousel {
+    height: 100px;
+  }
+
   .d2r-top-title {
     text-shadow: 0 0 1px rgb(0, 0, 0), 1px 0 1px rgb(251, 255, 0), -1px -1px 1px rgb(255, 102, 0), 1px -1px 1px rgb(255, 38, 0);
   }
