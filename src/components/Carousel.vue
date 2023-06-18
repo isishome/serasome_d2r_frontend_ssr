@@ -26,6 +26,9 @@ const textFlame = computed(() => {
 const textSub = computed(() => {
   return $q.screen.lt.sm ? 'font-size:12px;line-height:16px;' : 'font-size:20px;'
 })
+
+const width = computed(() => $q.screen.width < 758 ? 320 : $q.screen.width < 960 ? 728 : $q.screen.width < 1000 ? 930 : $q.screen.width < 1010 ? 970 : 980)
+const height = computed(() => $q.screen.width < 758 ? 100 : $q.screen.width < 960 ? 90 : $q.screen.width < 1000 ? 180 : $q.screen.width < 1010 ? 90 : 120)
 </script>
 
 <template>
@@ -48,18 +51,24 @@ const textSub = computed(() => {
       </q-carousel-slide>
     </q-carousel>
   </div>
-  <div v-else-if="!noAD" class="row justify-center">
+  <div v-else-if="!noAD" class="row justify-center ad-wrap">
     <div class="col-12 col-lg-8 col-xl-7 text-center">
-      <AdSense v-if="$q.platform.is.mobile || $q.screen.lt.lg" class="text-center"
+      <AdSense v-if="$q.platform.is.mobile || $q.screen.lt.sm" class="text-center"
         data-ad-client="ca-pub-5110777286519562" data-ad-slot="7884972370" data-ad-format="auto"
-        data-full-width-responsive="true" :data-adtest="isProduction ? null : 'on'" :key="`m-${key}`" />
-      <AdSense v-else no-style class="text-center" data-ad-client="ca-pub-5110777286519562" data-ad-slot="7884972370"
-        :data-adtest="isProduction ? null : 'on'" width="728px" height="90px" :key="`d-${key}`" />
+        data-full-width-responsive="true" :height="$q.screen.width <= 300 ? '50px' : '100px'"
+        :data-adtest="isProduction ? null : 'on'" :key="`m-${key}`" />
+      <AdSense v-else class="text-center" data-ad-client="ca-pub-5110777286519562" data-ad-slot="7884972370"
+        :data-adtest="isProduction ? null : 'on'" :width="`${width}px`" :height="`${height}px`" :key="`d-${key}`" />
     </div>
   </div>
 </template>
 
 <style scoped>
+.ad-wrap {
+  margin-top: 8px;
+  line-height: 0;
+}
+
 .wrap-carousel {
   height: 250px;
   position: relative;

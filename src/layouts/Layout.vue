@@ -266,7 +266,7 @@ watch(() => route.params, (val, old) => {
           </div>
         </div>
         <q-page class="col-12 col-lg-8 col-xl-7">
-          <div :class="screen.gt.sm ? 'q-pt-sm' : ''">
+          <div class="q-pt-sm">
             <router-view />
           </div>
         </q-page>
