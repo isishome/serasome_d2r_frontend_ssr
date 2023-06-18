@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useQuasar } from 'quasar'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
@@ -27,8 +27,13 @@ const textSub = computed(() => {
   return $q.screen.lt.sm ? 'font-size:12px;line-height:16px;' : 'font-size:20px;'
 })
 
+const key2 = ref(0)
 const width = computed(() => $q.screen.width < 758 ? 320 : $q.screen.width < 960 ? 728 : $q.screen.width < 1000 ? 930 : $q.screen.width < 1010 ? 970 : 980)
 const height = computed(() => $q.screen.width < 758 ? 100 : $q.screen.width < 960 ? 90 : $q.screen.width < 1000 ? 180 : $q.screen.width < 1010 ? 90 : 120)
+
+watch(width, () => {
+  key2.value++
+})
 </script>
 
 <template>
@@ -56,9 +61,10 @@ const height = computed(() => $q.screen.width < 758 ? 100 : $q.screen.width < 96
       <AdSense v-if="$q.platform.is.mobile || $q.screen.lt.sm" class="text-center"
         data-ad-client="ca-pub-5110777286519562" data-ad-slot="7884972370" data-ad-format="auto"
         data-full-width-responsive="true" :height="$q.screen.width <= 300 ? '50px' : '100px'"
-        :data-adtest="isProduction ? null : 'on'" :key="`m-${key}`" />
+        :data-adtest="isProduction ? null : 'on'" :key="`m-${key}${key2}`" />
       <AdSense v-else class="text-center" data-ad-client="ca-pub-5110777286519562" data-ad-slot="7884972370"
-        :data-adtest="isProduction ? null : 'on'" :width="`${width}px`" :height="`${height}px`" :key="`d-${key}`" />
+        :data-adtest="isProduction ? null : 'on'" :width="`${width}px`" :height="`${height}px`"
+        :key="`d-${key}${key2}`" />
     </div>
   </div>
 </template>
