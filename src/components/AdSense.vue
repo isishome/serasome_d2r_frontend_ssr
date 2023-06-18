@@ -29,6 +29,10 @@ const props = defineProps({
   height: {
     type: String,
     default: '600px'
+  },
+  noStyle: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -56,9 +60,9 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <ins ref="adBox" class="adsbygoogle box" :data-ad-client="dataAdClient" :data-ad-slot="dataAdSlot"
-    :data-ad-format="dataAdFormat" :data-adtest="dataAdtest" :data-full-width-responsive="dataFullWidthResponsive"
-    :style="boxStyle"></ins>
+  <ins ref="adBox" class="adsbygoogle" :class="noStyle ? '' : 'box'" :data-ad-client="dataAdClient"
+    :data-ad-slot="dataAdSlot" :data-ad-format="dataAdFormat" :data-adtest="dataAdtest"
+    :data-full-width-responsive="dataFullWidthResponsive" :style="boxStyle"></ins>
 </template>
 
 <style scoped>

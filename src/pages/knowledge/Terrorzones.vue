@@ -1,22 +1,13 @@
 <script setup>
 import { inject, ref, computed, onUnmounted } from 'vue'
-import { useStore } from 'stores/store'
 import { useQuasar, date } from 'quasar'
 import { useI18n } from 'vue-i18n'
-import AdSense from 'components/AdSense.vue'
-
-// environment variables
-const isProduction = import.meta.env.PROD
 
 const axios = inject('axios')
 const $q = useQuasar()
 const { t, tm } = useI18n()
-const store = useStore()
 
-const key = computed(() => store.key)
 const loading = ref(false)
-const platform = computed(() => $q.platform)
-const noAD = computed(() => store.noAD)
 
 const terrorZones = computed(() => tm('terrorzonesData'))
 const immunities = computed(() => tm('immunities'))
@@ -130,12 +121,7 @@ getInfo()
         </q-card-section>
       </q-card-section>
     </q-card>
-    <div class="q-my-xl">
-      <AdSense v-if="platform.is.mobile && !noAD" data-ad-client="ca-pub-5110777286519562" data-ad-slot="7884972370"
-        data-ad-format="auto" data-full-width-responsive="true" :data-adtest="isProduction ? null : 'on'"
-        :key="`tr1-${key}`" />
-    </div>
-    <q-markup-table class="no-shadow knowledge-table text-body2" :wrap-cells="$q.screen.gt.sm" dense bordered
+    <q-markup-table class="q-mt-xl no-shadow knowledge-table text-body2" :wrap-cells="$q.screen.gt.sm" dense bordered
       separator="vertical">
       <thead>
         <tr>

@@ -2,18 +2,22 @@
 import { computed, ref } from 'vue'
 import { useQuasar } from 'quasar'
 import { useI18n } from 'vue-i18n'
+import { useRoute } from 'vue-router'
+import { useStore } from 'stores/store'
+import AdSense from 'components/AdSense.vue'
+
+// environment variables
+const isProduction = import.meta.env.PROD
 
 const $q = useQuasar()
 const { t, tm, rt } = useI18n()
+const route = useRoute()
+const store = useStore()
+const routeName = computed(() => route.name)
+const noAD = computed(() => store.noAD)
+const key = computed(() => store.key)
+
 const slide = ref('first')
-
-const imgURL = (path) => {
-  return new URL(`/images/${ltmd.value}${path}.jpg`, import.meta.url).href
-}
-
-const ltmd = computed(() => {
-  return $q.screen.lt.sm ? '1024_' : $q.screen.lt.md ? '1440_' : $q.screen.lt.lg ? '1920_' : ''
-})
 
 const textFlame = computed(() => {
   return $q.screen.lt.sm ? 'font-size:22px;line-height:23px;' : 'font-size:48px;'
@@ -25,7 +29,7 @@ const textSub = computed(() => {
 </script>
 
 <template>
-  <div class="wrap-carousel">
+  <div v-if="routeName === 'd2r-main'" class="wrap-carousel">
     <q-carousel class="carousel full-width bg-transparent" :height="$q.screen.gt.xs ? '400px' : '200px'" animated
       :autoplay="10000" infinite v-model="slide" transition-duration="2000">
       <q-carousel-slide class="no-padding" v-for="(no, index) in tm('d2r.main.carousel')" :key="index"
@@ -43,6 +47,13 @@ const textSub = computed(() => {
         </div>
       </q-carousel-slide>
     </q-carousel>
+  </div>
+  <div v-else class="row justify-center">
+    <div class="col-12 col-lg-8 col-xl-7">
+      <AdSense v-if="!noAD" no-style data-ad-client="ca-pub-5110777286519562" data-ad-slot="7884972370"
+        data-ad-format="auto" data-full-width-responsive="true" :data-adtest="isProduction ? null : 'on'"
+        :key="`tr1-${key}`" />
+    </div>
   </div>
 </template>
 

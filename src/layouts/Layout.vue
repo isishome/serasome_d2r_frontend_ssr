@@ -153,9 +153,9 @@ watch(() => route.params, (val, old) => {
           <q-btn aria-label="Menu" dense flat :ripple="false" @click="() => leftDrawer = !leftDrawer" icon="menu" />
         </div>
         <q-toolbar-title :shrink="screen.gt.md" class="no-padding">
-          <div class="row items-center" :class="[screen.lt.lg ? 'justify-center' : '', isDark ? 'dark' : '']">
+          <div class="row items-center" :class="[screen.lt.lg ? 'justify-center' : '', isDark ? '' : 'light-logo']">
             <q-btn flat :ripple="false" @click="home">
-              <img src="/images/logo.webp" width="95" height="48" />
+              <img src="/images/logo.webp" width="74" height="48" />
             </q-btn>
           </div>
         </q-toolbar-title>
@@ -326,8 +326,8 @@ watch(() => route.params, (val, old) => {
   background-color: var(--q-dark-half);
 }
 
-.dark {
-  filter: invert(10%) sepia(100%) saturate(7499%) hue-rotate(15deg) brightness(92%) contrast(111%);
+.light-logo {
+  filter: grayscale(100%);
 }
 
 .nav:deep(.q-btn) {
