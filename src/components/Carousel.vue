@@ -48,11 +48,13 @@ const textSub = computed(() => {
       </q-carousel-slide>
     </q-carousel>
   </div>
-  <div v-else class="row justify-center">
-    <div class="col-12 col-lg-8 col-xl-7">
-      <AdSense v-if="!noAD" no-style data-ad-client="ca-pub-5110777286519562" data-ad-slot="7884972370"
-        data-ad-format="auto" data-full-width-responsive="true" :data-adtest="isProduction ? null : 'on'"
-        :key="`tr1-${key}`" />
+  <div v-else-if="!noAD" class="row justify-center">
+    <div class="col-12 col-lg-8 col-xl-7 text-center">
+      <AdSense v-if="$q.platform.is.mobile || $q.screen.lt.lg" class="text-center"
+        data-ad-client="ca-pub-5110777286519562" data-ad-slot="7884972370" data-ad-format="auto"
+        data-full-width-responsive="true" :data-adtest="isProduction ? null : 'on'" :key="`m-${key}`" />
+      <AdSense v-else no-style class="text-center" data-ad-client="ca-pub-5110777286519562" data-ad-slot="7884972370"
+        :data-adtest="isProduction ? null : 'on'" width="728px" height="90px" :key="`d-${key}`" />
     </div>
   </div>
 </template>
