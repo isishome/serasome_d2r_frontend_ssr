@@ -28,8 +28,8 @@ const textSub = computed(() => {
 })
 
 const key2 = ref(0)
-const width = computed(() => $q.screen.width < 758 ? 320 : $q.screen.width < 960 ? 728 : $q.screen.width < 1000 ? 930 : $q.screen.width < 1010 ? 970 : 980)
-const height = computed(() => $q.screen.width < 758 ? 100 : $q.screen.width < 960 ? 90 : $q.screen.width < 1000 ? 180 : $q.screen.width < 1010 ? 90 : 120)
+const width = computed(() => $q.screen.width < 350 ? 300 : $q.screen.width < 758 ? 320 : $q.screen.width < 960 ? 728 : $q.screen.width < 1000 ? 930 : $q.screen.width < 1010 ? 970 : 980)
+const height = computed(() => $q.screen.width < 350 ? 50 : $q.screen.width < 960 ? 90 : $q.screen.width < 1000 ? 180 : $q.screen.width < 1010 ? 90 : 120)
 
 watch(width, () => {
   key2.value++
@@ -58,11 +58,7 @@ watch(width, () => {
   </div>
   <div v-else-if="!noAD" class="row justify-center ad-wrap">
     <div class="col-12 col-lg-8 col-xl-7 text-center">
-      <AdSense v-if="$q.platform.is.mobile || $q.screen.lt.sm" class="text-center"
-        data-ad-client="ca-pub-5110777286519562" data-ad-slot="7884972370" data-ad-format="auto"
-        data-full-width-responsive="true" :height="$q.screen.width <= 300 ? '50px' : '100px'"
-        :data-adtest="isProduction ? null : 'on'" :key="`m-${key}${key2}`" />
-      <AdSense v-else class="text-center" data-ad-client="ca-pub-5110777286519562" data-ad-slot="7884972370"
+      <AdSense class="text-center" data-ad-client="ca-pub-5110777286519562" data-ad-slot="7884972370"
         :data-adtest="isProduction ? null : 'on'" :width="`${width}px`" :height="`${height}px`"
         :key="`d-${key}${key2}`" />
     </div>
