@@ -155,7 +155,7 @@ watch(() => route.params, (val, old) => {
         <q-toolbar-title :shrink="screen.gt.md" class="no-padding">
           <div class="row items-center" :class="[screen.lt.lg ? 'justify-center' : '', isDark ? '' : 'light-logo']">
             <q-btn flat :ripple="false" @click="home">
-              <img src="/images/logo.webp" width="74" height="48" />
+              <img src="/images/logo.webp" width="73" height="48" />
             </q-btn>
           </div>
         </q-toolbar-title>
