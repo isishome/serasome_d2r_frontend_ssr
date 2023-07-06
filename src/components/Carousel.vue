@@ -88,9 +88,8 @@ watch(width, () => {
 }
 
 .body--light .carousel::after {
-  background: linear-gradient(to bottom, transparent 50%, #ffffff);
+  background: linear-gradient(to bottom, transparent 90%, #ffffff);
 }
-
 
 .custom-caption {
   text-align: center;

@@ -84,7 +84,7 @@ const isQuiz = computed(() => data.sec === 'trade' && data.classify === 'give' &
 const currentText = computed(() => current.value !== 0 ? current.value : t('btn.close'))
 
 const getCont = () => {
-  if (store.post) {
+  if (store.post && store.post.title) {
     intersactionImage(store.post)
     Object.assign(data, store.post)
 
@@ -96,6 +96,8 @@ const getCont = () => {
       getComments()
     })
   }
+  else
+    router.go(-1)
 }
 
 const getComments = () => {
@@ -355,9 +357,9 @@ onMounted(() => {
             </div>
             <div v-else class="row justify-end items-center q-col-gutter-x-sm text-right">
               <div class="col-9 col-sm-4 col-md-3">
-                <q-input dense borderless hide-bottom-space no-error-icon class="q-px-sm input-place quiz"
-                  color="grey-5" :disable="loading" maxlength="20" type="text" :label="t('d2r.bbs.answer')"
-                  v-model="answer" :rules="[val => val && val.trim() !== '' || '']" />
+                <q-input dense borderless hide-bottom-space no-error-icon class="q-px-sm input-place quiz" color="grey-5"
+                  :disable="loading" maxlength="20" type="text" :label="t('d2r.bbs.answer')" v-model="answer"
+                  :rules="[val => val && val.trim() !== '' || '']" />
               </div>
               <div>
                 <q-btn aria-label="Submit Post" dense padding="0 10px" type="submit" text-color="black"
