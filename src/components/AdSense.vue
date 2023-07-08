@@ -33,7 +33,7 @@ const props = defineProps({
 })
 
 const adBox = ref(null)
-const boxStyle = computed(() => props.dataFullWidthResponsive === 'true' ? `display:block;height:${props.height}` : `display:inline-block;width:${props.width};height:${props.height}`)
+const boxStyle = computed(() => props.dataFullWidthResponsive === 'true' ? `display:block;min-height:${props.height}` : `display:inline-block;width:${props.width};min-height:${props.height}`)
 
 const onWindowLoad = () => {
   if (window?.adsbygoogle && adBox.value?.clientHeight > 0)

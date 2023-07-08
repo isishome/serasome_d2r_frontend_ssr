@@ -1,11 +1,13 @@
 <script>
 import { useStore } from 'stores/store'
+
 export default {
   preFetch({ store, currentRoute }) {
     if (currentRoute.name === 'd2r-read') {
       const s = useStore(store)
-      return s.setPost(currentRoute.params.sec, currentRoute.params.pid).then(() => { }).catch(() => console.log('error'))
+      return s.setPost(currentRoute.params.sec, currentRoute.params.pid)
     }
+    return
   }
 }
 </script>
