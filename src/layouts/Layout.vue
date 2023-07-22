@@ -148,14 +148,14 @@ watch(() => route.params, (val, old) => {
 <template>
   <q-layout view="lHr lpR lFr">
     <q-header class="header q-py-sm row justify-center">
-      <q-toolbar class="col-12 col-lg-8 col-xl-7" :class="{ 'no-padding': $q.screen.gt.md }">
+      <q-toolbar class="col-12 col-lg-8 col-xl-7 width-wrap" :class="{ 'no-padding': $q.screen.gt.md }">
         <div class="lt-lg func">
           <q-btn aria-label="Menu" dense flat :ripple="false" @click="() => leftDrawer = !leftDrawer" icon="menu" />
         </div>
         <q-toolbar-title :shrink="screen.gt.md" class="no-padding">
           <div class="row items-center" :class="[screen.lt.lg ? 'justify-center' : '', isDark ? '' : 'light-logo']">
             <q-btn flat :ripple="false" @click="home">
-              <img src="/images/logo.webp" width="73" height="48" />
+              <img src="/images/logo.webp" width="50" height="33" />
             </q-btn>
           </div>
         </q-toolbar-title>
@@ -194,7 +194,7 @@ watch(() => route.params, (val, old) => {
             :icon="isDark ? 'light_mode' : 'dark_mode'" />
           <q-btn aria-label="Drawer" v-if="isKnowledge && partList.length > 1" class="lt-lg" dense flat :ripple="false"
             @click="() => rightDrawer = !rightDrawer" icon="assignment" />
-          <q-btn v-else flat @click.stop :ripple="false" />
+          <q-btn v-else-if="$q.screen.lt.lg" flat @click.stop :ripple="false" />
         </div>
       </q-toolbar>
     </q-header>
@@ -265,7 +265,7 @@ watch(() => route.params, (val, old) => {
               :width="screen.gt.md ? '160px' : '120px'" height="600px" :key="`al-${key}`" />
           </div>
         </div>
-        <q-page class="col-12 col-lg-8 col-xl-7">
+        <q-page class="col-12 col-lg-8 col-xl-7 width-wrap">
           <div class="q-pt-sm">
             <router-view />
           </div>

@@ -46,6 +46,10 @@ body.body--dark .bg-invert {
   background-color: var(--q-light-alpha) !important;
 }
 
+.width-wrap {
+  max-width:980px !important;
+}
+
 .word-wrap {
   word-break: break-all;
 }
@@ -140,6 +144,10 @@ body.body--dark .bg-invert {
 
 .knowledge-table .q-table__bottom--nodata {
   border-top: none !important;
+}
+
+.knowledge-item {
+  justify-content: center;
 }
 
 .knowledge-item .q-card {

@@ -37,9 +37,9 @@ watch(width, () => {
 </script>
 
 <template>
-  <div v-if="routeName === 'd2r-main'" class="wrap-carousel">
-    <q-carousel class="carousel full-width bg-transparent" :height="$q.screen.gt.xs ? '400px' : '200px'" animated
-      :autoplay="10000" infinite v-model="slide" transition-duration="2000">
+  <div v-if="routeName === 'd2r-main'" class="wrap-carousel row justify-center">
+    <q-carousel class="carousel bg-transparent" style="width:1300px" :height="$q.screen.gt.xs ? '400px' : '200px'"
+      animated :autoplay="10000" infinite v-model="slide" transition-duration="2000">
       <q-carousel-slide class="no-padding" v-for="(no, index) in tm('d2r.main.carousel')" :key="index"
         :name="rt(no.name)">
         <q-img :src="`/images/${rt(no.img)}.jpg`"
@@ -57,7 +57,7 @@ watch(width, () => {
     </q-carousel>
   </div>
   <div v-else-if="!noAD" class="row justify-center ad-wrap">
-    <div class="col-12 col-lg-8 col-xl-7 text-center">
+    <div class="col-12 col-lg-8 col-xl-7 text-center width-wrap">
       <AdSense class="text-center" data-ad-client="ca-pub-5110777286519562" data-ad-slot="7884972370"
         :data-adtest="isProduction ? null : 'on'" :width="`${width}px`" :height="`${height}px`"
         :key="`d-${key}${key2}`" />
@@ -84,11 +84,12 @@ watch(width, () => {
   right: 0;
   bottom: 0;
   height: 100%;
-  background: linear-gradient(to bottom, transparent 50%, #080808);
+  background: linear-gradient(to bottom, transparent 10%, #080808);
 }
 
-.body--light .carousel::after {
-  background: linear-gradient(to bottom, transparent 90%, #ffffff);
+.body--light .carousel {
+  border-radius: 100px;
+  filter: grayscale(1) invert(1);
 }
 
 .custom-caption {
