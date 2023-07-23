@@ -88,7 +88,6 @@ watch(width, () => {
 }
 
 .body--light .carousel {
-  border-radius: 100px;
   filter: grayscale(1) invert(1);
 }
 
