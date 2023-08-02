@@ -214,7 +214,7 @@ getInfo()
   background-color: var(--q-light-cloud);
 }
 
-.body--light .current {
+.body--light .current td {
   background-color: var(--q-dark-cloud);
 }
 </style>
