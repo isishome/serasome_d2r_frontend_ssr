@@ -98,6 +98,12 @@ watch(() => route.params.section, (val) => {
   _section.value = val
 })
 
+// q-page
+const myTweak = (offset) => {
+  if (routeName.value === 'main')
+    return { minHeight: `calc(100vh - ${offset}px)` }
+}
+
 // part
 const partList = computed(() => store.partList)
 const _part = ref(route.params.part)
@@ -265,7 +271,7 @@ watch(() => route.params, (val, old) => {
               :width="screen.gt.md ? '160px' : '120px'" height="600px" :key="`al-${key}`" />
           </div>
         </div>
-        <q-page class="col-12 col-lg-8 col-xl-7 width-wrap">
+        <q-page class="col-12 col-lg-8 col-xl-7 width-wrap" :style-fn="myTweak">
           <div class="q-pt-sm">
             <router-view />
           </div>
