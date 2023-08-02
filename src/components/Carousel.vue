@@ -29,7 +29,7 @@ const textSub = computed(() => {
 
 const key2 = ref(0)
 const width = computed(() => $q.screen.width < 350 ? 300 : $q.screen.width < 758 ? 320 : $q.screen.width < 960 ? 728 : $q.screen.width < 1000 ? 930 : $q.screen.width < 1010 ? 970 : 980)
-const height = computed(() => $q.screen.width < 350 ? 50 : $q.screen.width < 960 ? 90 : $q.screen.width < 1000 ? 180 : $q.screen.width < 1010 ? 90 : 120)
+const height = computed(() => $q.screen.width < 960 ? 50 : $q.screen.width < 1000 ? 180 : $q.screen.width < 1010 ? 90 : 120)
 
 watch(width, () => {
   key2.value++
@@ -38,7 +38,7 @@ watch(width, () => {
 
 <template>
   <div v-if="routeName === 'd2r-main'" class="wrap-carousel row justify-center">
-    <q-carousel class="carousel bg-transparent" style="width:1300px" :height="$q.screen.gt.xs ? '400px' : '200px'"
+    <q-carousel class="carousel bg-transparent" style="width:1300px" :height="$q.screen.gt.xs ? '300px' : '180px'"
       animated :autoplay="10000" infinite v-model="slide" transition-duration="2000">
       <q-carousel-slide class="no-padding" v-for="(no, index) in tm('d2r.main.carousel')" :key="index"
         :name="rt(no.name)">
@@ -46,8 +46,7 @@ watch(width, () => {
           :srcset="`/images/${rt(no.img)}_1x.jpg 400w, /images/${rt(no.img)}_2x.jpg 800w, /images/${rt(no.img)}_3x.jpg 1200w, /images/${rt(no.img)}_4x.jpg 1600w`"
           class="fit absolute"
           sizes="(max-width: 400px) 400w, (min-width: 400px) and (max-width: 800px) 800w, (min-width: 800px) and (max-width: 1200px) 1200w, (min-width: 1200px) 1600w" />
-        <div class="full-width bg-transparent custom-caption absolute"
-          :style="$q.screen.lt.sm ? 'no-padding' : 'top:50%;transform:translateY(-100%)'">
+        <div class="full-width bg-transparent custom-caption absolute" style="top:50%;transform:translateY(-50%)">
           <div class="d2r-top-title q-mb-sm word-keep" :style="textFlame">{{ rt(no.title) }}</div>
           <div class="row justify-center">
             <div class="d2r-top-desc col-6 col-xs-10 word-keep" :style="textSub">{{ rt(no.sub) }}</div>
@@ -72,7 +71,7 @@ watch(width, () => {
 }
 
 .wrap-carousel {
-  height: 250px;
+  height: 280px;
   position: relative;
 }
 
@@ -84,7 +83,7 @@ watch(width, () => {
   right: 0;
   bottom: 0;
   height: 100%;
-  background: linear-gradient(to bottom, transparent 10%, #080808);
+  background: linear-gradient(to bottom, transparent 30%, #080808);
 }
 
 .body--light .carousel {
@@ -108,7 +107,7 @@ watch(width, () => {
 
 @media screen and (max-width:599px) {
   .wrap-carousel {
-    height: 100px;
+    height: 180px;
   }
 
   .d2r-top-title {

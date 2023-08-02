@@ -169,7 +169,7 @@ watch(() => route.params, (val, old) => {
               no-caps padding="0 5px" size="18px" :label="tm('d2r.knowledge.title')" />
             <template v-if="isKnowledge">
               <q-separator color="primary" class="full-width" />
-              <q-btn-toggle flat dense v-model="_section" toggle-color="primary" class="section"
+              <q-btn-toggle no-caps flat dense v-model="_section" toggle-color="primary" class="section"
                 :padding="$q.screen.gt.lg ? '0 10px' : '0 4px'" :options="sectionList" @update:model-value="toSection"
                 type="a" :ripple="false" />
             </template>
@@ -275,7 +275,7 @@ watch(() => route.params, (val, old) => {
             <template v-if="isKnowledge && partList.length > 1">
               <div class="part word-keep">
                 <div class="column no-wrap q-gutter-y-sm">
-                  <q-btn aria-label="Part List" type="a" v-for="part in partList" :key="part.value" dense flat
+                  <q-btn no-caps aria-label="Part List" type="a" v-for="part in partList" :key="part.value" dense flat
                     :class="_part === part.value ? 'active' : ''" @click="() => toPart(part.value)">
                     <q-img no-spinner no-transition :src="part.img" :ratio="2" :height="`${600 / partList.length - 12}px`"
                       :data-class="part.label" />
@@ -294,7 +294,7 @@ watch(() => route.params, (val, old) => {
           </div>
         </div>
       </div>
-      <div style="padding-bottom: 12vh;"></div>
+      <div style="padding-bottom: 4vh;"></div>
       <q-page-sticky style="z-index: 1;" expand position="top">
         <q-linear-progress :track-color="isDark ? 'grey-8' : 'grey-5'" :value="progress" animation-speed="400"
           color="primary" size="1px" />
@@ -302,7 +302,7 @@ watch(() => route.params, (val, old) => {
       <q-page-scroller position="bottom-left" :scroll-offset="150" :offset="[0, 0]"
         style="position: absolute;z-index: 4;">
         <q-btn aria-label="Goto TOP" push
-          :style="screen.gt.lg ? 'left:22vw;bottom:20px' : screen.gt.md ? 'left:13vw;bottom:20px' : 'left:10px;bottom:30px'"
+          :style="screen.gt.lg ? 'left:31vw;bottom:20px' : screen.gt.md ? 'left:13vw;bottom:20px' : 'left:10px;bottom:30px'"
           round size="md" icon="keyboard_arrow_up" color="secondary" />
       </q-page-scroller>
     </q-page-container>

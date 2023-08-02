@@ -60,14 +60,3 @@ onUnmounted(() => {
     :data-ad-format="dataAdFormat" :data-adtest="dataAdtest" :data-full-width-responsive="dataFullWidthResponsive"
     :style="boxStyle"></ins>
 </template>
-
-<style scoped>
-.box::before {
-  position: absolute;
-  content: 'AD';
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: .2;
-}
-</style>

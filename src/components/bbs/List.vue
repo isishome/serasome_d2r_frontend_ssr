@@ -309,7 +309,7 @@ watch(() => route.query.page, (val, old) => {
     </Table>
     <q-page-sticky v-if="!search && authority(sec, 'write')" position="bottom-right" :offset="[0, 0]" style="z-index: 4;">
       <q-btn aria-label="Add Post" push color="primary"
-        :style="$q.screen.gt.lg ? 'right:22vw;bottom:20px' : $q.screen.gt.md ? 'right:13vw;bottom:20px' : 'right:10px;bottom:30px'"
+        :style="$q.screen.gt.lg ? 'right:31vw;bottom:20px' : $q.screen.gt.md ? 'right:13vw;bottom:20px' : 'right:10px;bottom:30px'"
         round size="md" icon="add" :to="`${sec}/write`" :disable="loading" />
     </q-page-sticky>
   </div>
