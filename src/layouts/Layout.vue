@@ -11,7 +11,7 @@ export default {
 
 <script setup>
 import { ref, computed, reactive, watch, inject } from 'vue'
-import { useQuasar } from 'quasar'
+import { useQuasar, date } from 'quasar'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import AdSense from 'components/AdSense.vue'
@@ -136,6 +136,8 @@ const sign = () => {
   }
 }
 
+const refreshSeconds = 30
+
 watch(() => route.params, (val, old) => {
   if (val !== old) {
     if (route.name !== 'd2r-read')
@@ -143,8 +145,16 @@ watch(() => route.params, (val, old) => {
 
     progress.value = 0
 
-    if (val?.sec !== old?.sec || (val?.sec === old?.sec && val?.pid !== old?.pid) || val?.section !== old?.section || (val?.section === old?.section && old?.part && val?.part && val?.part !== old?.part))
+    if (val?.sec !== old?.sec || (val?.sec === old?.sec && val?.pid !== old?.pid) || val?.section !== old?.section || (val?.section === old?.section && old?.part && val?.part && val?.part !== old?.part)) {
+      const now = new Date()
+      const diff = date.getDateDiff(now, store.adsDatetime || date.subtractFromDate(now, { seconds: refreshSeconds * 2 }), 'seconds')
+
+      if (diff < refreshSeconds)
+        return
+
+      store.adsDatetime = new Date()
       store.addKey()
+    }
   }
 }, {
   immediate: true
