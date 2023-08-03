@@ -147,12 +147,11 @@ watch(() => route.params, (val, old) => {
 
     if (val?.sec !== old?.sec || (val?.sec === old?.sec && val?.pid !== old?.pid) || val?.section !== old?.section || (val?.section === old?.section && old?.part && val?.part && val?.part !== old?.part)) {
       const now = new Date()
-      const diff = date.getDateDiff(now, store.adsDatetime || date.subtractFromDate(now, { seconds: refreshSeconds * 2 }), 'seconds')
+      const diff = store.adsDatetime ? date.getDateDiff(now, store.adsDatetime, 'seconds') : refreshSeconds
 
       if (diff < refreshSeconds)
         return
 
-      store.adsDatetime = new Date()
       store.addKey()
     }
   }
