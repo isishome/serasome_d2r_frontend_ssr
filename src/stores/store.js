@@ -11,8 +11,7 @@ export const useStore = defineStore('main', {
     partList: [],
     noAD: false,
     images: [],
-    skillsData: {},
-    adsDatetime: undefined
+    skillsData: {}
   }),
   getters: {
     getSection: state => {

@@ -38,8 +38,7 @@ const adBox = ref(null)
 const boxStyle = computed(() => props.dataFullWidthResponsive === 'true' ? `display:block;min-height:${props.height}` : `display:inline-block;width:${props.width};min-height:${props.height}`)
 
 const onWindowLoad = () => {
-  if (window?.adsbygoogle && adBox.value?.clientHeight > 0 && !store.noAD) {
-    store.adsDatetime = new Date();
+  if (window?.adsbygoogle && adBox.value?.clientHeight > 0) {
     (adsbygoogle = window.adsbygoogle || []).push({})
   }
 }

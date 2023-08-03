@@ -45,7 +45,6 @@ export default route(function ({ ssrContext }/* { store, ssrContext } */) {
     const store = useStore()
 
     store.setNoAD(to.meta.noAD === true)
-    store.adsDatetime = to.meta.noAD === true ? undefined : store.adsDatetime 
     store.clearImages()
 
     if (store.info === null) {
