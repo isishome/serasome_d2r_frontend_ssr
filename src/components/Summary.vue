@@ -36,7 +36,7 @@ const itemClick = (item) => {
   <div class="q-pt-md">
     <div class="row justify-start q-col-gutter-md">
       <template v-if="loading">
-        <div class="col-12 col-md-4" v-for="s in 4" :key="`s_${s}`">
+        <div class="col-12 col-md-6" v-for="s in 4" :key="`s_${s}`">
           <q-skeleton type="QToolbar" height="36px" class="full-width" />
           <q-item v-for="i in 3" :key="`i_${i}`">
             <q-item-section avatar>
@@ -53,7 +53,7 @@ const itemClick = (item) => {
           </q-item>
         </div>
       </template>
-      <div v-for="sec in data" :key="sec.value" class="col-12 col-md-4">
+      <div v-for="sec in data" :key="sec.value" class="col-12 col-md-6">
         <div class="summary">
           <q-toolbar dense flat class="row justify-between sub">
             <div class="lt-sm col-4"></div>
