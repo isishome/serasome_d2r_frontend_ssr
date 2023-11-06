@@ -1,6 +1,5 @@
 <script setup>
-import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
-import { useStore } from 'src/stores/store'
+import { ref, computed, onMounted, nextTick } from 'vue'
 
 const props = defineProps({
   dataAdClient: {
@@ -32,29 +31,19 @@ const props = defineProps({
     default: '600px'
   }
 })
-const store = useStore()
-
 const adBox = ref(null)
 const boxStyle = computed(() => props.dataFullWidthResponsive === 'true' ? `display:block;min-height:${props.height}` : `display:inline-block;width:${props.width};min-height:${props.height}`)
 
 const onWindowLoad = () => {
-  if (window?.adsbygoogle && adBox.value?.clientHeight > 0) {
+  if (window?.adsbygoogle && adBox.value?.clientWidth + adBox.value?.clientHeight > 0) {
     (adsbygoogle = window.adsbygoogle || []).push({})
   }
 }
 
 onMounted(() => {
-  if (document.readyState !== 'complete')
-    window.addEventListener("load", onWindowLoad)
-  else {
-    nextTick(() => {
-      onWindowLoad()
-    })
-  }
-})
-
-onUnmounted(() => {
-  window.removeEventListener("load", onWindowLoad)
+  nextTick(() => {
+    onWindowLoad()
+  })
 })
 </script>
 
