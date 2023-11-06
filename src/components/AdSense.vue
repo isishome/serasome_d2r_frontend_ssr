@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted, nextTick } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps({
   dataAdClient: {
@@ -41,9 +41,14 @@ const onWindowLoad = () => {
 }
 
 onMounted(() => {
-  nextTick(() => {
+  if (!window?.adsbygoogle)
+    window.addEventListener('load', onWindowLoad)
+  else
     onWindowLoad()
-  })
+})
+
+onUnmounted(() => {
+  window.removeEventListener('load', onWindowLoad)
 })
 </script>
 
