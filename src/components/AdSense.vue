@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { computed, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps({
   dataAdClient: {
@@ -31,17 +31,14 @@ const props = defineProps({
     default: '600px'
   }
 })
-const adBox = ref(null)
 const boxStyle = computed(() => props.dataFullWidthResponsive === 'true' ? `display:block;min-height:${props.height}` : `display:inline-block;width:${props.width};min-height:${props.height}`)
 
 const onWindowLoad = () => {
-  if (window?.adsbygoogle && adBox.value?.clientWidth + adBox.value?.clientHeight > 0) {
-    (adsbygoogle = window.adsbygoogle || []).push({})
-  }
+  (adsbygoogle = window.adsbygoogle || []).push({})
 }
 
 onMounted(() => {
-  if (!window?.adsbygoogle)
+  if (document.readyState !== 'complete')
     window.addEventListener('load', onWindowLoad)
   else
     onWindowLoad()
@@ -53,7 +50,6 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <ins ref="adBox" class="adsbygoogle box" :data-ad-client="dataAdClient" :data-ad-slot="dataAdSlot"
-    :data-ad-format="dataAdFormat" :data-adtest="dataAdtest" :data-full-width-responsive="dataFullWidthResponsive"
-    :style="boxStyle"></ins>
+  <ins class="adsbygoogle box" :data-ad-client="dataAdClient" :data-ad-slot="dataAdSlot" :data-ad-format="dataAdFormat"
+    :data-adtest="dataAdtest" :data-full-width-responsive="dataFullWidthResponsive" :style="boxStyle"></ins>
 </template>
