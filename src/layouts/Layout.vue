@@ -182,7 +182,7 @@ watch(key, () => {
     right2Key.value++
     store.right2AccessTimeStamp = Date.now()
   }
-}
+})
 </script>
 
 <template>
