@@ -67,8 +67,7 @@ watch(key, () => {
   <div v-else-if="!noAD" class="row justify-center ad-wrap">
     <div class="col-12 col-lg-8 col-xl-7 text-center width-wrap">
       <AdSense ref="topRef" class="text-center" data-ad-client="ca-pub-5110777286519562" data-ad-slot="7884972370"
-        :data-adtest="isProduction ? null : 'on'" :width="`${width}px`" :height="`${height}px`"
-        :key="`d-${key}${topKey}`" />
+        :data-adtest="isProduction ? null : 'on'" :width="`${width}px`" :height="`${height}px`" :key="`d-${topKey}`" />
     </div>
   </div>
 </template>
