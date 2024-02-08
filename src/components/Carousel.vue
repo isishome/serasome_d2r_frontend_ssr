@@ -42,7 +42,7 @@ watch(key, () => {
     topKey.value++
     store.topAccessTimeStamp = Date.now()
   }
-}
+})
 </script>
 
 <template>
