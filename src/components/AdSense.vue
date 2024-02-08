@@ -53,3 +53,9 @@ onUnmounted(() => {
   <ins class="adsbygoogle box" :data-ad-client="dataAdClient" :data-ad-slot="dataAdSlot" :data-ad-format="dataAdFormat"
     :data-adtest="dataAdtest" :data-full-width-responsive="dataFullWidthResponsive" :style="boxStyle"></ins>
 </template>
+
+<style scoped>
+.box[data-ad-status="unfilled"] {
+  display: none !important;
+}
+</style>

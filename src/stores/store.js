@@ -11,7 +11,11 @@ export const useStore = defineStore('main', {
     partList: [],
     noAD: false,
     images: [],
-    skillsData: {}
+    skillsData: {},
+    topAccessTimeStamp: Date.now(),
+    leftAccessTimeStamp: Date.now(),
+    right1AccessTimeStamp: Date.now(),
+    right2AccessTimeStamp: Date.now()
   }),
   getters: {
     getSection: state => {

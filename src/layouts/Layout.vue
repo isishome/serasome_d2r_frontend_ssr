@@ -85,6 +85,12 @@ const home = () => {
 // adsense
 const noAD = computed(() => store.noAD)
 const key = computed(() => store.key)
+const leftRef = ref()
+const right1Ref = ref()
+const right2Ref = ref()
+const leftKey = ref(0)
+const right1Key = ref(0)
+const right2Key = ref(0)
 
 // section
 const isKnowledge = computed(() => routeName.value.indexOf('knowledge') !== -1)
@@ -149,6 +155,34 @@ watch(() => route.params, (val, old) => {
 }, {
   immediate: true
 })
+
+watch(() => $q.screen.gt.md, (val, old) => {
+  if (val !== old) {
+    leftKey.value++
+    right1Key.value++
+    right2Key.value++
+    store.leftAccessTimeStamp = Date.now()
+    store.right1AccessTimeStamp = Date.now()
+    store.right2AccessTimeStamp = Date.now()
+  }
+})
+
+watch(key, () => {
+  if (Date.now() - store.leftAccessTimeStamp > 60000 || leftRef.value?.$el.getAttribute('data-ad-status') === 'unfilled') {
+    leftKey.value++
+    store.leftAccessTimeStamp = Date.now()
+  }
+
+  if (Date.now() - store.right1AccessTimeStamp > 60000 || right1Ref.value?.$el.getAttribute('data-ad-status') === 'unfilled') {
+    right1Key.value++
+    store.right1AccessTimeStamp = Date.now()
+  }
+
+  if (Date.now() - store.right2AccessTimeStamp > 60000 || right2Ref.value?.$el.getAttribute('data-ad-status') === 'unfilled') {
+    right2Key.value++
+    store.right2AccessTimeStamp = Date.now()
+  }
+}
 </script>
 
 <template>
@@ -266,9 +300,9 @@ watch(() => route.params, (val, old) => {
       <div class="row knowledge-item">
         <div class="gt-md col row justify-end" style="padding:7px 6px 0 0">
           <div>
-            <AdSense v-if="!noAD && screen.gt.md" class="text-right" data-ad-client="ca-pub-5110777286519562"
-              data-ad-slot="4948790020" :data-adtest="isProduction ? null : 'on'"
-              :width="screen.gt.md ? '160px' : '120px'" height="600px" :key="`al-${key}`" />
+            <AdSense ref="leftRef" v-if="!noAD && screen.gt.md" class="text-right"
+              data-ad-client="ca-pub-5110777286519562" data-ad-slot="4948790020" :data-adtest="isProduction ? null : 'on'"
+              :width="screen.gt.md ? '160px' : '120px'" height="600px" :key="`al-${leftKey}`" />
           </div>
         </div>
         <q-page class="col-12 col-lg-8 col-xl-7 width-wrap" :style-fn="myTweak">
@@ -289,14 +323,14 @@ watch(() => route.params, (val, old) => {
                 </div>
               </div>
               <div class="q-mt-sm">
-                <AdSense v-if="screen.gt.md && !noAD" class="text-left" data-ad-client="ca-pub-5110777286519562"
-                  data-ad-slot="3887197241" :data-adtest="isProduction ? null : 'on'" width="200px" height="200px"
-                  :key="`ar1-${key}`" />
+                <AdSense ref="right1Ref" v-if="screen.gt.md && !noAD" class="text-left"
+                  data-ad-client="ca-pub-5110777286519562" data-ad-slot="3887197241"
+                  :data-adtest="isProduction ? null : 'on'" width="200px" height="200px" :key="`ar1-${right1Key}`" />
               </div>
             </template>
-            <AdSense v-else-if="screen.gt.md && !noAD" class="text-left" data-ad-client="ca-pub-5110777286519562"
-              data-ad-slot="9654321794" :data-adtest="isProduction ? null : 'on'"
-              :width="screen.gt.md ? '160px' : '120px'" height="600px" :key="`ar2-${key}`" />
+            <AdSense ref="right2Ref" v-else-if="screen.gt.md && !noAD" class="text-left"
+              data-ad-client="ca-pub-5110777286519562" data-ad-slot="9654321794" :data-adtest="isProduction ? null : 'on'"
+              :width="screen.gt.md ? '160px' : '120px'" height="600px" :key="`ar2-${right2Key}`" />
           </div>
         </div>
       </div>

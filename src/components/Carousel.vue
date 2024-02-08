@@ -27,13 +27,22 @@ const textSub = computed(() => {
   return $q.screen.lt.sm ? 'font-size:12px;line-height:16px;' : 'font-size:20px;'
 })
 
-const key2 = ref(0)
+const topRef = ref()
+const topKey = ref(0)
 const width = computed(() => $q.screen.width < 350 ? 300 : $q.screen.width < 758 ? 320 : $q.screen.width < 960 ? 728 : $q.screen.width < 1000 ? 930 : $q.screen.width < 1010 ? 970 : 980)
 const height = computed(() => $q.screen.width < 960 ? 50 : $q.screen.width < 1000 ? 180 : $q.screen.width < 1010 ? 90 : 120)
 
 watch(width, () => {
-  key2.value++
+  topKey.value++
+  store.topAccessTimeStamp = Date.now()
 })
+
+watch(key, () => {
+  if (Date.now() - store.topAccessTimeStamp > 60000 || topRef.value?.$el.getAttribute('data-ad-status') === 'unfilled') {
+    topKey.value++
+    store.topAccessTimeStamp = Date.now()
+  }
+}
 </script>
 
 <template>
@@ -57,9 +66,9 @@ watch(width, () => {
   </div>
   <div v-else-if="!noAD" class="row justify-center ad-wrap">
     <div class="col-12 col-lg-8 col-xl-7 text-center width-wrap">
-      <AdSense class="text-center" data-ad-client="ca-pub-5110777286519562" data-ad-slot="7884972370"
+      <AdSense ref="topRef" class="text-center" data-ad-client="ca-pub-5110777286519562" data-ad-slot="7884972370"
         :data-adtest="isProduction ? null : 'on'" :width="`${width}px`" :height="`${height}px`"
-        :key="`d-${key}${key2}`" />
+        :key="`d-${key}${topKey}`" />
     </div>
   </div>
 </template>

@@ -226,7 +226,3 @@ body.body--dark .bg-invert {
   right: auto !important;
   transform: translate(-30%, -30%);
 }
-
-ins.adsbygoogle[data-ad-status="unfilled"] {
-  display: none !important;
-}
