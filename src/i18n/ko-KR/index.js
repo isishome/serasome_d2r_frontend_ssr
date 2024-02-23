@@ -4,6 +4,18 @@ export default {
       "occurErrorRequest": "서비스 요청중 문제가 발생했습니다",
       "requireSignIn": "로그인이 필요한 서비스 입니다",
       "unavailableService": "디아블로® II: 레저렉션™ 테스트 계정은 이용할 수 없는 서비스입니다"
+    },
+    "notice":{
+      "title":"Sera's 디아블로® II 서비스 종료 안내",
+      "contents":[
+        "안녕하세요. SeraSome입니다.",
+        "Sera's 디아블로® II 서비스를 2024년 2월 29일 종료하게 되어 안내 드립니다.",
+        "지금까지 Sera's 디아블로® II 서비스를 이용해 주셔서 감사드리며,",
+        "더 좋은 서비스로 찾아뵐 수 있도록 노력하겠습니다.",
+        "ㅤ",
+        "감사합니다."
+      ],
+      "close": "24시간 동안 열지 않기"
     }
   },
   "language": "언어",

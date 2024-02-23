@@ -1,4 +1,5 @@
 <script setup>
+import { Meta } from 'quasar'
 import { computed, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps({
@@ -34,7 +35,8 @@ const props = defineProps({
 const boxStyle = computed(() => props.dataFullWidthResponsive === 'true' ? `display:block;min-height:${props.height}` : `display:inline-block;width:${props.width};min-height:${props.height}`)
 
 const onWindowLoad = () => {
-  (adsbygoogle = window.adsbygoogle || []).push({})
+  if (import.meta.env.PROD && !!window.adsbygoogle)
+    (adsbygoogle = window.adsbygoogle || []).push({})
 }
 
 onMounted(() => {

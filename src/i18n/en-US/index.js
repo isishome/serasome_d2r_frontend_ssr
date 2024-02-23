@@ -7,6 +7,18 @@ export default {
       "occurErrorRequest": "There was a problem while requesting service",
       "requireSignIn": "This service requires sign in",
       "unavailableService": "Diablo® II: Resurrection™ Test Account is not available"
+    },
+    "notice":{
+      "title":"Sera's Diablo® II Service End of Life Announcement",
+      "contents":[
+        "Hello. This is SeraSome.",
+        "We are pleased to announce that Sera's Diablo® II service will be shutting down on February 29, 2024.",
+        "Thank you for your patronage of Sera's Diablo® II services,",
+        "and we look forward to serving you in the future.",
+        "",
+        "Thank you." 
+      ],
+      "close": "Do not open for 24 hours"
     }
   },
   "language": "Language",

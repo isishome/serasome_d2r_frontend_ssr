@@ -35,6 +35,15 @@ const images = computed(() => store.images)
 const routeName = computed(() => route.name)
 const screen = computed(() => $q.screen)
 const signStatus = computed(() => store.signStatus)
+const notice = reactive({
+  open: !$q.cookies.has('d2r.update.20240223'),
+  close: false
+})
+
+const close = () => {
+  $q.cookies.set('d2r.update.20240223', 'confirm', { expires: 1, path: '/' })
+  notice.open = false
+}
 
 // scroll & progress
 const progress = ref(0)
@@ -348,6 +357,28 @@ watch(key, () => {
     </q-page-container>
   </q-layout>
   <Zoom :images="images" />
+  <q-dialog v-model="notice.open" persistent>
+    <q-card flat bordered>
+      <q-card-section class="bg-secondary">
+        <div class="text-h6">
+          {{ t('system.notice.title') }}
+        </div>
+      </q-card-section>
+      <q-card-section>
+        <p v-for="(content, idx) in tm('system.notice.contents')" :key="idx">
+          {{ content }}
+        </p>
+      </q-card-section>
+      <q-separator />
+      <q-card-section>
+        <div class="q-pa-sm text-right">
+          <q-btn :size="$q.screen.gt.sm ? '' : 'sm'" outline no-caps :label="t('system.notice.close')" @click="close"
+            :aria-label="t('system.notice.close')" />
+        </div>
+      </q-card-section>
+    </q-card>
+
+  </q-dialog>
 </template>
 
 <style scoped>
